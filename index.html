@@ -1,653 +1,328 @@
-
-
 <!DOCTYPE html>
-<html lang="zh-CN" data-default-color-scheme=auto>
-
-
-
+<html lang=zh>
 <head>
-  <meta charset="UTF-8">
-  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
-  <link rel="icon" href="/img/fluid.png">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
-  <meta http-equiv="x-ua-compatible" content="ie=edge">
-  
-  <meta name="theme-color" content="#2f4154">
-  <meta name="author" content="John Doe">
-  <meta name="keywords" content="">
-  
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
     <meta property="og:type" content="website">
 <meta property="og:title" content="s4mmy&#39;s blog">
 <meta property="og:url" content="https://sammylingsj.github.io/index.html">
 <meta property="og:site_name" content="s4mmy&#39;s blog">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:author" content="John Doe">
-<meta name="twitter:card" content="summary_large_image">
-  
-  
-  
-  <title>s4mmy&#39;s blog</title>
-
-  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
-
-
-
-
-
-<!-- 主题依赖的图标库，不要自行修改 -->
-<!-- Do not modify the link that theme dependent icons -->
-
-<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
-
-
-
-<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
-
-
-<link  rel="stylesheet" href="/css/main.css" />
-
-
-  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
-  
-    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
-  
+<meta name="twitter:card" content="summary">
+    
+    
+      
+        
+          <link rel="shortcut icon" href="/images/favicon.ico">
+        
+      
+      
+        
+          <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
+        
+      
+      
+        
+          <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+        
+      
+    
+    <!-- title -->
+    <title>s4mmy&#39;s blog</title>
+    <!-- async scripts -->
+    <!-- Google Analytics -->
 
 
+    <!-- Umami Analytics -->
 
 
-  <script id="fluid-configs">
-    var Fluid = window.Fluid || {};
-    Fluid.ctx = Object.assign({}, Fluid.ctx)
-    var CONFIG = {"hostname":"sammylingsj.github.io","root":"/","version":"1.9.4","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+    <!-- styles -->
+    
+<link rel="stylesheet" href="/css/style.css">
 
-    if (CONFIG.web_analytics.follow_dnt) {
-      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
-      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
-    }
-  </script>
-  <script  src="/js/utils.js" ></script>
-  <script  src="/js/color-schema.js" ></script>
-  
-
-
-  
+    <!-- persian styles -->
+    
+    <!-- rss -->
+    
+    
+	<!-- mathjax -->
+	
 <meta name="generator" content="Hexo 6.3.0"></head>
 
-
-<body>
+<body class="max-width mx-auto px3 ltr">
+    
+    <div class="content index py4 h-card">
+        
+          <header id="header">
+  <a class="u-url u-uid" href="/">
   
+    
+      <img id="logo" alt class="u-logo" src="/images/logo.png" />
+    
+  
+    <div id="title">
+      <h1 class="p-name">s4mmy&#39;s blog</h1>
+    </div>
+  </a>
+  <div id="nav">
+    <ul>
+      <li class="icon">
+        <a href="#" aria-label="目录"><i class="fa-solid fa-bars fa-2x"></i></a>
+      </li>
+      <!--
+     --><li><a href="/">首页</a></li><!--
+   --><!--
+     --><li><a href="/about/">关于</a></li><!--
+   --><!--
+     --><li><a href="/archives/">归档</a></li><!--
+   --><!--
+     --><li><a target="_blank" rel="noopener" href="http://github.com/probberechts">项目</a></li><!--
+   -->
+    </ul>
+  </div>
+</header>
 
-  <header>
+        
+        <section id="about" class="p-note">
+  
+  
+    <p>
+      在这里找到我：
+      
+      
+      
+        
+        
+          <a class="icon u-url" target="_blank" rel="noopener me" href="http://github.com/probberechts/cactus-dark" aria-label="github" title="github">
+            <i class="fa-brands fa-github"></i><!--
+      ---></a><!--
+    ---><!--
+    --->， 
+        
+      
+        
+        
+          <a class="icon u-url" target="_blank" rel="noopener me" href="/" aria-label="twitter" title="twitter">
+            <i class="fa-brands fa-twitter"></i><!--
+      ---></a><!--
+    ---><!--
+    --->， 
+        
+      
+        
+        
+          <a class="icon u-url" target="_blank" rel="noopener me" href="/" aria-label="facebook" title="facebook">
+            <i class="fa-brands fa-facebook"></i><!--
+      ---></a><!--
+    ---><!--
+    --->， 
+        
+      
+        
+        
+          <a class="icon u-email" target="_blank" rel="noopener" href="mailto:name@email.com" aria-label="mail" title="mail">
+            <i class="fa-solid fa-envelope"></i><!--
+      ---></a>
+        <!--
+    --->， 
+        
+      
+        
+        
+          <a class="icon u-url" target="_blank" rel="noopener me" href="https://mastodon.social/@alice" aria-label="mastodon.social" title="mastodon.social">
+            <i class="fa-brands fa-mastodon"></i><!--
+      ---></a><!--
+    ---><!--
+    ---> 和 
+        
+      
+        
+        
+          <a class="icon u-url" target="_blank" rel="noopener me" href="https://fosstodon.org/@alice" aria-label="fosstodon.org" title="fosstodon.org">
+            <i class="fa-brands fa-mastodon"></i><!--
+      ---></a><!--
+    ---><!--
+    --->.
+        
+      
+    </p>
+  
+</section>
+
+<section id="writing">
+  <span class="h1"><a href="/archives/">文章</a></span>
+  
+  <ul class="post-list">
+    
+    
+      
+    
+    
+      <li class="post-item">
+        
+    <div class="meta">
+      
+        
+          <time datetime="2023-09-17T12:08:03.939Z" class="dt-published" itemprop="datePublished">2023-09-17</time>
+        
+      
+    </div>
+
+
+        <span>
+    
+        <a class="" href="/2023/09/17/kerberos%E6%94%BB%E5%87%BB%E5%AD%A6%E4%B9%A0/tryhackme_Attacking%20Kerberos%20room/">kerberos攻击学习</a>
     
 
-<div class="header-inner" style="height: 100vh;">
-  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
-  <div class="container">
-    <a class="navbar-brand" href="/">
-      <strong>s4mmy&#39;s Blog</strong>
-    </a>
 
-    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
-            data-target="#navbarSupportedContent"
-            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-      <div class="animated-icon"><span></span><span></span><span></span></div>
-    </button>
+</span>
+      </li>
+    
+      <li class="post-item">
+        
+    <div class="meta">
+      
+        
+          <time datetime="2023-08-27T05:53:52.929Z" class="dt-published" itemprop="datePublished">2023-08-27</time>
+        
+      
+    </div>
 
-    <!-- Collapsible content -->
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul class="navbar-nav ml-auto text-center">
+
+        <span>
+    
+        <a class="" href="/2023/08/27/CTFD%E5%B9%B3%E5%8F%B0%E6%90%AD%E5%BB%BA/CTFD%E9%9D%B6%E5%9C%BA%E6%90%AD%E5%BB%BA/">CTFD动态靶场搭建</a>
+    
+
+
+</span>
+      </li>
+    
+      <li class="post-item">
         
-          
-          
-          
-          
-            <li class="nav-item">
-              <a class="nav-link" href="/">
-                <i class="iconfont icon-home-fill"></i>
-                <span>首页</span>
-              </a>
-            </li>
-          
+    <div class="meta">
+      
         
-          
-          
-          
-          
-            <li class="nav-item">
-              <a class="nav-link" href="/archives/">
-                <i class="iconfont icon-archive-fill"></i>
-                <span>归档</span>
-              </a>
-            </li>
-          
+          <time datetime="2023-07-28T17:11:05.127Z" class="dt-published" itemprop="datePublished">2023-07-29</time>
         
-          
-          
-          
-          
-            <li class="nav-item">
-              <a class="nav-link" href="/categories/">
-                <i class="iconfont icon-category-fill"></i>
-                <span>分类</span>
-              </a>
-            </li>
-          
+      
+    </div>
+
+
+        <span>
+    
+        <a class="" href="/2023/07/29/PHP%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96%E5%AD%97%E7%AC%A6%E4%B8%B2%E9%80%83%E9%80%B8/PHP%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96%E5%AD%97%E7%AC%A6%E4%B8%B2%E9%80%83%E9%80%B8/">PHP反序列化字符串逃逸</a>
+    
+
+
+</span>
+      </li>
+    
+      <li class="post-item">
         
-          
-          
-          
-          
-            <li class="nav-item">
-              <a class="nav-link" href="/tags/">
-                <i class="iconfont icon-tags-fill"></i>
-                <span>标签</span>
-              </a>
-            </li>
-          
+    <div class="meta">
+      
         
-          
-          
-          
-          
-            <li class="nav-item">
-              <a class="nav-link" href="/about/">
-                <i class="iconfont icon-user-fill"></i>
-                <span>关于</span>
-              </a>
-            </li>
-          
+          <time datetime="2023-07-24T16:51:13.391Z" class="dt-published" itemprop="datePublished">2023-07-25</time>
         
+      
+    </div>
+
+
+        <span>
+    
+        <a class="" href="/2023/07/25/PHP%E5%8E%9F%E7%94%9F%E7%B1%BB%E5%88%A9%E7%94%A8%E5%AD%A6%E4%B9%A0/PHP%E5%8E%9F%E7%94%9F%E7%B1%BB%E5%88%A9%E7%94%A8%E5%AD%A6%E4%B9%A0/">PHP原生类相关利用学习</a>
+    
+
+
+</span>
+      </li>
+    
+      <li class="post-item">
         
-          <li class="nav-item" id="search-btn">
-            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
-              <i class="iconfont icon-search"></i>
-            </a>
-          </li>
-          
+    <div class="meta">
+      
         
+          <time datetime="2023-07-23T11:54:29.033Z" class="dt-published" itemprop="datePublished">2023-07-23</time>
         
-          <li class="nav-item" id="color-toggle-btn">
-            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
-              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
-            </a>
-          </li>
+      
+    </div>
+
+
+        <span>
+    
+        <a class="" href="/2023/07/23/SCTF2023/SCTF2023/">SCTF2023</a>
+    
+
+
+</span>
+      </li>
+    
+  </ul>
+  
+</section>
+
+
+
         
+        <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy;
+    
+    
+    2016-2024
+    John Doe
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+        <!--
+       --><li><a href="/">首页</a></li><!--
+     --><!--
+       --><li><a href="/about/">关于</a></li><!--
+     --><!--
+       --><li><a href="/archives/">归档</a></li><!--
+     --><!--
+       --><li><a target="_blank" rel="noopener" href="http://github.com/probberechts">项目</a></li><!--
+     -->
       </ul>
+    </nav>
+  </div>
+</footer>
+
     </div>
-  </div>
-</nav>
-
-  
-
-<div id="banner" class="banner" parallax=true
-     style="background: url('/img/bg/default.jpg') no-repeat center center; background-size: cover;">
-  <div class="full-bg-img">
-    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
-      <div class="banner-text text-center fade-in-up">
-        <div class="h2">
-          
-            <span id="subtitle" data-typed-text="Welcom to s4mmy&#39;s blog ^_^"></span>
-          
-        </div>
-
-        
-      </div>
-
-      
-        <div class="scroll-down-bar">
-          <i class="iconfont icon-arrowdown"></i>
-        </div>
-      
-    </div>
-  </div>
-</div>
-
-</div>
-
-  </header>
-
-  <main>
-    
-      <div class="container nopadding-x-md">
-        <div id="board"
-          style="margin-top: 0">
-          
-          <div class="container">
-            <div class="row">
-              <div class="col-12 col-md-10 m-auto">
-                
-
-
-  <div class="row mx-auto index-card">
-    
-    
-      <div class="col-12 col-md-4 m-auto index-img">
-        <a href="/2023/09/17/kerberos%E6%94%BB%E5%87%BB%E5%AD%A6%E4%B9%A0/tryhackme_Attacking%20Kerberos%20room/" target="_self">
-          <img src="/img/kerberos%E6%94%BB%E5%87%BB%E5%AD%A6%E4%B9%A0/flower.png" srcset="/img/loading.gif" lazyload alt="kerberos攻击学习">
-        </a>
-      </div>
-    
-    <article class="col-12 col-md-8 mx-auto index-info">
-      <h1 class="index-header">
-        
-        <a href="/2023/09/17/kerberos%E6%94%BB%E5%87%BB%E5%AD%A6%E4%B9%A0/tryhackme_Attacking%20Kerberos%20room/" target="_self">
-          kerberos攻击学习
-        </a>
-      </h1>
-
-      
-      <a class="index-excerpt " href="/2023/09/17/kerberos%E6%94%BB%E5%87%BB%E5%AD%A6%E4%B9%A0/tryhackme_Attacking%20Kerberos%20room/" target="_self">
-        <div>
-          kerberos攻击学习这个房间主要介绍windows的票证授予服务kerberos的基础知识，以及如何攻击kerberos获得各类票据，甚至获得域管理员。 介绍kerberos是以windows域的一个身份认证服务，通过第三方票证授权的方式以及更强的加密来比NTLM更加安全。目前kerberos已经是windows域的默认身份认证服务，但是依然存在漏洞。 常用术语 TGT（Ticket
-        </div>
-      </a>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2023-09-17 20:08" pubdate>
-              2023-09-17
-            </time>
-          </div>
-        
-        
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-      <div class="col-12 col-md-4 m-auto index-img">
-        <a href="/2023/08/27/CTFD%E5%B9%B3%E5%8F%B0%E6%90%AD%E5%BB%BA/CTFD%E9%9D%B6%E5%9C%BA%E6%90%AD%E5%BB%BA/" target="_self">
-          <img src="/img/index.png" srcset="/img/loading.gif" lazyload alt="CTFD动态靶场搭建">
-        </a>
-      </div>
-    
-    <article class="col-12 col-md-8 mx-auto index-info">
-      <h1 class="index-header">
-        
-        <a href="/2023/08/27/CTFD%E5%B9%B3%E5%8F%B0%E6%90%AD%E5%BB%BA/CTFD%E9%9D%B6%E5%9C%BA%E6%90%AD%E5%BB%BA/" target="_self">
-          CTFD动态靶场搭建
-        </a>
-      </h1>
-
-      
-      <a class="index-excerpt " href="/2023/08/27/CTFD%E5%B9%B3%E5%8F%B0%E6%90%AD%E5%BB%BA/CTFD%E9%9D%B6%E5%9C%BA%E6%90%AD%E5%BB%BA/" target="_self">
-        <div>
-          CTFD动态靶场搭建为了迎接未来的新生赛和未来接活做准备，学习一下如何搭建CTFD靶场顺便练练手。不过这中间踩的坑也是巨多，前前后后搭了好几天才搭好。 前置CTFD使用的是的docker搭建，所以在服务器上需要先装好docker和docker-compose。其中ctfd有多种搭建方式，我采用的是服务器本地起frp服务将题目容器转发到服务器的端口上。 安装FRP下载并安装rp 123456
-        </div>
-      </a>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2023-08-27 13:53" pubdate>
-              2023-08-27
-            </time>
-          </div>
-        
-        
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-      <div class="col-12 col-md-4 m-auto index-img">
-        <a href="/2023/07/29/PHP%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96%E5%AD%97%E7%AC%A6%E4%B8%B2%E9%80%83%E9%80%B8/PHP%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96%E5%AD%97%E7%AC%A6%E4%B8%B2%E9%80%83%E9%80%B8/" target="_self">
-          <img src="/img/PHP%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96%E5%AD%97%E7%AC%A6%E4%B8%B2%E9%80%83%E9%80%B8/gc.jpg" srcset="/img/loading.gif" lazyload alt="PHP反序列化字符串逃逸">
-        </a>
-      </div>
-    
-    <article class="col-12 col-md-8 mx-auto index-info">
-      <h1 class="index-header">
-        
-        <a href="/2023/07/29/PHP%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96%E5%AD%97%E7%AC%A6%E4%B8%B2%E9%80%83%E9%80%B8/PHP%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96%E5%AD%97%E7%AC%A6%E4%B8%B2%E9%80%83%E9%80%B8/" target="_self">
-          PHP反序列化字符串逃逸
-        </a>
-      </h1>
-
-      
-      <a class="index-excerpt " href="/2023/07/29/PHP%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96%E5%AD%97%E7%AC%A6%E4%B8%B2%E9%80%83%E9%80%B8/PHP%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96%E5%AD%97%E7%AC%A6%E4%B8%B2%E9%80%83%E9%80%B8/" target="_self">
-        <div>
-          PHP反序列化字符串逃逸虽然是大一就学的知识点，但是前段时间做题的时候发现又忘了。所以把他记录下来，方便下次查阅。 反序列化字符串逃逸主要出现在字符串增加或者减少的情况。 前置知识： php的序列化数据中，使用;来分隔不同的字段，使用&#125;来作为结尾。并且序列化时，严格按照字段的长度来读取字符。反序列化的过程严格按照序列化规则来进行反序列化，否则会反序列化失败。 可以反序列化类中不存
-        </div>
-      </a>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2023-07-29 01:11" pubdate>
-              2023-07-29
-            </time>
-          </div>
-        
-        
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-      <div class="col-12 col-md-4 m-auto index-img">
-        <a href="/2023/07/25/PHP%E5%8E%9F%E7%94%9F%E7%B1%BB%E5%88%A9%E7%94%A8%E5%AD%A6%E4%B9%A0/PHP%E5%8E%9F%E7%94%9F%E7%B1%BB%E5%88%A9%E7%94%A8%E5%AD%A6%E4%B9%A0/" target="_self">
-          <img src="/img/PHP%E5%8E%9F%E7%94%9F%E7%B1%BB%E5%88%A9%E7%94%A8%E5%AD%A6%E4%B9%A0/luo_guitra2.png" srcset="/img/loading.gif" lazyload alt="PHP原生类相关利用学习">
-        </a>
-      </div>
-    
-    <article class="col-12 col-md-8 mx-auto index-info">
-      <h1 class="index-header">
-        
-        <a href="/2023/07/25/PHP%E5%8E%9F%E7%94%9F%E7%B1%BB%E5%88%A9%E7%94%A8%E5%AD%A6%E4%B9%A0/PHP%E5%8E%9F%E7%94%9F%E7%B1%BB%E5%88%A9%E7%94%A8%E5%AD%A6%E4%B9%A0/" target="_self">
-          PHP原生类相关利用学习
-        </a>
-      </h1>
-
-      
-      <a class="index-excerpt " href="/2023/07/25/PHP%E5%8E%9F%E7%94%9F%E7%B1%BB%E5%88%A9%E7%94%A8%E5%AD%A6%E4%B9%A0/PHP%E5%8E%9F%E7%94%9F%E7%B1%BB%E5%88%A9%E7%94%A8%E5%AD%A6%E4%B9%A0/" target="_self">
-        <div>
-          PHP原生类相关利用第一次听到原生类是听一个师傅说的，没想到这么快就在做题的时候遇到了。 简介PHP原生类是PHP的一些内置的类，可以直接调用。因为其包含一些魔术方法，所以可以在反序列化的时候利用。有时候，在题目中出现了反序列化，但是没有给出具体类，一般不是源码泄露再审计，就是利用php的原生类。 常用的原生类有以下几个：  Error Exception SoapClient Directo
-        </div>
-      </a>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2023-07-25 00:51" pubdate>
-              2023-07-25
-            </time>
-          </div>
-        
-        
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-      <div class="col-12 col-md-4 m-auto index-img">
-        <a href="/2023/07/23/SCTF2023/SCTF2023/" target="_self">
-          <img src="/img/SCTF2023/luo.png" srcset="/img/loading.gif" lazyload alt="SCTF2023">
-        </a>
-      </div>
-    
-    <article class="col-12 col-md-8 mx-auto index-info">
-      <h1 class="index-header">
-        
-        <a href="/2023/07/23/SCTF2023/SCTF2023/" target="_self">
-          SCTF2023
-        </a>
-      </h1>
-
-      
-      <a class="index-excerpt " href="/2023/07/23/SCTF2023/SCTF2023/" target="_self">
-        <div>
-          SCTF2023太难了，一题能卡我一天😭😭😭，对于一些东西的理解还是太浅了。题目做起来都好吃力。 ezcheck1n这题的考点是请求走私 首先是代码 123456789101112&lt;?php$FLAG = &quot;flag&#123;fake_flag&#125;&quot;;@file_get_contents(&quot;http://&quot;.$_GET[&#x27;
-        </div>
-      </a>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2023-07-23 19:54" pubdate>
-              2023-07-23
-            </time>
-          </div>
-        
-        
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-      <div class="col-12 col-md-4 m-auto index-img">
-        <a href="/2023/07/01/%E4%B8%80%E9%81%93nodejs%E6%B1%A1%E6%9F%93+jwt%E7%88%86%E7%A0%B4%E7%9A%84%E9%A2%98/Nodejs%E5%91%BD%E4%BB%A4%E6%89%A7%E8%A1%8C/" target="_self">
-          <img src="/img/nodejs_image/luo_1.png" srcset="/img/loading.gif" lazyload alt="一道nodejs污染+jwt爆破的题">
-        </a>
-      </div>
-    
-    <article class="col-12 col-md-8 mx-auto index-info">
-      <h1 class="index-header">
-        
-        <a href="/2023/07/01/%E4%B8%80%E9%81%93nodejs%E6%B1%A1%E6%9F%93+jwt%E7%88%86%E7%A0%B4%E7%9A%84%E9%A2%98/Nodejs%E5%91%BD%E4%BB%A4%E6%89%A7%E8%A1%8C/" target="_self">
-          一道nodejs污染+jwt爆破的题
-        </a>
-      </h1>
-
-      
-      <a class="index-excerpt " href="/2023/07/01/%E4%B8%80%E9%81%93nodejs%E6%B1%A1%E6%9F%93+jwt%E7%88%86%E7%A0%B4%E7%9A%84%E9%A2%98/Nodejs%E5%91%BD%E4%BB%A4%E6%89%A7%E8%A1%8C/" target="_self">
-        <div>
-          Nodejs命令执行又是复现其他师傅博客上的题目的一天~ 这题的整体结构还是比较简单的，但是做的过程还是踩了不少的坑。  看起来需要获得admin权限 抓个包看一下  coockie部分看起来有点像JWT，理由是由三部分加密组成，且由点进行连接。 到jwt.io进行解密  尝试将guest改成admin再传入，然而还是不行。 可以推测这里是使用了密钥进行加密，这里对jwt弱密钥进行爆破，编写如下脚
-        </div>
-      </a>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2023-07-01 00:56" pubdate>
-              2023-07-01
-            </time>
-          </div>
-        
-        
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-      <div class="col-12 col-md-4 m-auto index-img">
-        <a href="/2023/06/28/D%5E3%20CTF%202021%208-bit%20pub%E5%A4%8D%E7%8E%B0/D%5E3%20CTF%202021%208-bit%20pub%E5%A4%8D%E7%8E%B0/" target="_self">
-          <img src="/img/index.png" srcset="/img/loading.gif" lazyload alt="D^3 CTF 2021 8-bit pub复现">
-        </a>
-      </div>
-    
-    <article class="col-12 col-md-8 mx-auto index-info">
-      <h1 class="index-header">
-        
-        <a href="/2023/06/28/D%5E3%20CTF%202021%208-bit%20pub%E5%A4%8D%E7%8E%B0/D%5E3%20CTF%202021%208-bit%20pub%E5%A4%8D%E7%8E%B0/" target="_self">
-          D^3 CTF 2021 8-bit pub复现
-        </a>
-      </h1>
-
-      
-      <a class="index-excerpt " href="/2023/06/28/D%5E3%20CTF%202021%208-bit%20pub%E5%A4%8D%E7%8E%B0/D%5E3%20CTF%202021%208-bit%20pub%E5%A4%8D%E7%8E%B0/" target="_self">
-        <div>
-          D^3 CTF 2021 8-bit pub复现这题是顺着群里师傅的链接摸到的，前前后后总共拖了三天才完成。。。。拖延症太难受了 github题目仓库：CTFChallenges&#x2F;D3CTF2021&#x2F;8-bit_pub at main · crumbledwall&#x2F;CTFChallenges (github.com) 根据师傅所说比赛的时候是给了源码的，所以我们先从源
-        </div>
-      </a>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2023-06-28 21:08" pubdate>
-              2023-06-28
-            </time>
-          </div>
-        
-        
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-      <div class="col-12 col-md-4 m-auto index-img">
-        <a href="/2023/06/24/2023CISCN/2023_CISCN_Pollution/" target="_self">
-          <img src="/img/2023ciscn/aa.jpg" srcset="/img/loading.gif" lazyload alt="2023_CISCN_Pollution">
-        </a>
-      </div>
-    
-    <article class="col-12 col-md-8 mx-auto index-info">
-      <h1 class="index-header">
-        
-        <a href="/2023/06/24/2023CISCN/2023_CISCN_Pollution/" target="_self">
-          2023_CISCN_Pollution
-        </a>
-      </h1>
-
-      
-      <a class="index-excerpt " href="/2023/06/24/2023CISCN/2023_CISCN_Pollution/" target="_self">
-        <div>
-          2023_CISCN_Pollution开局经典登录框，一顿瞎试。查看源码可以猜测是使用sql注入，后来主办方也是提醒了在注册处存在sql注入。 经过注册登录测试可以猜到第一步是需要获得admin的密码。 在app.js里可以看到下列sql语句 12345db.all(&quot;SELECT * FROM users WHERE username=? AND password=?&quot;,[
-        </div>
-      </a>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2023-06-24 15:57" pubdate>
-              2023-06-24
-            </time>
-          </div>
-        
-        
-        
-      </div>
-    </article>
-  </div>
-
-
-
-
-
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    
-
-    
-      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
-        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
-      </a>
-    
-
-    
-      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
-     aria-hidden="true">
-  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
-    <div class="modal-content">
-      <div class="modal-header text-center">
-        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
-        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body mx-3">
-        <div class="md-form mb-5">
-          <input type="text" id="local-search-input" class="form-control validate">
-          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
-        </div>
-        <div class="list-group" id="local-search-result"></div>
-      </div>
-    </div>
-  </div>
-</div>
-
-    
-
-    
-  </main>
-
-  <footer>
-    <div class="footer-inner">
-  
-    <div class="footer-content">
-       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>s4mmy</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
-    </div>
-  
-  
-  
-  
-</div>
-
-  </footer>
-
-  <!-- Scripts -->
-  
-  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
-  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
-
-  <script>
-    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
-    NProgress.start()
-    window.addEventListener('load', function() {
-      NProgress.done();
-    })
-  </script>
-
-
-<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
-<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
-<script  src="/js/events.js" ></script>
-<script  src="/js/plugins.js" ></script>
-
-
-  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
-  <script>
-    (function (window, document) {
-      var typing = Fluid.plugins.typing;
-      var subtitle = document.getElementById('subtitle');
-      if (!subtitle || !typing) {
-        return;
-      }
-      var text = subtitle.getAttribute('data-typed-text');
-      
-        typing(text);
-      
-    })(window, document);
-  </script>
-
-
-
-
-  
-    <script  src="/js/img-lazyload.js" ></script>
-  
-
-
-
-
-  <script  src="/js/local-search.js" ></script>
-
-
-
-
-
-<!-- 主题的启动项，将它保持在最底部 -->
-<!-- the boot of the theme, keep it at the bottom -->
-<script  src="/js/boot.js" ></script>
-
-
-  
-
-  <noscript>
-    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
-  </noscript>
+    <!-- styles -->
+
+
+
+  <link rel="preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" crossorigin="anonymous" onload="this.onload=null;this.rel='stylesheet'"/>
+
+
+    <!-- jquery -->
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" crossorigin="anonymous"></script>
+
+
+
+
+<!-- clipboard -->
+
+
+<script src="/js/main.js"></script>
+
+<!-- search -->
+
+<!-- Baidu Analytics -->
+
+<!-- Cloudflare Analytics -->
+
+<!-- Disqus Comments -->
+
+<!-- utterances Comments -->
+
 </body>
 </html>
