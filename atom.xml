@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-  <title>Welcome to s4mmy&#39;s blog</title>
+  <title>s4mmy&#39;s blog</title>
   
-  
+  <subtitle>Welcome!</subtitle>
   <link href="https://mizore.site/atom.xml" rel="self"/>
   
   <link href="https://mizore.site/"/>
-  <updated>2024-11-24T16:52:03.539Z</updated>
+  <updated>2024-11-24T18:15:35.723Z</updated>
   <id>https://mizore.site/</id>
   
   <author>
@@ -15,6 +15,30 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>周报-2024.11.25</title>
+    <link href="https://mizore.site/article/%E5%91%A8%E6%8A%A5-2024.11.25/"/>
+    <id>https://mizore.site/article/%E5%91%A8%E6%8A%A5-2024.11.25/</id>
+    <published>2024-11-24T18:07:47.183Z</published>
+    <updated>2024-11-24T18:15:35.723Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="阅读"><a href="#阅读" class="headerlink" title="阅读"></a>阅读</h1><p>本周继续推进《刻意练习》</p><p>阅读了“在工作中运用刻意练习”和“在生活中运用刻意练习”两个章节</p><p>​这两个章节给我的感觉像是对之前文章中提出的关于刻意练习的各种观点进行一个运用示例，用许多例子来展示这些观点在生活中的运用，通过生活以及工作中例子来对之前提出的种种观点做一些补充，同时巩固读者对于这些例子的理解以及加深记忆。</p><p>《动物农场》与《1984》加入书单，希望在闲的时候能靠小说打发时间</p><h1 id="信息"><a href="#信息" class="headerlink" title="信息"></a>信息</h1><p>本周让我收获最大的视频是这个：<a href="https://www.bilibili.com/video/BV1y3DKY4E6h">沉迷短视频加速我的衰老</a></p><p>在视频中我学习到了许多新观点</p><p>视频UP主先是提出两个衰老的标志：<strong>神经可塑性下降</strong>与<strong>感觉时间过得很快</strong></p><ul><li><p>视频UP主提出，短视频很多都是重复的内容，比如重复的“爆款”标题，重复的洗脑音乐，千篇一律的段子等等。而摄入重复的内容会削弱神经的可塑性，而这正是衰老的标志之一（神经可塑性，即大脑对新事物适应和学习能力）。</p><p>衰老来自思维模式的僵化，面对新的复杂信息时感到吃力甚至会感到焦虑或挫败。</p></li><li><p>衰老的另一个标志就是感觉时间过得很快</p><p>就比如小时候的暑假感觉无尽漫长，但是对于花甲老人来说十年如一日。</p><p>这是因为随着神经可塑性的下降，年长的人不再摄入新的知识和体验，年岁的坟墓越变越大，新的记忆与体验的分子却越变越小，时间就会变得非常快。</p></li></ul><p>​主观时间的快慢来自于我们在过去一段时间里面所做事物的丰富程度，而短视频总是在赋予我们同样的体验，总量信息几乎是没有增加的。摄入的营养知识越来越少，主观时间流逝就会更快，主管时间越快，主管生命就会越短，衰老就会加速。</p><p>在视频结尾，视频UP主提出几个对抗方法</p><ol><li>去看长篇幅&#x2F;非同质化的内容</li><li>减少使用网络用语（语言细腻思维才会细腻）</li><li>少用代词（比如这个那个，这种那种等），语言的边界就是世界的边界</li><li>面对信息去溯源，质疑，反思，辩论（有意思训练深度思考，不要依赖二手信息）</li></ol><h1 id="技术"><a href="#技术" class="headerlink" title="技术"></a>技术</h1><p>无</p><h1 id="生活-x2F-其他"><a href="#生活-x2F-其他" class="headerlink" title="生活&#x2F;其他"></a>生活&#x2F;其他</h1><p>本周加密货币市场也是迎来牛市，每次币价上涨都让我很兴奋浮躁，像初高中放假前最后一节课的感觉。难以静下心来做其他事。但是市场无常，每当我兴奋过后，面对币价下跌&#x2F;回调就会有点失落。客观来看这一段时间我整个人的心情就是被币价支配，半场开香槟到头来一场空。希望自己以后能改掉这个习惯，不管币价如何都能专心做该做的事情。</p><p>这周看了青春旅行团的第五期，我发现每期都会有人在旅途中用一些小游戏来调动氛围，虽然这些小游戏可能很普通，但是大家一起玩就会显得很有意思。</p><p>这周我希望自己能找到其他杀时间的方式，而不是只会刷知乎，看B站短视频和刷贴吧，不要把整块的时间花在这种碎片化的活动上。</p>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;h1 id=&quot;阅读&quot;&gt;&lt;a href=&quot;#阅读&quot; class=&quot;headerlink&quot; title=&quot;阅读&quot;&gt;&lt;/a&gt;阅读&lt;/h1&gt;&lt;p&gt;本周继续推进《刻意练习》&lt;/p&gt;
+&lt;p&gt;阅读了“在工作中运用刻意练习”和“在生活中运用刻意练习”两个章节&lt;/p&gt;
+&lt;p&gt;​	这两个章节给我的</summary>
+      
+    
+    
+    
+    <category term="周报" scheme="https://mizore.site/categories/%E5%91%A8%E6%8A%A5/"/>
+    
+    
+  </entry>
   
   <entry>
     <title>kerberos攻击学习</title>
