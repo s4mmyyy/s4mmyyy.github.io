@@ -1,208 +1,152 @@
 <!DOCTYPE html>
-<html lang=zh>
+<html lang="en" class="light">
 <head>
-    <!-- so meta -->
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="HandheldFriendly" content="True">
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
-    <meta property="og:type" content="website">
-<meta property="og:title" content="s4mmy&#39;s blog">
-<meta property="og:url" content="https://sammylingsj.github.io/archives/2023/06/index.html">
-<meta property="og:site_name" content="s4mmy&#39;s blog">
-<meta property="og:locale" content="zh_CN">
-<meta property="article:author" content="John Doe">
-<meta name="twitter:card" content="summary">
+  <meta charset="utf-8">
+  
+  <title>
     
+    Welcome to s4mmy&#39;s blog
     
-      
-        
-          <link rel="shortcut icon" href="/images/favicon.ico">
-        
-      
-      
-        
-          <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
-        
-      
-      
-        
-          <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
-        
-      
-    
-    <!-- title -->
-    <title>归档: 2023/6</title>
-    <!-- async scripts -->
-    <!-- Google Analytics -->
+  </title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+  <link rel="me" href="https://mas.uniiem.com/@mizore" />
+  
+<script src="https://cdn.staticfile.org/prism/1.17.1/prism.min.js"></script>
 
+  
+<script src="https://cdn.staticfile.org/prism/1.17.1/plugins/autoloader/prism-autoloader.min.js"></script>
 
-    <!-- Umami Analytics -->
+  
+<link rel="stylesheet" href="/css/prism/material-light.css">
 
+  
+<link rel="stylesheet" href="/css/prism/material-dark.css">
 
-    <!-- styles -->
-    
+  
+<script src="https://cdn.staticfile.org/prism/1.17.1/plugins/line-numbers/prism-line-numbers.min.js"></script>
+
+  
+<link rel="stylesheet" href="https://cdn.staticfile.org/prism/1.17.1/plugins/line-numbers/prism-line-numbers.min.css">
+
+  
 <link rel="stylesheet" href="/css/style.css">
 
-    <!-- persian styles -->
-    
-    <!-- rss -->
-    
-    
-	<!-- mathjax -->
-	
-<meta name="generator" content="Hexo 6.3.0"></head>
-
-<body class="max-width mx-auto px3 ltr">
-    
-    <div class="content index py4 ">
-        
-          <header id="header">
-  <a class="u-url u-uid" href="/">
   
-    
-      <img id="logo" alt class="u-logo" src="/images/logo.png" />
-    
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono&family=Noto+Sans+SC:wght@300&display=swap.css">
+
   
-    <div id="title">
-      <h1 class="p-name">s4mmy&#39;s blog</h1>
-    </div>
-  </a>
-  <div id="nav">
-    <ul>
-      <li class="icon">
-        <a href="#" aria-label="目录"><i class="fa-solid fa-bars fa-2x"></i></a>
-      </li>
-      <!--
-     --><li><a href="/">首页</a></li><!--
-   --><!--
-     --><li><a href="/about/">关于</a></li><!--
-   --><!--
-     --><li><a href="/archives/">归档</a></li><!--
-   --><!--
-     --><li><a target="_blank" rel="noopener" href="http://github.com/probberechts">项目</a></li><!--
-   -->
-    </ul>
-  </div>
-</header>
+<link rel="stylesheet" href="/iconfont/iconfont.css">
 
-        
-        <div id="archive">
-  <ul class="post-list">
-    
-    
-    
-    
-      
-      
-      
-      
-        <li class="post-year"><h2>2023</h2></li>
-      
-      <li class="post-item">
-        
-    <div class="meta">
-      
-        
-          <time datetime="2023-06-28T13:08:13.489Z" class="dt-published" itemprop="datePublished">2023-06-28</time>
-        
-      
-    </div>
+<meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/atom.xml" title="Welcome to s4mmy's blog" type="application/atom+xml">
+</head>
+<script>
+  function setIsNight(isNight) {
+    localStorage.setItem('isNight', isNight)
+  }
 
+  function getIsNight() {
+    return localStorage.getItem('isNight')
+  }
 
-        <span>
-    
-        <a class="" href="/2023/06/28/D%5E3%20CTF%202021%208-bit%20pub%E5%A4%8D%E7%8E%B0/D%5E3%20CTF%202021%208-bit%20pub%E5%A4%8D%E7%8E%B0/">D^3 CTF 2021 8-bit pub复现</a>
-    
+  function switchTheme() {
+    let isNight = getIsNight()
+    if (isNight === 'false') {
+      document.documentElement.className = 'dark'
+      document.getElementsByClassName('theme-switcher')[0].textContent = '🌙'
+      setIsNight('true')
+    } else {
+      document.documentElement.className = 'light'
+      document.getElementsByClassName('theme-switcher')[0].textContent = '🌞'
+      setIsNight('false')
+    }
+  }
 
+  let isNight = getIsNight()
+  if (isNight == null) {
+    isNight = 'false'
+    setIsNight('false')
+  }
+  if (isNight === 'false') {
+    document.documentElement.className = 'light'
+  } else {
+    document.documentElement.className = 'dark'
+  }
+</script>
 
-</span>
-      </li>
-    
-      
-      
-      
-      
-      <li class="post-item">
-        
-    <div class="meta">
-      
-        
-          <time datetime="2023-06-24T07:57:25.501Z" class="dt-published" itemprop="datePublished">2023-06-24</time>
-        
-      
-    </div>
-
-
-        <span>
-    
-        <a class="" href="/2023/06/24/2023CISCN/2023_CISCN_Pollution/">2023_CISCN_Pollution</a>
-    
-
-
-</span>
-      </li>
-    
+<body>
+  <div class="show-area">
+    <header>
+  <ul class="nav">
+    <li class="nav-child">
+      <a href="/">首页</a>
+    </li>
+    <li class="nav-child">
+      <a href="/categories">分类</a>
+    </li>
+    <li class="nav-child">
+      <a href="/tags">标签</a>
+    </li>
+    <li class="nav-child">
+      <a href="/about">关于</a>
+    </li>
+    <li class="nav-child">
+      <a href="/collection">收藏</a>
+    </li>
+    <li class="nav-child">
+      <a href="/board">留言</a>
+    </li>
   </ul>
+  <div class="theme-switcher" onclick="switchTheme()">🌞</div>
+  <script>
+    if (isNight === 'false') {
+      document.getElementsByClassName('theme-switcher')[0].textContent = '🌞'
+    } else {
+      document.getElementsByClassName('theme-switcher')[0].textContent = '🌙'
+    }
+  </script>
+</header>
+    <main class="main-body">
+  <h2 class="blog-title">Welcome to s4mmy&#39;s blog</h2>
+  <p class="blog-desc"></p>
+  <p class="blog-info">记录是为了更好地表达</p>
+  <h3 class="posts-header">Recent Posts</h3>
+  <ul class="post-list">
   
-
-</div>
-
-        
-        <footer id="footer">
-  <div class="footer-left">
-    Copyright &copy;
-    
-    
-    2016-2024
-    John Doe
-  </div>
-  <div class="footer-right">
-    <nav>
-      <ul>
-        <!--
-       --><li><a href="/">首页</a></li><!--
-     --><!--
-       --><li><a href="/about/">关于</a></li><!--
-     --><!--
-       --><li><a href="/archives/">归档</a></li><!--
-     --><!--
-       --><li><a target="_blank" rel="noopener" href="http://github.com/probberechts">项目</a></li><!--
-     -->
-      </ul>
-    </nav>
+  <li class="post-list-child">
+    <div class="post-list-left">
+      <div class="post-list-symbol">🚩</div>
+      <a href="/article/D^3 CTF 2021 8-bit pub复现/D^3 CTF 2021 8-bit pub复现/">D^3 CTF 2021 8-bit pub复现</a>
+    </div>
+    <span class="post-list-date">
+      2023-06-28
+    </span>
+  </li>
+  
+  <li class="post-list-child">
+    <div class="post-list-left">
+      <div class="post-list-symbol">🚩</div>
+      <a href="/article/2023CISCN/2023_CISCN_Pollution/">2023_CISCN_Pollution</a>
+    </div>
+    <span class="post-list-date">
+      2023-06-24
+    </span>
+  </li>
+  
+</ul>
+</main>
+    <footer>
+  <div class="footer-info"> Powerd by <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a> | Theme <a
+      target="_blank" rel="noopener" href="https://github.com/mizoreyo/hexo-theme-insnow">Insnow</a> </div>
+  <div class="footer-info">
+    <a class="footer-i" href=""><i class="iconfont icon-wechat"></i></a>
+    <a class="footer-i" target="_blank" rel="noopener" href="https://github.com/sammyLingsj"><i class="iconfont icon-github-fill"></i></a>
+    <a class="footer-i" href="/atom.xml"><i class="iconfont icon-rss"></i></a>
+    <a class="footer-i" href="mailto:sammyLinsj@outlook.com"><i class="iconfont icon-mail"></i></a>
   </div>
 </footer>
-
-    </div>
-    <!-- styles -->
-
-
-
-  <link rel="preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" crossorigin="anonymous" onload="this.onload=null;this.rel='stylesheet'"/>
-
-
-    <!-- jquery -->
-
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" crossorigin="anonymous"></script>
-
-
-
-
-<!-- clipboard -->
-
-
-<script src="/js/main.js"></script>
-
-<!-- search -->
-
-<!-- Baidu Analytics -->
-
-<!-- Cloudflare Analytics -->
-
-<!-- Disqus Comments -->
-
-<!-- utterances Comments -->
-
+  </div>
 </body>
+
+
 </html>

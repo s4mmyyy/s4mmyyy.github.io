@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html lang="en" class="light">
+<head>
+  <meta charset="utf-8">
+  
+  <title>
+    
+    CTFD动态靶场搭建
+    
+  </title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+  <link rel="me" href="https://mas.uniiem.com/@mizore" />
+  
+<script src="https://cdn.staticfile.org/prism/1.17.1/prism.min.js"></script>
+
+  
+<script src="https://cdn.staticfile.org/prism/1.17.1/plugins/autoloader/prism-autoloader.min.js"></script>
+
+  
+<link rel="stylesheet" href="/css/prism/material-light.css">
+
+  
+<link rel="stylesheet" href="/css/prism/material-dark.css">
+
+  
+<script src="https://cdn.staticfile.org/prism/1.17.1/plugins/line-numbers/prism-line-numbers.min.js"></script>
+
+  
+<link rel="stylesheet" href="https://cdn.staticfile.org/prism/1.17.1/plugins/line-numbers/prism-line-numbers.min.css">
+
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono&family=Noto+Sans+SC:wght@300&display=swap.css">
+
+  
+<link rel="stylesheet" href="/iconfont/iconfont.css">
+
+<meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/atom.xml" title="Welcome to s4mmy's blog" type="application/atom+xml">
+</head>
+<script>
+  function setIsNight(isNight) {
+    localStorage.setItem('isNight', isNight)
+  }
+
+  function getIsNight() {
+    return localStorage.getItem('isNight')
+  }
+
+  function switchTheme() {
+    let isNight = getIsNight()
+    if (isNight === 'false') {
+      document.documentElement.className = 'dark'
+      document.getElementsByClassName('theme-switcher')[0].textContent = '🌙'
+      setIsNight('true')
+    } else {
+      document.documentElement.className = 'light'
+      document.getElementsByClassName('theme-switcher')[0].textContent = '🌞'
+      setIsNight('false')
+    }
+  }
+
+  let isNight = getIsNight()
+  if (isNight == null) {
+    isNight = 'false'
+    setIsNight('false')
+  }
+  if (isNight === 'false') {
+    document.documentElement.className = 'light'
+  } else {
+    document.documentElement.className = 'dark'
+  }
+</script>
+
+<body>
+  <div class="show-area">
+    <header>
+  <ul class="nav">
+    <li class="nav-child">
+      <a href="/">首页</a>
+    </li>
+    <li class="nav-child">
+      <a href="/categories">分类</a>
+    </li>
+    <li class="nav-child">
+      <a href="/tags">标签</a>
+    </li>
+    <li class="nav-child">
+      <a href="/about">关于</a>
+    </li>
+    <li class="nav-child">
+      <a href="/collection">收藏</a>
+    </li>
+    <li class="nav-child">
+      <a href="/board">留言</a>
+    </li>
+  </ul>
+  <div class="theme-switcher" onclick="switchTheme()">🌞</div>
+  <script>
+    if (isNight === 'false') {
+      document.getElementsByClassName('theme-switcher')[0].textContent = '🌞'
+    } else {
+      document.getElementsByClassName('theme-switcher')[0].textContent = '🌙'
+    }
+  </script>
+</header>
+    <main class="main-body">
+  <div class="toc-container">
+    <div class="toc-toggle">
+      <i id="toc-b-icon" class="iconfont icon-liebiao-01" onclick="toggleShow()"></i>
+    </div>
+    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#CTFD%E5%8A%A8%E6%80%81%E9%9D%B6%E5%9C%BA%E6%90%AD%E5%BB%BA"><span class="toc-number">1.</span> <span class="toc-text">CTFD动态靶场搭建</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%89%8D%E7%BD%AE"><span class="toc-number">1.1.</span> <span class="toc-text">前置</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%89%E8%A3%85FRP"><span class="toc-number">1.2.</span> <span class="toc-text">安装FRP</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%89%E8%A3%85CTFd%E5%92%8CCTFd-whale"><span class="toc-number">1.3.</span> <span class="toc-text">安装CTFd和CTFd-whale</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%B7%BB%E5%8A%A0%E9%A2%98%E7%9B%AE"><span class="toc-number">1.4.</span> <span class="toc-text">添加题目</span></a></li></ol></li></ol>
+  </div>
+  
+  <script>
+    var show = false
+    function toggleShow() {
+      if (show) {
+        document.getElementsByClassName('toc')[0].className = 'toc'
+        document.getElementById('toc-b-icon').className = 'iconfont icon-liebiao-01'
+      } else {
+        document.getElementsByClassName('toc')[0].className = 'toc show'
+        document.getElementById('toc-b-icon').className = 'iconfont icon-quxiao-01'
+      }
+      show = !show
+    }
+    document.getElementsByClassName('toc')[0].onclick = toggleShow
+  </script>
+  
+  <div class="article-header">
+    <h1 class="article-title">CTFD动态靶场搭建</h1>
+    <div class="article-details">
+      <div class="article-post-date"><span>Posted at </span> 2023-08-27</div>
+      <div class="article-tags">
+        
+      </div>
+    </div>
+  </div>
+  <div class="article">
+  
+  <meta name="referrer" content="no-referrer" />
+
+
+
+<h1 id="CTFD动态靶场搭建"><a href="#CTFD动态靶场搭建" class="headerlink" title="CTFD动态靶场搭建"></a>CTFD动态靶场搭建</h1><p>为了迎接未来的新生赛和未来接活做准备，学习一下如何搭建CTFD靶场顺便练练手。不过这中间踩的坑也是巨多，前前后后搭了好几天才搭好。</p>
+<h2 id="前置"><a href="#前置" class="headerlink" title="前置"></a>前置</h2><p>CTFD使用的是的docker搭建，所以在服务器上需要先装好docker和docker-compose。其中ctfd有多种搭建方式，我采用的是服务器本地起frp服务将题目容器转发到服务器的端口上。</p>
+<h2 id="安装FRP"><a href="#安装FRP" class="headerlink" title="安装FRP"></a>安装FRP</h2><p>下载并安装rp</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">wget https:&#x2F;&#x2F;github.com&#x2F;fatedier&#x2F;frp&#x2F;releases&#x2F;download&#x2F;v0.29.0&#x2F;frp_0.29.0_linux_amd64.tar.gz
+tar -zxvf frp_0.29.0_linux_amd64.tar.gz
+cd frp_0.29.0_linux_amd64
+cd frp_0.29.0_linux_amd64
+sudo cp systemd&#x2F;* &#x2F;etc&#x2F;systemd&#x2F;system&#x2F; #移动配置文件
+sudo mkdir &#x2F;etc&#x2F;frp #创建客户端配置文件
+sudo cp frpc.ini  frps.ini &#x2F;etc&#x2F;frp&#x2F; #移动客户端配置文件
+sudo cp frpc  frps &#x2F;usr&#x2F;bin&#x2F; #将客户端和服务端的二进制文件移动至bin文件夹
+sudo chmod a+x &#x2F;usr&#x2F;bin&#x2F;frpc &#x2F;usr&#x2F;bin&#x2F;frps #给所有用户赋予frpc和frps的可执行权限
+sudo systemctl enable frps #将frps服务设置为每次开机启动</code></pre>
+
+
+
+<p>编辑frps配置文件</p>
+<pre class="line-numbers language-none"><code class="language-none">vim &#x2F;etc&#x2F;frp&#x2F;frps.ini
+[common]
+bind_port &#x3D; 7897
+bind_addr &#x3D; 0.0.0.0
+token &#x3D;thisistoken</code></pre>
+
+<p>启动frps服务</p>
+<pre class="line-numbers language-none"><code class="language-none">systemctl start frps</code></pre>
+
+<p> 修改&#x2F;etc&#x2F;frp&#x2F;frpc.ini的配置文件</p>
+<p>此处的frpc与上面的frps相对应，连接的是上面启动的frps</p>
+<pre class="line-numbers language-none"><code class="language-none">vim &#x2F;etc&#x2F;frp&#x2F;frpc.ini
+[common]
+server_addr &#x3D; 172.17.0.1#此处的IP为docker0的ip，docker0的ip通过ifconfig查看
+server_port &#x3D; 7897
+token&#x3D;thisistoken</code></pre>
+
+<p>再修改frp_0.29.0_linux_amd64&#x2F;frpc.ini  (这个文件会用来配置frpc容器的)</p>
+<pre class="line-numbers language-none"><code class="language-none">[common]
+server_addr &#x3D; 172.17.0.1
+server_port &#x3D; 7897
+token&#x3D;thisistoken
+admin_addr &#x3D; 172.20.0.3
+admin_port &#x3D; 7400
+log_file &#x3D; .&#x2F;frps.log</code></pre>
+
+<p>创建网络并运行frpc容器</p>
+<pre class="line-numbers language-none"><code class="language-none">docker network create ctfd_frp-containers #创建一个docker网络，名称为ctfd_frp-containers
+
+docker run  -d -v ~&#x2F;frp_0.29.0_linux_amd64&#x2F;frpc.ini:&#x2F;etc&#x2F;frp&#x2F;frpc.ini --network&#x3D;&quot;ctfd_frp-containers&quot; --restart&#x3D;always &quot;glzjin&#x2F;frp&quot;  #运行容器并将本地的frpc.ini挂载到容器内。网络名称为ctfd_frp-containers</code></pre>
+
+
+
+<p>接着创建frpcadmin网络用语ctfd和frpc容器通信</p>
+<pre class="line-numbers language-none"><code class="language-none">docker network creat frcadmin
+docker network connect frpcamdin id&lt;刚才启动的frpc容器ID&gt;</code></pre>
+
+
+
+<p>查看frpcadmin网络的连接情况并记录frpc容器的网络IP</p>
+<pre class="line-numbers language-none"><code class="language-none">docker network inspect frpcadmin</code></pre>
+
+<p>图中的IP就是frpc容器在frpcadmin网络中的IP地址，就是我们在&#x2F;frp&#x2F;frpc.ini中指定的（admin_addr）</p>
+<p><img src="https://gitee.com/shark-rice/images/raw/master/202308271348486.png" alt="image-20230820205128158"></p>
+<p>可以提前把这个地址记录下来，后面配置ctfd-whale的时候会用到。</p>
+<h2 id="安装CTFd和CTFd-whale"><a href="#安装CTFd和CTFd-whale" class="headerlink" title="安装CTFd和CTFd-whale"></a>安装CTFd和CTFd-whale</h2><pre class="line-numbers language-none"><code class="language-none">#下载ctfd
+git clone https:&#x2F;&#x2F;github.com&#x2F;CTFd&#x2F;CTFd.git
+#进入CTFd目录
+cd CTFd
+#回退到某个版本，直接执行下面命令
+git reset 6c5c63d667a17aec159c8e26ea53dccfbc4d0fa3 --hard
+cd CTFd&#x2F;CTFd&#x2F;plugins&#x2F; #进入plugins目录
+
+#下载插件并确保文件名小写
+git clone https:&#x2F;&#x2F;github.com&#x2F;glzjin&#x2F;CTFd-Whale.git ctfd-whale
+#进入ctfd-whale
+cd ctfd-whale
+#回退版本
+git reset 5b32f457e9f56ee9b2b29495f4b3b118be3c57bd --hard 
+#回到第一层CTFd目录
+cd ..&#x2F;..&#x2F;..&#x2F;
+#配置docker-compose
+vim docker-compose.yml</code></pre>
+
+<p>docker-compose.yml，直接复制粘贴就行</p>
+<pre class="line-numbers language-none"><code class="language-none">version: &#39;2.2&#39;
+
+services:
+  ctfd:
+    build: .
+    user: root
+    restart: always
+    ports:
+      - &quot;8000:8000&quot; #第一个是访问ctfd的端口，第二个是docker端口映射出去的端口
+    environment:
+      - UPLOAD_FOLDER&#x3D;&#x2F;var&#x2F;uploads
+      - DATABASE_URL&#x3D;mysql+pymysql:&#x2F;&#x2F;root:ctfd@db&#x2F;ctfd
+      - REDIS_URL&#x3D;redis:&#x2F;&#x2F;cache:6379
+      - WORKERS&#x3D;1
+      - LOG_FOLDER&#x3D;&#x2F;var&#x2F;log&#x2F;CTFd
+      - ACCESS_LOG&#x3D;-
+      - ERROR_LOG&#x3D;-
+    volumes:
+      - .data&#x2F;CTFd&#x2F;logs:&#x2F;var&#x2F;log&#x2F;CTFd
+      - .data&#x2F;CTFd&#x2F;uploads:&#x2F;var&#x2F;uploads
+      - .:&#x2F;opt&#x2F;CTFd:ro
+      - &#x2F;var&#x2F;run&#x2F;docker.sock:&#x2F;var&#x2F;run&#x2F;docker.sock #添加这句即可，别的基本按照官方的不用动
+    depends_on:
+      - db
+    networks:
+        default:
+        internal:
+
+  db:
+    image: mariadb:10.4.12 #这里改成10.4.12，10.4.13会出错
+    restart: always
+    environment:
+      - MYSQL_ROOT_PASSWORD&#x3D;ctfd
+      - MYSQL_USER&#x3D;ctfd
+      - MYSQL_PASSWORD&#x3D;ctfd
+      - MYSQL_DATABASE&#x3D;ctfd
+    volumes:
+      - .data&#x2F;mysql:&#x2F;var&#x2F;lib&#x2F;mysql
+    networks:
+        internal:
+    # This command is required to set important mariadb defaults
+    command: [mysqld, --character-set-server&#x3D;utf8mb4, --collation-server&#x3D;utf8mb4_unicode_ci, --wait_timeout&#x3D;28800, --log-warnings&#x3D;0]
+
+  cache:
+    image: redis:4
+    restart: always
+    volumes:
+    - .data&#x2F;redis:&#x2F;data
+    networks:
+        internal:
+
+networks:
+    default:
+    internal:
+        internal: true</code></pre>
+
+<p>进入CTFd目录，修改Dockerfile的内容</p>
+<pre class="line-numbers language-none"><code class="language-none">FROM python:3.6-alpine
+RUN sed -i &#39;s&#x2F;dl-cdn.alpinelinux.org&#x2F;mirrors.aliyun.com&#x2F;g&#39; &#x2F;etc&#x2F;apk&#x2F;repositories &amp;&amp;\
+    apk update &amp;&amp; \
+    apk add python3 python3-dev linux-headers libffi-dev gcc make musl-dev py-pip mysql-client git openssl-dev
+RUN adduser -D -u 1001 -s &#x2F;bin&#x2F;bash ctfd
+
+WORKDIR &#x2F;opt&#x2F;CTFd
+RUN mkdir -p &#x2F;opt&#x2F;CTFd &#x2F;var&#x2F;log&#x2F;CTFd &#x2F;var&#x2F;uploads
+RUN pip config set global.index-url https:&#x2F;&#x2F;pypi.doubanio.com&#x2F;simple
+RUN pip config set install.trusted-host pypi.doubanio.com
+COPY requirements.txt .
+
+RUN pip install -r requirements.txt -i  https:&#x2F;&#x2F;pypi.doubanio.com&#x2F;simple
+
+COPY . &#x2F;opt&#x2F;CTFd
+
+RUN for d in CTFd&#x2F;plugins&#x2F;*; do \
+      if [ -f &quot;$d&#x2F;requirements.txt&quot; ]; then \
+        pip install -r $d&#x2F;requirements.txt -i  https:&#x2F;&#x2F;pypi.doubanio.com&#x2F;simple; \
+      fi; \
+    done;
+
+RUN chmod +x &#x2F;opt&#x2F;CTFd&#x2F;docker-entrypoint.sh
+RUN chown -R 1001:1001 &#x2F;opt&#x2F;CTFd
+RUN chown -R 1001:1001 &#x2F;var&#x2F;log&#x2F;CTFd &#x2F;var&#x2F;uploads
+
+USER 1001
+EXPOSE 8000
+ENTRYPOINT [&quot;&#x2F;opt&#x2F;CTFd&#x2F;docker-entrypoint.sh&quot;]	</code></pre>
+
+<p>requirements.txt内容</p>
+<pre class="line-numbers language-none"><code class="language-none">Flask&#x3D;&#x3D;1.1.2
+Werkzeug&#x3D;&#x3D;0.16.0
+Flask-SQLAlchemy&#x3D;&#x3D;2.4.1
+Flask-Caching&#x3D;&#x3D;1.4.0
+Flask-Migrate&#x3D;&#x3D;2.5.2
+Flask-Script&#x3D;&#x3D;2.0.6
+SQLAlchemy&#x3D;&#x3D;1.3.11
+SQLAlchemy-Utils&#x3D;&#x3D;0.36.0
+passlib&#x3D;&#x3D;1.7.2
+bcrypt&#x3D;&#x3D;3.1.7
+six&#x3D;&#x3D;1.13.0
+itsdangerous&#x3D;&#x3D;1.1.0
+jinja2&#x3D;&#x3D;2.11.3
+requests&gt;&#x3D;2.20.0
+PyMySQL&#x3D;&#x3D;0.9.3
+gunicorn&#x3D;&#x3D;19.9.0
+normality&#x3D;&#x3D;2.0.0
+dataset&#x3D;&#x3D;1.1.2
+mistune&#x3D;&#x3D;0.8.4
+netaddr&#x3D;&#x3D;0.7.19
+redis&#x3D;&#x3D;3.3.11
+datafreeze&#x3D;&#x3D;0.1.0
+gevent&#x3D;&#x3D;21.12.0
+python-dotenv&#x3D;&#x3D;0.10.3
+flask-restplus&#x3D;&#x3D;0.13.0
+pathlib2&#x3D;&#x3D;2.3.5
+flask-marshmallow&#x3D;&#x3D;0.10.1
+marshmallow-sqlalchemy&#x3D;&#x3D;0.17.0
+boto3&#x3D;&#x3D;1.10.39
+markupsafe&#x3D;&#x3D;1.1.1
+marshmallow&#x3D;&#x3D;2.20.2</code></pre>
+
+<p>准备好后开始构建容器，进入CTFd目录</p>
+<pre class="line-numbers language-none"><code class="language-none">docker-compose biuld</code></pre>
+
+<p>启动镜像</p>
+<pre class="line-numbers language-none"><code class="language-none">docker-compose up -d</code></pre>
+
+<p>启动完之后将ctfd容器加入到frpcadmin的网络之中</p>
+<pre class="line-numbers language-none"><code class="language-none">docker ps #查看ctfd容器的ID
+docker network connect frpcadmin #容器ID </code></pre>
+
+<p>可以看到ctfd容器已经加入到了frpcadmin容器之中了</p>
+<p><img src="https://gitee.com/shark-rice/images/raw/master/202308271348495.png" alt="image-20230821113536575"></p>
+<p>查看容器运行状态</p>
+<p><img src="https://gitee.com/shark-rice/images/raw/master/202308271348969.png" alt="image-20230821113654613"></p>
+<p>访问 ip:8000进入平台，按需填写内容</p>
+<p><img src="https://gitee.com/shark-rice/images/raw/master/202308271348578.png" alt="image-20230821113902068"></p>
+<p>上方导航栏Admin-&gt;Plugins 配置CTFd Whale相关内容</p>
+<p><img src="https://gitee.com/shark-rice/images/raw/master/202308271348850.png" alt="image-20230821141633201"></p>
+<p><img src="https://gitee.com/shark-rice/images/raw/master/202308271348069.png" alt="image-20230821141835333"></p>
+<p><img src="https://gitee.com/shark-rice/images/raw/master/202308271348639.png" alt="image-20230821142048736"></p>
+<p><img src="https://gitee.com/shark-rice/images/raw/master/202308271348211.png" alt="image-20230821142123914"></p>
+<h2 id="添加题目"><a href="#添加题目" class="headerlink" title="添加题目"></a>添加题目</h2><p>上方challenges处添加题目，选择dynamic_docker创建动态题目</p>
+<p><img src="https://gitee.com/shark-rice/images/raw/master/202308271348868.png" alt="image-20230821142321874"></p>
+<p><img src="https://gitee.com/shark-rice/images/raw/master/202308271355544.png" alt="image-20230821142545317"></p>
+<p><img src="https://gitee.com/shark-rice/images/raw/master/202308271348434.png" alt="image-20230821142719030"></p>
+<p><img src="https://gitee.com/shark-rice/images/raw/master/202308271348154.png" alt="image-20230821142727231"></p>
+<p>最后不要忘记选择动态分数</p>
+<p>成功部署题目</p>
+<p><img src="https://gitee.com/shark-rice/images/raw/master/202308271348073.png" alt="image-20230821142835370"></p>
+<p><img src="https://gitee.com/shark-rice/images/raw/master/202308271348601.png" alt="image-20230821142845326"></p>
+<p>flag也是动态flag</p>
+<p><img src="https://gitee.com/shark-rice/images/raw/master/202308271348902.png" alt="image-20230821142949627"></p>
+
+</div>
+  <o3o key="mizore" api="https://o3o.mizore.site:2333"></o3o>
+  
+<script src="/o3o/o3o.js"></script>
+
+  
+<link rel="stylesheet" href="/css/o3o.css">
+
+</main>
+    <footer>
+  <div class="footer-info"> Powerd by <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a> | Theme <a
+      target="_blank" rel="noopener" href="https://github.com/mizoreyo/hexo-theme-insnow">Insnow</a> </div>
+  <div class="footer-info">
+    <a class="footer-i" href=""><i class="iconfont icon-wechat"></i></a>
+    <a class="footer-i" target="_blank" rel="noopener" href="https://github.com/sammyLingsj"><i class="iconfont icon-github-fill"></i></a>
+    <a class="footer-i" href="/atom.xml"><i class="iconfont icon-rss"></i></a>
+    <a class="footer-i" href="mailto:sammyLinsj@outlook.com"><i class="iconfont icon-mail"></i></a>
+  </div>
+</footer>
+  </div>
+</body>
+
+
+</html>

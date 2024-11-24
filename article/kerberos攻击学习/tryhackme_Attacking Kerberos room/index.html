@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html lang="en" class="light">
+<head>
+  <meta charset="utf-8">
+  
+  <title>
+    
+    kerberos攻击学习
+    
+  </title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+  <link rel="me" href="https://mas.uniiem.com/@mizore" />
+  
+<script src="https://cdn.staticfile.org/prism/1.17.1/prism.min.js"></script>
+
+  
+<script src="https://cdn.staticfile.org/prism/1.17.1/plugins/autoloader/prism-autoloader.min.js"></script>
+
+  
+<link rel="stylesheet" href="/css/prism/material-light.css">
+
+  
+<link rel="stylesheet" href="/css/prism/material-dark.css">
+
+  
+<script src="https://cdn.staticfile.org/prism/1.17.1/plugins/line-numbers/prism-line-numbers.min.js"></script>
+
+  
+<link rel="stylesheet" href="https://cdn.staticfile.org/prism/1.17.1/plugins/line-numbers/prism-line-numbers.min.css">
+
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono&family=Noto+Sans+SC:wght@300&display=swap.css">
+
+  
+<link rel="stylesheet" href="/iconfont/iconfont.css">
+
+<meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/atom.xml" title="Welcome to s4mmy's blog" type="application/atom+xml">
+</head>
+<script>
+  function setIsNight(isNight) {
+    localStorage.setItem('isNight', isNight)
+  }
+
+  function getIsNight() {
+    return localStorage.getItem('isNight')
+  }
+
+  function switchTheme() {
+    let isNight = getIsNight()
+    if (isNight === 'false') {
+      document.documentElement.className = 'dark'
+      document.getElementsByClassName('theme-switcher')[0].textContent = '🌙'
+      setIsNight('true')
+    } else {
+      document.documentElement.className = 'light'
+      document.getElementsByClassName('theme-switcher')[0].textContent = '🌞'
+      setIsNight('false')
+    }
+  }
+
+  let isNight = getIsNight()
+  if (isNight == null) {
+    isNight = 'false'
+    setIsNight('false')
+  }
+  if (isNight === 'false') {
+    document.documentElement.className = 'light'
+  } else {
+    document.documentElement.className = 'dark'
+  }
+</script>
+
+<body>
+  <div class="show-area">
+    <header>
+  <ul class="nav">
+    <li class="nav-child">
+      <a href="/">首页</a>
+    </li>
+    <li class="nav-child">
+      <a href="/categories">分类</a>
+    </li>
+    <li class="nav-child">
+      <a href="/tags">标签</a>
+    </li>
+    <li class="nav-child">
+      <a href="/about">关于</a>
+    </li>
+    <li class="nav-child">
+      <a href="/collection">收藏</a>
+    </li>
+    <li class="nav-child">
+      <a href="/board">留言</a>
+    </li>
+  </ul>
+  <div class="theme-switcher" onclick="switchTheme()">🌞</div>
+  <script>
+    if (isNight === 'false') {
+      document.getElementsByClassName('theme-switcher')[0].textContent = '🌞'
+    } else {
+      document.getElementsByClassName('theme-switcher')[0].textContent = '🌙'
+    }
+  </script>
+</header>
+    <main class="main-body">
+  <div class="toc-container">
+    <div class="toc-toggle">
+      <i id="toc-b-icon" class="iconfont icon-liebiao-01" onclick="toggleShow()"></i>
+    </div>
+    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#kerberos%E6%94%BB%E5%87%BB%E5%AD%A6%E4%B9%A0"><span class="toc-number">1.</span> <span class="toc-text">kerberos攻击学习</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BB%8B%E7%BB%8D"><span class="toc-number">1.1.</span> <span class="toc-text">介绍</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%B8%B8%E7%94%A8%E6%9C%AF%E8%AF%AD"><span class="toc-number">1.1.1.</span> <span class="toc-text">常用术语</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#AS-REQ-x2F-%E9%A2%84%E8%BA%AB%E4%BB%BD%E9%AA%8C%E8%AF%81-%E7%BB%86%E8%8A%82"><span class="toc-number">1.1.2.</span> <span class="toc-text">AS-REQ &#x2F; 预身份验证 细节</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#TGT-%E7%A5%A8%E6%8D%AE%E6%8E%88%E4%BA%88%E7%A5%A8-%E5%86%85%E5%AE%B9"><span class="toc-number">1.1.3.</span> <span class="toc-text">TGT(票据授予票)内容</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#ST%EF%BC%88Service-Ticket%E5%8D%B3TGS%EF%BC%8C%E6%9C%8D%E5%8A%A1%E7%A5%A8%E6%8D%AE%EF%BC%89%E5%86%85%E5%AE%B9"><span class="toc-number">1.1.4.</span> <span class="toc-text">ST（Service Ticket即TGS，服务票据）内容</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Kerberos%E8%BA%AB%E4%BB%BD%E9%AA%8C%E8%AF%81%E6%A6%82%E8%BF%B0"><span class="toc-number">1.1.5.</span> <span class="toc-text">Kerberos身份验证概述</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#kerberos%E7%A5%A8%E8%AF%81%E6%A6%82%E8%BF%B0"><span class="toc-number">1.1.6.</span> <span class="toc-text">kerberos票证概述</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#kerberos%E6%94%BB%E5%87%BB%E6%9D%83%E9%99%90%E8%A6%81%E6%B1%82"><span class="toc-number">1.1.7.</span> <span class="toc-text">kerberos攻击权限要求</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8kerbrute%E8%BF%9B%E8%A1%8C%E6%9E%9A%E4%B8%BE%E2%80%94%E2%80%94%E6%A3%80%E6%B5%8Bkerbrute%E4%B8%AD%E5%8F%AF%E5%88%A9%E7%94%A8%E8%B4%A6%E6%88%B7"><span class="toc-number">1.2.</span> <span class="toc-text">使用kerbrute进行枚举——检测kerbrute中可利用账户</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%BB%A5%E7%94%A8%E9%A2%84%E8%BA%AB%E4%BB%BD%E9%AA%8C%E8%AF%81%E6%A6%82%E8%BF%B0"><span class="toc-number">1.2.1.</span> <span class="toc-text">滥用预身份验证概述</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Kerbrute%E4%BD%BF%E7%94%A8"><span class="toc-number">1.2.2.</span> <span class="toc-text">Kerbrute使用</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8Rubeus%E6%9A%B4%E5%8A%9B%E7%A0%B4%E8%A7%A3-x2F-%E6%94%B6%E5%89%B2%E7%A5%A8%E8%AF%81"><span class="toc-number">1.3.</span> <span class="toc-text">使用Rubeus暴力破解&#x2F;收割票证</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8rubeus%E8%8E%B7%E5%8F%96%E7%A5%A8%E8%AF%81"><span class="toc-number">1.3.1.</span> <span class="toc-text">使用rubeus获取票证</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8Rubeus%E8%BF%9B%E8%A1%8C%E6%9A%B4%E5%8A%9B%E7%A0%B4%E8%A7%A3%E5%AF%86%E7%A0%81-x2F-%E5%AF%86%E7%A0%81%E5%96%B7%E5%B0%84"><span class="toc-number">1.3.2.</span> <span class="toc-text">使用Rubeus进行暴力破解密码&#x2F;密码喷射</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8Rubeus%E5%92%8CImpacket%E8%BF%9B%E8%A1%8Ckerberoasting"><span class="toc-number">1.4.</span> <span class="toc-text">使用Rubeus和Impacket进行kerberoasting</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8Rubeus%E8%BF%9B%E8%A1%8CKerberoasting"><span class="toc-number">1.4.1.</span> <span class="toc-text">使用Rubeus进行Kerberoasting</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8Impacket%E8%BF%9B%E8%A1%8Ckerberoasting"><span class="toc-number">1.4.2.</span> <span class="toc-text">使用Impacket进行kerberoasting</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%8E%B7%E5%BE%97%E6%9C%8D%E5%8A%A1%E8%B4%A6%E6%88%B7%E5%90%8E%E5%8F%AF%E4%BB%A5%E5%81%9A%E4%BB%80%E4%B9%88%EF%BC%9F"><span class="toc-number">1.4.3.</span> <span class="toc-text">获得服务账户后可以做什么？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Kerberoasting%E9%98%B2%E5%BE%A1%E6%96%B9%E6%B3%95"><span class="toc-number">1.4.4.</span> <span class="toc-text">Kerberoasting防御方法</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8Rubeus%E8%BF%9B%E8%A1%8CAS-REP-roasting"><span class="toc-number">1.5.</span> <span class="toc-text">使用Rubeus进行AS-REP roasting</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#AS-REP-Roasting-%E6%A6%82%E8%BF%B0"><span class="toc-number">1.5.1.</span> <span class="toc-text">AS-REP Roasting 概述</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8Rubeus%E8%BD%AC%E5%82%A8kerbasrep5%E5%93%88%E5%B8%8C%E5%80%BC"><span class="toc-number">1.5.2.</span> <span class="toc-text">使用Rubeus转储kerbasrep5哈希值</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#AS-REP-Roasting%E9%A2%84%E9%98%B2%E6%8E%AA%E6%96%BD"><span class="toc-number">1.5.3.</span> <span class="toc-text">AS-REP Roasting预防措施</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8mimikatz%E8%BF%9B%E8%A1%8C%E4%BC%A0%E9%80%92%E7%A5%A8%E6%8D%AE%EF%BC%88PTT-Pass-The-Ticket%EF%BC%89"><span class="toc-number">1.6.</span> <span class="toc-text">使用mimikatz进行传递票据（PTT,Pass The Ticket）</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#PTT-x2F-Pass-The-Ticket-%E6%A6%82%E8%BF%B0"><span class="toc-number">1.6.1.</span> <span class="toc-text">PTT&#x2F;Pass The Ticket 概述</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#mimikatz%E4%BD%BF%E7%94%A8"><span class="toc-number">1.6.2.</span> <span class="toc-text">mimikatz使用</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8mimikatz%E8%BF%9B%E8%A1%8CPTT"><span class="toc-number">1.6.3.</span> <span class="toc-text">使用mimikatz进行PTT</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#PTT%E6%94%BB%E5%87%BB%E7%9A%84%E9%98%B2%E5%BE%A1%E6%96%B9%E5%BC%8F"><span class="toc-number">1.6.4.</span> <span class="toc-text">PTT攻击的防御方式</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8mimikatz%E8%BF%9B%E8%A1%8C%E9%87%91-x2F-%E9%93%B6%E7%A5%A8%E6%8D%AE%E6%94%BB%E5%87%BB"><span class="toc-number">1.7.</span> <span class="toc-text">使用mimikatz进行金&#x2F;银票据攻击</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#KRBTGT%E6%A6%82%E8%BF%B0"><span class="toc-number">1.7.1.</span> <span class="toc-text">KRBTGT概述</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%87%91%E9%93%B6%E7%A5%A8%E6%94%BB%E5%87%BB%E6%A6%82%E8%BF%B0"><span class="toc-number">1.7.2.</span> <span class="toc-text">金银票攻击概述</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%BD%AC%E5%82%A8krbtgt%E5%93%88%E5%B8%8C"><span class="toc-number">1.7.3.</span> <span class="toc-text">转储krbtgt哈希</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%88%9B%E5%BB%BA%E9%87%91-x2F-%E9%93%B6%E7%A5%A8"><span class="toc-number">1.7.4.</span> <span class="toc-text">创建金&#x2F;银票</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8%E9%87%91%E9%93%B6%E7%A5%A8%E8%AE%BF%E9%97%AE%E5%85%B6%E4%BB%96%E6%9C%BA%E5%99%A8"><span class="toc-number">1.7.5.</span> <span class="toc-text">使用金银票访问其他机器</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8mimiatz%E6%A4%8D%E5%85%A5kerberos%E5%90%8E%E9%97%A8"><span class="toc-number">1.8.</span> <span class="toc-text">使用mimiatz植入kerberos后门</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%87%E8%83%BD%E9%92%A5%E5%8C%99%E6%A6%82%E8%BF%B0"><span class="toc-number">1.8.1.</span> <span class="toc-text">万能钥匙概述</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8mimikatz%E5%AE%89%E8%A3%85%E4%B8%87%E8%83%BD%E9%92%A5%E5%8C%99"><span class="toc-number">1.8.2.</span> <span class="toc-text">使用mimikatz安装万能钥匙</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%BF%9B%E5%85%A5%E5%9F%9F%E6%9E%97"><span class="toc-number">1.8.3.</span> <span class="toc-text">进入域林</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%B0%8F%E7%BB%93"><span class="toc-number">1.9.</span> <span class="toc-text">小结</span></a></li></ol></li></ol>
+  </div>
+  
+  <script>
+    var show = false
+    function toggleShow() {
+      if (show) {
+        document.getElementsByClassName('toc')[0].className = 'toc'
+        document.getElementById('toc-b-icon').className = 'iconfont icon-liebiao-01'
+      } else {
+        document.getElementsByClassName('toc')[0].className = 'toc show'
+        document.getElementById('toc-b-icon').className = 'iconfont icon-quxiao-01'
+      }
+      show = !show
+    }
+    document.getElementsByClassName('toc')[0].onclick = toggleShow
+  </script>
+  
+  <div class="article-header">
+    <h1 class="article-title">kerberos攻击学习</h1>
+    <div class="article-details">
+      <div class="article-post-date"><span>Posted at </span> 2023-09-17</div>
+      <div class="article-tags">
+        
+      </div>
+    </div>
+  </div>
+  <div class="article">
+  
+  <meta name="referrer" content="no-referrer" />
+
+
+
+<h1 id="kerberos攻击学习"><a href="#kerberos攻击学习" class="headerlink" title="kerberos攻击学习"></a>kerberos攻击学习</h1><p>这个房间主要介绍windows的票证授予服务kerberos的基础知识，以及如何攻击kerberos获得各类票据，甚至获得域管理员。</p>
+<h2 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h2><p>kerberos是以windows域的一个身份认证服务，通过第三方票证授权的方式以及更强的加密来比NTLM更加安全。目前kerberos已经是windows域的默认身份认证服务，但是依然存在漏洞。</p>
+<h3 id="常用术语"><a href="#常用术语" class="headerlink" title="常用术语"></a>常用术语</h3><ul>
+<li><strong>TGT（Ticket Granting Ticket，票证授予票）</strong>：TGT可以看做是域认证的身份认证，相当于门票。通过身份认证后用户会获得TGT，只有拥有TGT后用户才可以向TGS请求域中特定服务的票证。</li>
+<li><strong>KDC（Key Distribution Center，密钥分发中心）</strong>：密钥分发中心负责颁发TGT和服务票据，由<strong>身份验证服务</strong>和<strong>票据授予服务</strong>组成。</li>
+<li><strong>AS（Authentication Service，身份验证服务）</strong>：身份验证服务发出TGT，供域中的TGS使用，以请求访问其他计算机和服务票证。</li>
+<li><strong>TGS（Ticket Granting Service，票征授予服务）</strong>：票征授予服务在获取TGT后将票证返回到域中的计算机。</li>
+<li><strong>SPN（Service Principal name，服务主体名称）</strong>：服务主体名称为服务实例提供标识符，<strong>将服务实例与域服务账户相关联</strong>。Windows要求服务具有与服务账户，这就是服务需要SPN集的原因。</li>
+<li><strong>KDC LT Key（KDC Long Term Secret Key，KDC长期(加密)密钥）</strong>：这个KDC key（KDC LT Key）基于KRBTGT服务账户。用于<strong>加密TGT</strong>和为<strong>PAC</strong>证书签名。</li>
+<li><strong>Client LT Key（Client Long Term Secret Key，客户端长期(加密)密钥）</strong>：客户端密钥基于计算机或者服务账户。用于加密时间戳和加密<strong>会话密钥（session key）</strong>。</li>
+<li><strong>Service LT Key（Service Long Term Secret Key，服务长期(加密)密钥）</strong>：这个密钥（服务密钥）基于服务账户。用于加密服务票据和给对<strong>PAC</strong>进行数字签名。</li>
+<li><strong>Session Key（会话密钥）</strong>:KDC在给用户发放TGT时会一同发放会话密钥，用户在请求服务票证时将TGT与会话密钥一同发送给KDC，用户在使用会话向服务证明并请求访问权限。</li>
+<li><strong>PAC（Privilege Attribute Certificate，特权属性证书）</strong>：PAC保存用户的所有相关信息，它与TGT一起发送到KDC，由目标服务长期密钥（Servic LT Key）和KDC长期密钥（KDC LT Key）进行数字签名，以验证用户。</li>
+</ul>
+<h3 id="AS-REQ-x2F-预身份验证-细节"><a href="#AS-REQ-x2F-预身份验证-细节" class="headerlink" title="AS-REQ &#x2F; 预身份验证 细节"></a>AS-REQ &#x2F; 预身份验证 细节</h3><p>当用于向KDC请求TGT时，Kerberos身份验证中的AS-REQ步骤开始。为验证用户并创建TGT，KDC必须遵循确切的步骤。用户的第一步是加密计算出时间戳的NT散列值并将其发送到AS。KDC尝试使用用户提供的NT散列值来解密时间戳，如果成功，KDC将为用户颁发TGT以及会话密钥。（这里的NT hash即NTLM hash的简写）</p>
+<p>附：NT Hash计算方式</p>
+<blockquote>
+<p>NT Hash计算过程相比LM Hash来得简单。</p>
+<ul>
+<li>1.转换为16进制</li>
+<li>2.Unicode编码</li>
+<li>3.MD4加密的16进制就是NT hash</li>
+</ul>
+</blockquote>
+<h3 id="TGT-票据授予票-内容"><a href="#TGT-票据授予票-内容" class="headerlink" title="TGT(票据授予票)内容"></a>TGT(票据授予票)内容</h3><p>为了理解服务票据（service ticket）是如何创建和验证的，我们需要从票据的来源开始。用户将TGT提供给KDC，作为返回（回报），KDC将验证TGT并返回服务票据（service ticket）</p>
+<p><img src="https://i.imgur.com/QFeXDN0.png"></p>
+<h3 id="ST（Service-Ticket即TGS，服务票据）内容"><a href="#ST（Service-Ticket即TGS，服务票据）内容" class="headerlink" title="ST（Service Ticket即TGS，服务票据）内容"></a>ST（Service Ticket即TGS，服务票据）内容</h3><p>要理解kerberos身份验证是如何工作的，你首先要知道明白这些票据的内容和他们是如何验证的。服务票据包含两个部分：服务提供部分和用户提供部分。</p>
+<ul>
+<li>服务部分：用户详细信息、会话密钥；该票证使用服务账户的NTLM哈希加密。</li>
+<li>用户部分：有效的时间戳、会话密钥；使用TGT会话密钥（TGT session key）加密。</li>
+</ul>
+<p><img src="https://i.imgur.com/kUqrVBa.png"></p>
+<h3 id="Kerberos身份验证概述"><a href="#Kerberos身份验证概述" class="headerlink" title="Kerberos身份验证概述"></a>Kerberos身份验证概述</h3><p><img src="https://i.imgur.com/VRr2B6w.png"></p>
+<p>AS-REQ 1. 客户端请求身份验证票据或票据授予票证（TGT）</p>
+<p>AS-REQ 2. 密钥分发中心在身份验证后返回加密的TGT和会话密钥</p>
+<p>AS-REQ 3. 客户端将加密的TGT发送到**票证授予服务器(TGS)**，其中包含客户端想要访问的服务的服务主体名称（SPN）</p>
+<p>AS-REQ 4. 密钥分发中心（KDC）验证用户的TGT以及用户是否有权限访问该服务，然后向客户端发送该服务的有效会话密钥及票据</p>
+<p>AS-REQ 5. 客户端请求服务并发送有效会话密钥以证明用户具有访问权限。</p>
+<p>AS-REQ 6. 服务授予访问权限。</p>
+<h3 id="kerberos票证概述"><a href="#kerberos票证概述" class="headerlink" title="kerberos票证概述"></a>kerberos票证概述</h3><p>在攻击kerberos的过程中，最常见的票证是票证授予票（TGT），这些票证可以有很多形式（后缀），例如Rubeus的<code>.kirbi</code>，Impacket的<code>.ccache</code>。最主要的还是<code>.kirbi</code>票证，这些票证通常是使用base64编码并可以用于各种攻击。TGT仅与KDC一起使用以获得服务票证。一但你提供TGT，服务器就会获取用户详细信息、会话密钥，然后使用服务账户的NTLM哈希对票证（TGT）进行加密。 </p>
+<p>然后你的TGT会提供加密时间戳、会话密钥和加密过的TGT。然后KDC将验证TGT并返回所请求服务的服务票证。普通的TGT只能与连接到它的给定服务账户一起使用（白银票据），但是KRBTGT允许你获取所需的任何票证（黄金票据），从而允许访问你访问域上所需的任何内容。</p>
+<h3 id="kerberos攻击权限要求"><a href="#kerberos攻击权限要求" class="headerlink" title="kerberos攻击权限要求"></a>kerberos攻击权限要求</h3><ul>
+<li>kerbrute枚举-无需域访问</li>
+<li>PTT（Pass The Ticket 传递票据）：以用户身份访问所需的域</li>
+<li>kerberoasting：根据任何用户的需要进行访问</li>
+<li>AS-REP Roasting（AS-REP烘焙）：根据任何用户的需要进行访问</li>
+<li>金票：需要完整的域妥协（domain compromise）（域管理员）</li>
+<li>银票：需要服务哈希</li>
+<li>万能钥匙：需要完整的域妥协（域管理员）</li>
+</ul>
+<h2 id="使用kerbrute进行枚举——检测kerbrute中可利用账户"><a href="#使用kerbrute进行枚举——检测kerbrute中可利用账户" class="headerlink" title="使用kerbrute进行枚举——检测kerbrute中可利用账户"></a>使用kerbrute进行枚举——检测kerbrute中可利用账户</h2><p>kerbrute是一种流行的枚举工具，其原理是利用kerberos的<strong>预身份验证</strong>来暴力破解和枚举有效的活动目录（AD）用户。</p>
+<p>在攻击前需要将DNS域名和计算机IP添加到攻击者计算机内的&#x2F;etc&#x2F;host中，否则攻击将不起作用。</p>
+<p>以下笔记中使用的靶机IP和域控如下</p>
+<p><code>10.10.58.156 CONTROLLER.local</code></p>
+<h3 id="滥用预身份验证概述"><a href="#滥用预身份验证概述" class="headerlink" title="滥用预身份验证概述"></a>滥用预身份验证概述</h3><p>通过强制kerberos预身份验证不会触发账户登陆失败事件，但是可能会给触发设备告警，引起蓝队注意。通过kerberos暴力破解时，可以通过仅向KDC发送单个UDP帧来进行暴力破解，从预先提供好的字典里列举域上的用户。</p>
+<blockquote>
+<p>Kerbrute 安装 - </p>
+<p>1.) 下载适用于您的操作系统的预编译二进制文件 - <a target="_blank" rel="noopener" href="https://github.com/ropnop/kerbrute/releases">https://github.com/ropnop/kerbrute/releases</a></p>
+<p>2.) 将 kerbrute_linux_amd64 重命名 为 kerbrute</p>
+<p>3.) <code>chmod +x kerbrute</code> - 使 kerbrute 可执行</p>
+</blockquote>
+<h3 id="Kerbrute使用"><a href="#Kerbrute使用" class="headerlink" title="Kerbrute使用"></a>Kerbrute使用</h3><p>进入kerbrute目录后，准备好爆破用用户名字典，使用以下命令运行Kerbrute爆破域中存在的账户</p>
+<pre class="line-numbers language-none"><code class="language-none">.&#x2F;kerbrute usernum --dc CONTROLLER.local -d CONTROLLER.local User.txt</code></pre>
+
+
+
+<h2 id="使用Rubeus暴力破解-x2F-收割票证"><a href="#使用Rubeus暴力破解-x2F-收割票证" class="headerlink" title="使用Rubeus暴力破解&#x2F;收割票证"></a>使用Rubeus暴力破解&#x2F;收割票证</h2><p>Rubeus是用于攻击Kerberos的工具。Rubeus是kekeo工具的改编版，更加强大。Rubeus具有多种攻击方式和功能，包括跨越哈希（Overpass the hash&#x2F;Pass-the-Key），票证请求（Ticket Request）和票证延期（renewals），票证管理，票证提取，收获，传递票证（pass the ticket），AS-REP烘焙（AS-REP Roasting）和kerberoasting</p>
+<h3 id="使用rubeus获取票证"><a href="#使用rubeus获取票证" class="headerlink" title="使用rubeus获取票证"></a>使用rubeus获取票证</h3><p>通过截获正在传递到KDC的票证并将其保存以用于其他攻击，例如PTT</p>
+<p>攻击命令如下</p>
+<pre class="line-numbers language-none"><code class="language-none">Rubeus.exe harvest &#x2F;interval:30</code></pre>
+
+<p>该命令告诉RUbeus每30s收集一次TGT</p>
+<h3 id="使用Rubeus进行暴力破解密码-x2F-密码喷射"><a href="#使用Rubeus进行暴力破解密码-x2F-密码喷射" class="headerlink" title="使用Rubeus进行暴力破解密码&#x2F;密码喷射"></a>使用Rubeus进行暴力破解密码&#x2F;密码喷射</h3><blockquote>
+<p>Rubeus 既可以暴力破解密码，也可以喷洒密码用户帐户。当暴力破解密码时，您可以使用单个用户帐户和密码单词列表来查看哪个密码适用于该给定用户帐户。在密码喷射中，您提供一个密码（例如Password1），然后对域中找到的所有用户帐户进行“喷射”，以查找哪些帐户可能拥有该密码。</p>
+<p>此攻击将获取给定的基于 Kerberos 的密码，并将其喷洒到所有找到的用户上，并提供 .kirbi 票证。该票证是一个TGT，可用于从 KDC 获取服务票证，也可用于诸如传递票证攻击之类的攻击。</p>
+</blockquote>
+<p>在使用Rubeus进行密码喷洒之前，，需要将域控制器域名添加到windows的主机文件中。可以直接使用echo命令将IP和域名添加到计算机的主机文件中</p>
+<pre class="line-numbers language-none"><code class="language-none">echo 10.01.147.97 CONTROLLER.local &gt;&gt; C:\Windows\System32\drivers\etc\hosts</code></pre>
+
+<p>Rubeus喷洒密码命令</p>
+<pre class="line-numbers language-none"><code class="language-none">Rubeus.exe brute &#x2F;password:Password1 &#x2F;noticket</code></pre>
+
+<p>以上命令将使用给定密码（上面命令中指定的是Password1）喷洒到所有找到的账户中，然后为该用户提供.kirbi TGT（即将上文中抓取到的TGT给现在爆破出来的用户使用）</p>
+<p>ps：在进行像喷洒密码这种包里攻击时大概率会触发安全策略而导致账户锁定。</p>
+<h2 id="使用Rubeus和Impacket进行kerberoasting"><a href="#使用Rubeus和Impacket进行kerberoasting" class="headerlink" title="使用Rubeus和Impacket进行kerberoasting"></a>使用Rubeus和Impacket进行kerberoasting</h2><p>这里将介绍kerberos中最流行的攻击之一——kerberoasting。kerberoasting允许用户请求具有注册SPN的任何服务的服务票证，然后使用该票证破解服务密码（服务账户）。如果一个服务有注册SPN，那么它是Kerberoastable的。但是攻击的成功取决于密码的强度、密码是否可追踪以及被破解的服务账户的权限。</p>
+<p>要枚举Kerberoastable账户，建议使用BloodHound之类的工具来查找所有kerberoastable账户它允许你查看可以对哪些账户进行kerberoast（如果它们是域管理员），以及它们与域的其余部分有什么样的连接等等。</p>
+<p>这里将使用Rubeus和Impacket进行攻击，同样的使用kekeo和Invoke-Kerberoast也能进行攻击。</p>
+<h3 id="使用Rubeus进行Kerberoasting"><a href="#使用Rubeus进行Kerberoasting" class="headerlink" title="使用Rubeus进行Kerberoasting"></a>使用Rubeus进行Kerberoasting</h3><p>ps：以下操作是在内网机器上进行操作的。</p>
+<p>以下命令将转储任何kerberoastable用户的Kerberos哈希值</p>
+<pre class="line-numbers language-none"><code class="language-none">Rubeus.exe kerberoast</code></pre>
+
+<p><img src="https://i.imgur.com/XZegVqf.png"></p>
+<p>将获得的hash储存到本地的.txt文件中，然后使用hashcat破解它。</p>
+<p>使用hashcat破解需要提前准备好密码字典</p>
+<p>破解命令</p>
+<pre class="line-numbers language-none"><code class="language-none">hashcat -m 13100 -a 0 hash.txt password.txt</code></pre>
+
+
+
+<h3 id="使用Impacket进行kerberoasting"><a href="#使用Impacket进行kerberoasting" class="headerlink" title="使用Impacket进行kerberoasting"></a>使用Impacket进行kerberoasting</h3><blockquote>
+<p>Impacket安装教程</p>
+<p>自 0.9.20 以来，Impacket 版本一直不稳定，我建议安装 Impacket &lt; 0.9.20</p>
+<p>1.)<code>cd /opt</code> 导航到您的首选目录以保存工具 </p>
+<p><a target="_blank" rel="noopener" href="https://github.com/SecureAuthCorp/impacket/releases/tag/impacket_0_9_19">2.) 从https://github.com/SecureAuthCorp/impacket/releases/tag/impacket_0_9_19</a>下载预编译包 </p>
+<p>3.)<code>cd Impacket-0.9.19</code> 导航到 impacket 目录</p>
+<p>4.) <code>pip install .</code>- 这将安装所有需要的依赖项</p>
+</blockquote>
+<p>Impacket使用命令</p>
+<pre class="line-numbers language-none"><code class="language-none">cd &#x2F;usr&#x2F;share&#x2F;doc&#x2F;python3-impacket&#x2F;examples &#x2F;&#x2F;进入GetUserSPNs.py所在位置</code></pre>
+
+
+
+<pre class="line-numbers language-none"><code class="language-none">sudo python3 GetUserSPNs.py controller.local(域名)&#x2F;Machine1(机器名称):Password(密码) -dc-ip 目标机器IP -request</code></pre>
+
+<p>↑这将转储它可以在目标域上找到的所有kerberoastable账户的kerberos哈希值，就像Rubeus所做的那样；但是与Rubeus不同的是它不用再目标机器上进行操作，并且可以远程完成。</p>
+<p>破解hash步骤相同</p>
+<pre class="line-numbers language-none"><code class="language-none">hashcat -m 13100 -a 0 hash.txt Pass.txt</code></pre>
+
+
+
+<h3 id="获得服务账户后可以做什么？"><a href="#获得服务账户后可以做什么？" class="headerlink" title="获得服务账户后可以做什么？"></a>获得服务账户后可以做什么？</h3><p>破解服务账户的账号密码后有多种方式可以窃取数据和收集所需要的信息。具体取决于服务账户是否为域管理员，如果<strong>服务账户是域管理员，那么就相当于获取了类似金&#x2F;银票据的控制权</strong>，可以收集所需的数据和信息，例如转储NTDS.dit.</p>
+<blockquote>
+<p>Ntds.dit是主要的AD数据库，包括有关域用户，组和组成员身份的信息。它还包括域中所有用户的密码哈希值。为了进一步保护密码哈希值，使用存储在SYSTEM注册表配置单元中的密钥对这些哈希值进行加密。</p>
+</blockquote>
+<p>如果服务账户不是域管理员，那么可以使用它登录其他系统并尝试进行提权。或者可以使用破解的密码来攻击其他服务和域管理员账户；许多公司可能会为其服务或域管理账户重复使用相同或者相似的密码。</p>
+<h3 id="Kerberoasting防御方法"><a href="#Kerberoasting防御方法" class="headerlink" title="Kerberoasting防御方法"></a>Kerberoasting防御方法</h3><ul>
+<li>设置强密码，如果服务账户的密码强，那么kerberoasting将无效</li>
+<li>不将服务账户设置为域管理员，服务账户不需要是域管理员，不将服务账户设置为域管理员，那么kerberoasting攻击成功后的利用难度将增大，不会那么有效。</li>
+</ul>
+<h2 id="使用Rubeus进行AS-REP-roasting"><a href="#使用Rubeus进行AS-REP-roasting" class="headerlink" title="使用Rubeus进行AS-REP roasting"></a>使用Rubeus进行AS-REP roasting</h2><p>域kerberos roasting类似，AS-REP roasting 转储禁用了kerberos预身份验证的用户账户的krbasrep5 hash值。与Kerberoasting不同，这些用户不必是服务账户。对用户进行AS-REP roasting的唯一要求是用户禁用预身份验证。</p>
+<p>这里将继续使用Rubeus，就像进行kerberosroasting和收获一样，Rubeus有一个简单且易于理解命令，可以在禁用kerberos预身份验证的情况下对AS-REP进行roasting和攻击用户。从Rubeus转储hash后，我们将继续使用hashcat来破解krbasrep5哈希值。</p>
+<p>同样的，不止Rubeus可以进行AS-REP Roasting ，keko和impacket的GetNPUsers.py也行。不过Rubeus更易用，它会自动查找AS-REP Roastable用户，而使用GetNPUsers必须事先枚举用户并知道那些用户是AS-REP Roastable。</p>
+<h3 id="AS-REP-Roasting-概述"><a href="#AS-REP-Roasting-概述" class="headerlink" title="AS-REP Roasting 概述"></a>AS-REP Roasting 概述</h3><p>在预身份验证期间，用户hash将用于加密时间戳，域控制器将尝试解密时间戳以验证是否正在使用正确的哈希并且不会重播先前的请求( the domain controller will attempt to decrypt to validate that the right hash is being used and is not replaying a previous request)。</p>
+<p>验证时间戳后，KDC将为用户颁发TGT。如果禁用预身份验证，你可以请求任何复用的任何身份验证数据，并且KDC将返回一个可以离线破解的加密TGT，因为KDC会跳过验证用户真是身份步骤（可以伪装用户身份）</p>
+<h3 id="使用Rubeus转储kerbasrep5哈希值"><a href="#使用Rubeus转储kerbasrep5哈希值" class="headerlink" title="使用Rubeus转储kerbasrep5哈希值"></a>使用Rubeus转储kerbasrep5哈希值</h3><pre class="line-numbers language-none"><code class="language-none">Rubeus.exe aseproast</code></pre>
+
+<p>以上命令将运行 AS-REP Roast 命令来查找易受攻击的用户，然后转储找到的易受攻击的用户哈希值。</p>
+<p>获取hash后继续使用hashcat进行破解</p>
+<pre class="line-numbers language-none"><code class="language-none">hashcat -m 18200 hash.txt Passwd.txt &#x2F;&#x2F;Rubeus AS-REP 烘焙使用 hashcat 模式 18200 </code></pre>
+
+
+
+<blockquote>
+<p>用 hashcat 破解这些哈希 - </p>
+<p>1.) 将哈希值从目标计算机传输到攻击者计算机，并将哈希值放入 txt 文件中</p>
+<p>2.) 在$krb5asrep$后面插入23$，这样第一行就是$krb5asrep$23$User…..</p>
+<p>3.) <code>hashcat -m 18200 hash.txt Pass.txt</code> - 破解这些哈希值！Rubeus AS-REP 烘焙使用 hashcat 模式 18200 </p>
+</blockquote>
+<p><img src="https://i.imgur.com/eOqGVrm.png"></p>
+<h3 id="AS-REP-Roasting预防措施"><a href="#AS-REP-Roasting预防措施" class="headerlink" title="AS-REP Roasting预防措施"></a>AS-REP Roasting预防措施</h3><ul>
+<li>使用强密码，这将耗费更多时间用于hash破解</li>
+<li>除非有必要，不要关闭kerberos预身份验证，除了打开预身份验证外，几乎没有颁发可以完全缓解这种攻击。</li>
+</ul>
+<h2 id="使用mimikatz进行传递票据（PTT-Pass-The-Ticket）"><a href="#使用mimikatz进行传递票据（PTT-Pass-The-Ticket）" class="headerlink" title="使用mimikatz进行传递票据（PTT,Pass The Ticket）"></a>使用mimikatz进行传递票据（PTT,Pass The Ticket）</h2><p>mimikatz属于后渗透利用工具，是非常流行且功能强大，最常用于活动目录网络内转储用户凭据，在这里我们将使用mimikatz从LSASS中转储TGT</p>
+<h3 id="PTT-x2F-Pass-The-Ticket-概述"><a href="#PTT-x2F-Pass-The-Ticket-概述" class="headerlink" title="PTT&#x2F;Pass The Ticket 概述"></a>PTT&#x2F;Pass The Ticket 概述</h3><p>PTT通过从机器的LSASS内存中转储TGT。LSASS（Local Security Subsystem Servic，本地安全机构子系统服务）是一个内存进程，它将凭据储存在活动目录的服务器上，并且可以储存Kerberos票证以及其他凭据类型，以充当网守（gatekeeper）并接受或者拒绝所提供的凭据。攻击者可以从LSASS内存中转储kerberos票证，就像转储hash一样。</p>
+<p>当使用mimikatz转储票证时，它会给我们一个.kirbi票证。如果域管理员票证位于LSASS内存中，则可以使用该票证获得域管理员。如果存在不安全的与服务账户票证，则此攻击对于权限提升和横向移动非常有用。</p>
+<p>如果转储域管理员的票证，然后使用mimikatz PTT攻击模拟该票证，便可以通过该攻击升级为域管理员。PTT攻击的原理就是重用现有票证，并不会创建或者销毁任何票证，只是重用域中其他用户的现有票证并冒充该票证。</p>
+<h3 id="mimikatz使用"><a href="#mimikatz使用" class="headerlink" title="mimikatz使用"></a>mimikatz使用</h3><p>cmd输入以下命令启动mimikatz（需要管理员权限）</p>
+<pre class="line-numbers language-none"><code class="language-none">mimikatz.exe</code></pre>
+
+<p>输入一下命令来检查是否以管理员权限运行</p>
+<pre class="line-numbers language-none"><code class="language-none">privilege::debug</code></pre>
+
+<p>如果正确，则输出[output ‘20’ OK]</p>
+<p><img src="https://i.imgur.com/SJQGplV.png"></p>
+<pre class="line-numbers language-none"><code class="language-none">sekulsa::ticket &#x2F;export</code></pre>
+
+<p>上面的命令会将所有的.kribi票证导出到当前目录中</p>
+<blockquote>
+<p>在此步骤中，您还可以使用我们之前从 Rubeus 获取的 Base 64 编码票证</p>
+</blockquote>
+<p>在导出的票证中寻到管理员票证，就如图中所示</p>
+<p><img src="https://i.imgur.com/xC0L5Kf.png"></p>
+<h3 id="使用mimikatz进行PTT"><a href="#使用mimikatz进行PTT" class="headerlink" title="使用mimikatz进行PTT"></a>使用mimikatz进行PTT</h3><p>我们现在已经准备好了飘逸，可以进行PTT攻击获得域管理员权限。</p>
+<p>在mimikatz中执行以下命令</p>
+<pre class="line-numbers language-none"><code class="language-none">kerberos::ptt &lt;ticket&gt;</code></pre>
+
+<p>上面的ticket是上文中转储的.kirbi票据的全称</p>
+<p><img src="https://i.imgur.com/DwXmm8Z.png"></p>
+<p>使用<code>klist</code>命令来列出缓存中票证以验证我们是否成功模拟票证</p>
+<p><img src="https://i.imgur.com/GgxDm9k.png"></p>
+<p>模拟成功，现在我们已经拥有了和域管理员相同的权力</p>
+<p>可以查看管理员共享</p>
+<p><img src="https://i.imgur.com/9nxjeTS.png"></p>
+<h3 id="PTT攻击的防御方式"><a href="#PTT攻击的防御方式" class="headerlink" title="PTT攻击的防御方式"></a>PTT攻击的防御方式</h3><p>不要让域管理员登录到除了域控制器以外的任何东西。如果域管理员仍登录到一些低级别计算上，容易留下用于攻击和横向移动的票证。</p>
+<h2 id="使用mimikatz进行金-x2F-银票据攻击"><a href="#使用mimikatz进行金-x2F-银票据攻击" class="headerlink" title="使用mimikatz进行金&#x2F;银票据攻击"></a>使用mimikatz进行金&#x2F;银票据攻击</h2><p>有些时候，在限制条件下银票比金票更合适，因为它更谨慎一些。如果<strong>隐身</strong>和<strong>不被发现</strong>很重要，那么银票可能是比金票更好的选择。但是创建票证的方法是完全相同的，两种票证的主要区别在于银票仅限于目标服务，而金票可以访问任何kerberos服务。</p>
+<h3 id="KRBTGT概述"><a href="#KRBTGT概述" class="headerlink" title="KRBTGT概述"></a>KRBTGT概述</h3><p>为了理解这些攻击原理，首要要先了解KRBTGT和TGT之间的区别。KRBTGT是KDC的的服务账户，是向客户发送所有票证的密钥分发中心。</p>
+<p>如果模拟此账户并从KRBTGT创建黄金票证，那么就可以为想要的任何内容创建服务票证。TGT是KDC办法的服务账户票证，只能访问TGT所属的服务，就像SQLService票证一样。</p>
+<h3 id="金银票攻击概述"><a href="#金银票攻击概述" class="headerlink" title="金银票攻击概述"></a>金银票攻击概述</h3><p>金票攻击的工作原理是转储域中任何用户的票证授予票（TGT），这最好是域管理员。</p>
+<p>但是对于金票，要转储的是krbtgt票，对于银票，要转储的是域管理员票。这将为你提供服务&#x2F;域管理员账户的SID或安全标识符（每个用户账户的唯一标识符）以及NTLM哈希，然后可以再mimikat黄金票据攻击中使用这些详细信息，以创建模拟给定服务账户信息的TGT。</p>
+<h3 id="转储krbtgt哈希"><a href="#转储krbtgt哈希" class="headerlink" title="转储krbtgt哈希"></a>转储krbtgt哈希</h3><p>确保mimikatz是以管理员身份运行</p>
+<pre class="line-numbers language-none"><code class="language-none">lsadump::lsa &#x2F;inject &#x2F;name:krbtgt</code></pre>
+
+<p>以上命令将转储hash以及创建金票据所需的安全标识符。</p>
+<p>如果要创建银票，需要更改<code>/name:要转储的域管理员账户或者服务账户（例如 SQLService）</code>的hash</p>
+<p><img src="https://i.imgur.com/VOEsU4O.png"></p>
+<h3 id="创建金-x2F-银票"><a href="#创建金-x2F-银票" class="headerlink" title="创建金&#x2F;银票"></a>创建金&#x2F;银票</h3><pre class="line-numbers language-none"><code class="language-none">Kerberos::golden &#x2F;user:Administrator &#x2F;domain:ontroller.local &#x2F;sid: &#x2F;krbtgt: &#x2F;id:</code></pre>
+
+<p>以上是创建金票的命令，创建银票只需要将服务NTLMhash放入krbtgt槽中，服务账户的sid放入sid，并将id更改为103</p>
+<p>金票据创建实例图</p>
+<p><img src="https://i.imgur.com/rh06qDl.png"></p>
+<h3 id="使用金银票访问其他机器"><a href="#使用金银票访问其他机器" class="headerlink" title="使用金银票访问其他机器"></a>使用金银票访问其他机器</h3><pre class="line-numbers language-none"><code class="language-none">misc::cmd</code></pre>
+
+<p>使用以上命令将在mimikatz中<strong>使用给定的票证</strong>打开一个新的提升命令提示符</p>
+<p><img src="https://i.imgur.com/6HnEnwi.png"></p>
+<p>访问你想要的计算机，你可以访问的内容取决于从票据中获取的用户权限。如果是从krbtgt中获取的票证，那么可以访问整个网络，因此称其为黄金票证。</p>
+<p>然而，银票只能访问用户有权访问的内容，如果他是域管理员，那么几乎可以访问整个网络，但是提升成都比黄金票据稍低。</p>
+<p><img src="https://i.imgur.com/BSh4rXy.png"></p>
+<p>（如果域中没有其他计算机，此攻击将无法进行）</p>
+<h2 id="使用mimiatz植入kerberos后门"><a href="#使用mimiatz植入kerberos后门" class="headerlink" title="使用mimiatz植入kerberos后门"></a>使用mimiatz植入kerberos后门</h2><p>除了使用金银票据维持访问权限以外，在攻击kerberos时，还可以使用mimikatz植入后门。kerberos的后门更加隐蔽，因为其类似于rootkit，将其自身植入域林中，允许自己使用主密码访问任何计算机</p>
+<p>kerberos后门的工作原理是植入万能钥匙，该万能钥匙密码滥用AS-REQ验证加密时间戳的方式。万能密码仅适用于使用Kerberos RC4加密的情况。</p>
+<p>ps：根据上文，执行此攻击需要获取域管理员权限。</p>
+<blockquote>
+<p>mimikatz 万能密钥的默认哈希值是 <em>60BA4FCADC466C7A033C178194C03DF6</em>，密码 是“ <em>mimikatz</em> ”</p>
+</blockquote>
+<h3 id="万能钥匙概述"><a href="#万能钥匙概述" class="headerlink" title="万能钥匙概述"></a>万能钥匙概述</h3><p>万能钥匙的工作原理是滥用AS-REQ加密时间戳。时间戳是使用用户NT hash进行加密的，然后域控制器尝试使用用户NT hash来解密此时间戳，一但植入万能钥匙，域控制器将尝试使用用户NT hash和万能钥匙NT hash来解密时间戳，从而允许攻击者访问域林。</p>
+<h3 id="使用mimikatz安装万能钥匙"><a href="#使用mimikatz安装万能钥匙" class="headerlink" title="使用mimikatz安装万能钥匙"></a>使用mimikatz安装万能钥匙</h3><p>以管理员模式打开mimikatz</p>
+<pre class="line-numbers language-none"><code class="language-none">misc:skeleton</code></pre>
+
+<p>只需要上面一条命令即可</p>
+<h3 id="进入域林"><a href="#进入域林" class="headerlink" title="进入域林"></a>进入域林</h3><p>默认凭据为：“ <em>mimikatz</em> ”</p>
+<p>示例：<code>net use c:\\DOMAIN-CONTROLLER\admin$ /user:Administrator mimikatz</code> - 现在无需管理员密码即可访问共享</p>
+<p>示例：<code>dir \\Desktop-1\c$ /user:Machine1 mimikatz</code> - 访问 Desktop-1 的目录，而不知道哪些用户有权访问 Desktop-1</p>
+<p>万能钥匙不会自行持久保存，因为它在内存中运行，可以使用其他工具和技术对其进行脚本化或持久保存。</p>
+<h2 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h2><p>在这个房间里，经历的kerberos攻击的基本流程，从枚举可利用账户开始，再到使用Rubeus进行密码爆破获得账户密码，最后再到使用使用mimikatz转储票据，进行金银票攻击，直至最后在域林中植入万能钥匙后门。</p>
+
+</div>
+  <o3o key="mizore" api="https://o3o.mizore.site:2333"></o3o>
+  
+<script src="/o3o/o3o.js"></script>
+
+  
+<link rel="stylesheet" href="/css/o3o.css">
+
+</main>
+    <footer>
+  <div class="footer-info"> Powerd by <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a> | Theme <a
+      target="_blank" rel="noopener" href="https://github.com/mizoreyo/hexo-theme-insnow">Insnow</a> </div>
+  <div class="footer-info">
+    <a class="footer-i" href=""><i class="iconfont icon-wechat"></i></a>
+    <a class="footer-i" target="_blank" rel="noopener" href="https://github.com/sammyLingsj"><i class="iconfont icon-github-fill"></i></a>
+    <a class="footer-i" href="/atom.xml"><i class="iconfont icon-rss"></i></a>
+    <a class="footer-i" href="mailto:sammyLinsj@outlook.com"><i class="iconfont icon-mail"></i></a>
+  </div>
+</footer>
+  </div>
+</body>
+
+
+</html>
