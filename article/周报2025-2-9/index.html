@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en" class="light">
+<head>
+  <meta charset="utf-8">
+  
+  <title>
+    
+    周报2025-2-9
+    
+  </title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+  <link rel="me" href="https://mas.uniiem.com/@mizore" />
+  
+<script src="https://cdn.staticfile.org/prism/1.17.1/prism.min.js"></script>
+
+  
+<script src="https://cdn.staticfile.org/prism/1.17.1/plugins/autoloader/prism-autoloader.min.js"></script>
+
+  
+<link rel="stylesheet" href="/css/prism/material-light.css">
+
+  
+<link rel="stylesheet" href="/css/prism/material-dark.css">
+
+  
+<script src="https://cdn.staticfile.org/prism/1.17.1/plugins/line-numbers/prism-line-numbers.min.js"></script>
+
+  
+<link rel="stylesheet" href="https://cdn.staticfile.org/prism/1.17.1/plugins/line-numbers/prism-line-numbers.min.css">
+
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono&family=Noto+Sans+SC:wght@300&display=swap.css">
+
+  
+<link rel="stylesheet" href="/iconfont/iconfont.css">
+
+<meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/atom.xml" title="s4mmy's blog" type="application/atom+xml">
+</head>
+<script>
+  function setIsNight(isNight) {
+    localStorage.setItem('isNight', isNight)
+  }
+
+  function getIsNight() {
+    return localStorage.getItem('isNight')
+  }
+
+  function switchTheme() {
+    let isNight = getIsNight()
+    if (isNight === 'false') {
+      document.documentElement.className = 'dark'
+      document.getElementsByClassName('theme-switcher')[0].textContent = '🌙'
+      setIsNight('true')
+    } else {
+      document.documentElement.className = 'light'
+      document.getElementsByClassName('theme-switcher')[0].textContent = '🌞'
+      setIsNight('false')
+    }
+  }
+
+  let isNight = getIsNight()
+  if (isNight == null) {
+    isNight = 'false'
+    setIsNight('false')
+  }
+  if (isNight === 'false') {
+    document.documentElement.className = 'light'
+  } else {
+    document.documentElement.className = 'dark'
+  }
+</script>
+
+<body>
+  <div class="show-area">
+    <header>
+  <ul class="nav">
+    <li class="nav-child">
+      <a href="/">首页</a>
+    </li>
+    <li class="nav-child">
+      <a href="/categories">分类</a>
+    </li>
+    <li class="nav-child">
+      <a href="/tags">标签</a>
+    </li>
+    <li class="nav-child">
+      <a href="/about">关于</a>
+    </li>
+    <li class="nav-child">
+      <a href="/collection">收藏</a>
+    </li>
+    <li class="nav-child">
+      <a href="/board">留言</a>
+    </li>
+  </ul>
+  <div class="theme-switcher" onclick="switchTheme()">🌞</div>
+  <script>
+    if (isNight === 'false') {
+      document.getElementsByClassName('theme-switcher')[0].textContent = '🌞'
+    } else {
+      document.getElementsByClassName('theme-switcher')[0].textContent = '🌙'
+    }
+  </script>
+</header>
+    <main class="main-body">
+  <div class="toc-container">
+    <div class="toc-toggle">
+      <i id="toc-b-icon" class="iconfont icon-liebiao-01" onclick="toggleShow()"></i>
+    </div>
+    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E9%98%85%E8%AF%BB"><span class="toc-number">1.</span> <span class="toc-text">阅读</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%BF%A1%E6%81%AF"><span class="toc-number">2.</span> <span class="toc-text">信息</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%8A%80%E6%9C%AF"><span class="toc-number">3.</span> <span class="toc-text">技术</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%A4%E6%98%93%E8%AE%A1%E5%88%92"><span class="toc-number">3.1.</span> <span class="toc-text">交易计划</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%BF%87%E5%BA%A6%E4%BA%A4%E6%98%93"><span class="toc-number">3.2.</span> <span class="toc-text">过度交易</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BA%AA%E5%BE%8B-amp-%E6%80%BB%E7%BB%93"><span class="toc-number">3.3.</span> <span class="toc-text">纪律&amp;总结</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%94%9F%E6%B4%BB-x2F-%E5%85%B6%E4%BB%96"><span class="toc-number">4.</span> <span class="toc-text">生活&#x2F;其他</span></a></li></ol>
+  </div>
+  
+  <script>
+    var show = false
+    function toggleShow() {
+      if (show) {
+        document.getElementsByClassName('toc')[0].className = 'toc'
+        document.getElementById('toc-b-icon').className = 'iconfont icon-liebiao-01'
+      } else {
+        document.getElementsByClassName('toc')[0].className = 'toc show'
+        document.getElementById('toc-b-icon').className = 'iconfont icon-quxiao-01'
+      }
+      show = !show
+    }
+    document.getElementsByClassName('toc')[0].onclick = toggleShow
+  </script>
+  
+  <div class="article-header">
+    <h1 class="article-title">周报2025-2-9</h1>
+    <div class="article-details">
+      <div class="article-post-date"><span>Posted at </span> 2025-02-10</div>
+      <div class="article-tags">
+        
+      </div>
+    </div>
+  </div>
+  <div class="article">
+  
+  <h1 id="阅读"><a href="#阅读" class="headerlink" title="阅读"></a>阅读</h1><p>无</p>
+<h1 id="信息"><a href="#信息" class="headerlink" title="信息"></a>信息</h1><p>无</p>
+<h1 id="技术"><a href="#技术" class="headerlink" title="技术"></a>技术</h1><p>山寨大暴跌打击好大。。。。重新审视了自己之前的投资策略，发现自己还是有太多问题了，从这周起要开始指定自己的交易计划，并完善自己的交易策略。下面把自己学习到的一些知识搬过来，就当复习了。</p>
+<h2 id="交易计划"><a href="#交易计划" class="headerlink" title="交易计划"></a>交易计划</h2><p>一个交易计划，应该有明确的入场点和出场点，以及他们的理由，自己的预期以及可以接受的损失。</p>
+<p>交易计划还应该涵盖市场变化时要如何应对，把所有可能一一列举，在开仓之前就完全接受任何结果，确保每一笔交易决策不是出于一时冲动或者或者混乱的情绪，而是基于实现设定的规则和目标。</p>
+<p>坚持风险管理原则，风险管理原则应该考虑到自己的个人财物状况，风险偏好，以及当前市场的整体波动。</p>
+<p>同时要避免过度交易。</p>
+<h2 id="过度交易"><a href="#过度交易" class="headerlink" title="过度交易"></a>过度交易</h2><p>任何偏离计划，不在计划内的交易，或者质量差的交易设置或者策略，都算过度交易。</p>
+<p>例如：追涨杀跌的交易，交易前没有明确的计划或者交易策略的交易。又或者没有计划的情绪化的交易（在5min线，15min线内疯狂找点位交易）</p>
+<h2 id="纪律-amp-总结"><a href="#纪律-amp-总结" class="headerlink" title="纪律&amp;总结"></a>纪律&amp;总结</h2><ul>
+<li>在走出明显行情前不玩合约</li>
+<li>主玩现货</li>
+<li>上涨之后要开始分批卖出</li>
+<li>抄底慢慢抄</li>
+<li>不要频繁交易</li>
+<li>使用做空来对冲下跌风险</li>
+<li>要设置止盈止损</li>
+<li>现货做左侧交易</li>
+<li>合约做右侧顺势交易</li>
+<li>定期回顾与评估</li>
+</ul>
+<h1 id="生活-x2F-其他"><a href="#生活-x2F-其他" class="headerlink" title="生活&#x2F;其他"></a>生活&#x2F;其他</h1><p>这周和几个高中同学见了一面，自己在高中毕业之后就很少联系之前的同学了，除了几个关系比较好的。也不知道今年过后还有没有机会这样每年见一面了。我在见面前还有点担心见面没多少共同话题，导致没话说的尴尬情况。不过见面后感觉也还好，互相调侃调侃，问问近况，再聊聊其他高中同学的八卦，感觉也没想象中的那么难。不过我希望自己以后能锻炼出跟大部分人都很能聊得来的能力吧哈哈。</p>
+<p>合约平仓后亏了好多钱，基本上钱全亏光了，只剩下一点老本。不过庆幸的是还是留下了一点点筹码，没有全部被爆仓清空。虽然亏了很多钱，但是再也没有之前合约开着的时候那种担惊受怕的状态了，反而整个人都很放松，不用再天天看盘，担心被割资金费率。以后还是主玩现货为主，合约杠杆真的太耗神耗力，对生活影响太大。</p>
+
+</div>
+  <o3o key="mizore" api="https://o3o.mizore.site:2333"></o3o>
+  
+<script src="/o3o/o3o.js"></script>
+
+  
+<link rel="stylesheet" href="/css/o3o.css">
+
+</main>
+    <footer>
+  <div class="footer-info"> Powerd by <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a> | Theme <a
+      target="_blank" rel="noopener" href="https://github.com/mizoreyo/hexo-theme-insnow">Insnow</a> </div>
+  <div class="footer-info">
+    <a class="footer-i" href=""><i class="iconfont icon-wechat"></i></a>
+    <a class="footer-i" target="_blank" rel="noopener" href="https://github.com/sammyLingsj"><i class="iconfont icon-github-fill"></i></a>
+    <a class="footer-i" href="/atom.xml"><i class="iconfont icon-rss"></i></a>
+    <a class="footer-i" href="mailto:sammyLinsj@outlook.com"><i class="iconfont icon-mail"></i></a>
+  </div>
+</footer>
+  </div>
+</body>
+
+
+</html>
