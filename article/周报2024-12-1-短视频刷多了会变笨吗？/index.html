@@ -1,146 +1,55 @@
 <!DOCTYPE html>
-<html lang="en" class="light">
-<head>
-  <meta charset="utf-8">
-  
-  <title>
+<html>
+    <head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0 user-scalable=1" name="viewport">
+    <title>s4mmy&#39;s blog</title> <!--使用config中的全局变量title作为标题-->
     
-    周报2024-12-1-短视频刷多了会变笨吗？
-    
-  </title>
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
-  <link rel="me" href="https://mas.uniiem.com/@mizore" />
-  
-<script src="https://cdn.staticfile.org/prism/1.17.1/prism.min.js"></script>
-
-  
-<script src="https://cdn.staticfile.org/prism/1.17.1/plugins/autoloader/prism-autoloader.min.js"></script>
-
-  
-<link rel="stylesheet" href="/css/prism/material-light.css">
-
-  
-<link rel="stylesheet" href="/css/prism/material-dark.css">
-
-  
-<script src="https://cdn.staticfile.org/prism/1.17.1/plugins/line-numbers/prism-line-numbers.min.js"></script>
-
-  
-<link rel="stylesheet" href="https://cdn.staticfile.org/prism/1.17.1/plugins/line-numbers/prism-line-numbers.min.css">
-
-  
 <link rel="stylesheet" href="/css/style.css">
-
-  
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono&family=Noto+Sans+SC:wght@300&display=swap.css">
-
-  
-<link rel="stylesheet" href="/iconfont/iconfont.css">
 
 <meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/atom.xml" title="s4mmy's blog" type="application/atom+xml">
 </head>
-<script>
-  function setIsNight(isNight) {
-    localStorage.setItem('isNight', isNight)
-  }
-
-  function getIsNight() {
-    return localStorage.getItem('isNight')
-  }
-
-  function switchTheme() {
-    let isNight = getIsNight()
-    if (isNight === 'false') {
-      document.documentElement.className = 'dark'
-      document.getElementsByClassName('theme-switcher')[0].textContent = '🌙'
-      setIsNight('true')
-    } else {
-      document.documentElement.className = 'light'
-      document.getElementsByClassName('theme-switcher')[0].textContent = '🌞'
-      setIsNight('false')
-    }
-  }
-
-  let isNight = getIsNight()
-  if (isNight == null) {
-    isNight = 'false'
-    setIsNight('false')
-  }
-  if (isNight === 'false') {
-    document.documentElement.className = 'light'
-  } else {
-    document.documentElement.className = 'dark'
-  }
-</script>
-
-<body>
-  <div class="show-area">
-    <header>
-  <ul class="nav">
-    <li class="nav-child">
-      <a href="/">首页</a>
-    </li>
-    <li class="nav-child">
-      <a href="/categories">分类</a>
-    </li>
-    <li class="nav-child">
-      <a href="/tags">标签</a>
-    </li>
-    <li class="nav-child">
-      <a href="/about">关于</a>
-    </li>
-    <li class="nav-child">
-      <a href="/collection">收藏</a>
-    </li>
-    <li class="nav-child">
-      <a href="/board">留言</a>
-    </li>
-  </ul>
-  <div class="theme-switcher" onclick="switchTheme()">🌞</div>
-  <script>
-    if (isNight === 'false') {
-      document.getElementsByClassName('theme-switcher')[0].textContent = '🌞'
-    } else {
-      document.getElementsByClassName('theme-switcher')[0].textContent = '🌙'
-    }
-  </script>
+    
+    <body>
+        <header class="header">
+    <div class="title">
+        <a href="/" class="logo" >s4mmy&#39;s blog</a>
+    </div>
+    <nav class="navbar">
+        <ul class="menu">
+            
+                <a href="/" class="menu-item-link">Home</a>   
+            
+                <a href="/journals/" class="menu-item-link">Journals</a>   
+            
+                <a href="/technical/" class="menu-item-link">Technical</a>   
+            
+                <a href="/other/" class="menu-item-link">Other</a>   
+            
+                <a href="/about/" class="menu-item-link">About</a>   
+            
+        </ul>
+    
+    </nav>
+    
+    
 </header>
-    <main class="main-body">
-  <div class="toc-container">
-    <div class="toc-toggle">
-      <i id="toc-b-icon" class="iconfont icon-liebiao-01" onclick="toggleShow()"></i>
-    </div>
-    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E9%98%85%E8%AF%BB"><span class="toc-number">1.</span> <span class="toc-text">阅读</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E3%80%8A%E5%8A%A8%E7%89%A9%E5%86%9C%E5%9C%BA%E3%80%8B"><span class="toc-number">1.0.1.</span> <span class="toc-text">《动物农场》</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%BF%A1%E6%81%AF"><span class="toc-number">2.</span> <span class="toc-text">信息</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E3%80%8A%E7%9F%AD%E8%A7%86%E9%A2%91%E5%88%B7%E5%A4%9A%E4%BA%86%E4%BC%9A%E5%8F%98%E7%AC%A8%E5%90%97%EF%BC%9F%E3%80%8B"><span class="toc-number">2.0.1.</span> <span class="toc-text">《短视频刷多了会变笨吗？》</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BA%BA%E5%88%B0%E4%BA%86%E4%B8%80%E5%AE%9A%E5%B9%B4%E7%BA%AA%E5%9C%88%E5%AD%90%E6%98%AF%E4%BC%9A%E5%9B%BA%E5%AE%9A%E7%9A%84"><span class="toc-number">2.0.2.</span> <span class="toc-text">人到了一定年纪圈子是会固定的</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%94%9F%E6%B4%BB-x2F-%E5%85%B6%E4%BB%96"><span class="toc-number">3.</span> <span class="toc-text">生活&#x2F;其他</span></a></li></ol>
-  </div>
-  
-  <script>
-    var show = false
-    function toggleShow() {
-      if (show) {
-        document.getElementsByClassName('toc')[0].className = 'toc'
-        document.getElementById('toc-b-icon').className = 'iconfont icon-liebiao-01'
-      } else {
-        document.getElementsByClassName('toc')[0].className = 'toc show'
-        document.getElementById('toc-b-icon').className = 'iconfont icon-quxiao-01'
-      }
-      show = !show
-    }
-    document.getElementsByClassName('toc')[0].onclick = toggleShow
-  </script>
-  
-  <div class="article-header">
-    <h1 class="article-title">周报2024-12-1-短视频刷多了会变笨吗？</h1>
-    <div class="article-details">
-      <div class="article-post-date"><span>Posted at </span> 2024-12-01</div>
-      <div class="article-tags">
+
+
+
         
-      </div>
+        <div class="container">
+            <div style="border-bottom:1px solid #eaedf3;"></div>
+            
+            <article class="post-content">
+    <div class="post-title">
+        <h2>周报2024-12-1-短视频刷多了会变笨吗？</h2>
     </div>
-  </div>
-  <div class="article">
-  
-  <h1 id="阅读"><a href="#阅读" class="headerlink" title="阅读"></a>阅读</h1><p>本周继续推进《刻意练习》，另一方面闲暇时也会看看《动物农场》。</p>
+    <div>
+        <span class="post-time">2024-12-01</span>
+    </div>
+    <div class="post-font">
+        <h1 id="阅读"><a href="#阅读" class="headerlink" title="阅读"></a>阅读</h1><p>本周继续推进《刻意练习》，另一方面闲暇时也会看看《动物农场》。</p>
 <p>本周的阅读欲望不是很强，基本看书前都要先刷一会视频，希望下次能改进这个习惯。</p>
 <p>另一方面由于没去图书馆在宿舍也不怎么想看书，对于我来说目前看书还是一个比较消耗精力和自制力的活动，一个安静的环境还是必要的。但愿过几天回家后能改善这种情况。</p>
 <p>小说情节积累</p>
@@ -171,27 +80,21 @@
 <h1 id="生活-x2F-其他"><a href="#生活-x2F-其他" class="headerlink" title="生活&#x2F;其他"></a>生活&#x2F;其他</h1><p>本周我想到，在阅读小说时，如果有哪些桥段是对现实事件&#x2F;观点的映射或讽刺，可以把这个情节记录成一个小故事，在以后可以用做聊天时的谈资。</p>
 <p>这周的生活我开始感觉到重复了，这种重复的生活真的会放大自己的负面情绪，以及让自己有种浪费青春的感觉，希望自己能快点走出这个状态。</p>
 
-</div>
-  <o3o key="mizore" api="https://o3o.mizore.site:2333"></o3o>
-  
-<script src="/o3o/o3o.js"></script>
+    </div>
+</article>
+<!--显示文章页相关内容-->
+            <!--body是一个变量，代表页面的主要内容。在渲染模板时，这个变量会被替换为实际的内容。-->
+            
 
-  
-<link rel="stylesheet" href="/css/o3o.css">
+            <div style="border-bottom:1px solid #eaedf3;"></div>
 
-</main>
-    <footer>
-  <div class="footer-info"> Powerd by <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a> | Theme <a
-      target="_blank" rel="noopener" href="https://github.com/mizoreyo/hexo-theme-insnow">Insnow</a> </div>
-  <div class="footer-info">
-    <a class="footer-i" href=""><i class="iconfont icon-wechat"></i></a>
-    <a class="footer-i" target="_blank" rel="noopener" href="https://github.com/sammyLingsj"><i class="iconfont icon-github-fill"></i></a>
-    <a class="footer-i" href="/atom.xml"><i class="iconfont icon-rss"></i></a>
-    <a class="footer-i" href="mailto:sammyLinsj@outlook.com"><i class="iconfont icon-mail"></i></a>
-  </div>
+            <footer class="footer">
+    <p>s4mmy &copy; 2025&nbsp;| &nbsp;Recorded for better expression🧡&nbsp;|
+        <a href="https://github.com/s4mmyyy/hexo-theme-life" target="_blank" class="theme">&nbsp;Theme</a>
+    
+    </p>
 </footer>
-  </div>
-</body>
-
-
+        </div>
+        
+    </body>
 </html>

@@ -1,146 +1,55 @@
 <!DOCTYPE html>
-<html lang="en" class="light">
-<head>
-  <meta charset="utf-8">
-  
-  <title>
+<html>
+    <head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0 user-scalable=1" name="viewport">
+    <title>s4mmy&#39;s blog</title> <!--使用config中的全局变量title作为标题-->
     
-    周报2025-1-12
-    
-  </title>
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
-  <link rel="me" href="https://mas.uniiem.com/@mizore" />
-  
-<script src="https://cdn.staticfile.org/prism/1.17.1/prism.min.js"></script>
-
-  
-<script src="https://cdn.staticfile.org/prism/1.17.1/plugins/autoloader/prism-autoloader.min.js"></script>
-
-  
-<link rel="stylesheet" href="/css/prism/material-light.css">
-
-  
-<link rel="stylesheet" href="/css/prism/material-dark.css">
-
-  
-<script src="https://cdn.staticfile.org/prism/1.17.1/plugins/line-numbers/prism-line-numbers.min.js"></script>
-
-  
-<link rel="stylesheet" href="https://cdn.staticfile.org/prism/1.17.1/plugins/line-numbers/prism-line-numbers.min.css">
-
-  
 <link rel="stylesheet" href="/css/style.css">
-
-  
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono&family=Noto+Sans+SC:wght@300&display=swap.css">
-
-  
-<link rel="stylesheet" href="/iconfont/iconfont.css">
 
 <meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/atom.xml" title="s4mmy's blog" type="application/atom+xml">
 </head>
-<script>
-  function setIsNight(isNight) {
-    localStorage.setItem('isNight', isNight)
-  }
-
-  function getIsNight() {
-    return localStorage.getItem('isNight')
-  }
-
-  function switchTheme() {
-    let isNight = getIsNight()
-    if (isNight === 'false') {
-      document.documentElement.className = 'dark'
-      document.getElementsByClassName('theme-switcher')[0].textContent = '🌙'
-      setIsNight('true')
-    } else {
-      document.documentElement.className = 'light'
-      document.getElementsByClassName('theme-switcher')[0].textContent = '🌞'
-      setIsNight('false')
-    }
-  }
-
-  let isNight = getIsNight()
-  if (isNight == null) {
-    isNight = 'false'
-    setIsNight('false')
-  }
-  if (isNight === 'false') {
-    document.documentElement.className = 'light'
-  } else {
-    document.documentElement.className = 'dark'
-  }
-</script>
-
-<body>
-  <div class="show-area">
-    <header>
-  <ul class="nav">
-    <li class="nav-child">
-      <a href="/">首页</a>
-    </li>
-    <li class="nav-child">
-      <a href="/categories">分类</a>
-    </li>
-    <li class="nav-child">
-      <a href="/tags">标签</a>
-    </li>
-    <li class="nav-child">
-      <a href="/about">关于</a>
-    </li>
-    <li class="nav-child">
-      <a href="/collection">收藏</a>
-    </li>
-    <li class="nav-child">
-      <a href="/board">留言</a>
-    </li>
-  </ul>
-  <div class="theme-switcher" onclick="switchTheme()">🌞</div>
-  <script>
-    if (isNight === 'false') {
-      document.getElementsByClassName('theme-switcher')[0].textContent = '🌞'
-    } else {
-      document.getElementsByClassName('theme-switcher')[0].textContent = '🌙'
-    }
-  </script>
+    
+    <body>
+        <header class="header">
+    <div class="title">
+        <a href="/" class="logo" >s4mmy&#39;s blog</a>
+    </div>
+    <nav class="navbar">
+        <ul class="menu">
+            
+                <a href="/" class="menu-item-link">Home</a>   
+            
+                <a href="/journals/" class="menu-item-link">Journals</a>   
+            
+                <a href="/technical/" class="menu-item-link">Technical</a>   
+            
+                <a href="/other/" class="menu-item-link">Other</a>   
+            
+                <a href="/about/" class="menu-item-link">About</a>   
+            
+        </ul>
+    
+    </nav>
+    
+    
 </header>
-    <main class="main-body">
-  <div class="toc-container">
-    <div class="toc-toggle">
-      <i id="toc-b-icon" class="iconfont icon-liebiao-01" onclick="toggleShow()"></i>
-    </div>
-    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E9%98%85%E8%AF%BB"><span class="toc-number">1.</span> <span class="toc-text">阅读</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%BF%A1%E6%81%AF"><span class="toc-number">2.</span> <span class="toc-text">信息</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%BA%E4%BB%80%E4%B9%88%E4%B8%AD%E5%9B%BD%E7%A4%BE%E4%BC%9A%E5%AE%B9%E9%94%99%E7%8E%87%E6%98%BE%E5%BE%97%E9%82%A3%E4%B9%88%E4%BD%8E%EF%BC%9F%E5%85%B6%E4%BB%96%E5%9B%BD%E5%AE%B6%E5%AE%B9%E9%94%99%E7%8E%87%E4%B9%9F%E8%B7%9F%E4%B8%AD%E5%9B%BD%E4%B8%80%E6%A0%B7%E5%90%97%EF%BC%9F"><span class="toc-number">2.1.</span> <span class="toc-text">为什么中国社会容错率显得那么低？其他国家容错率也跟中国一样吗？</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%8A%80%E6%9C%AF"><span class="toc-number">3.</span> <span class="toc-text">技术</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%94%9F%E6%B4%BB-x2F-%E5%85%B6%E4%BB%96"><span class="toc-number">4.</span> <span class="toc-text">生活&#x2F;其他</span></a></li></ol>
-  </div>
-  
-  <script>
-    var show = false
-    function toggleShow() {
-      if (show) {
-        document.getElementsByClassName('toc')[0].className = 'toc'
-        document.getElementById('toc-b-icon').className = 'iconfont icon-liebiao-01'
-      } else {
-        document.getElementsByClassName('toc')[0].className = 'toc show'
-        document.getElementById('toc-b-icon').className = 'iconfont icon-quxiao-01'
-      }
-      show = !show
-    }
-    document.getElementsByClassName('toc')[0].onclick = toggleShow
-  </script>
-  
-  <div class="article-header">
-    <h1 class="article-title">周报2025-1-12</h1>
-    <div class="article-details">
-      <div class="article-post-date"><span>Posted at </span> 2025-01-06</div>
-      <div class="article-tags">
+
+
+
         
-      </div>
+        <div class="container">
+            <div style="border-bottom:1px solid #eaedf3;"></div>
+            
+            <article class="post-content">
+    <div class="post-title">
+        <h2>周报2025-1-12</h2>
     </div>
-  </div>
-  <div class="article">
-  
-  <h1 id="阅读"><a href="#阅读" class="headerlink" title="阅读"></a>阅读</h1><p>无</p>
+    <div>
+        <span class="post-time">2025-01-06</span>
+    </div>
+    <div class="post-font">
+        <h1 id="阅读"><a href="#阅读" class="headerlink" title="阅读"></a>阅读</h1><p>无</p>
 <h1 id="信息"><a href="#信息" class="headerlink" title="信息"></a>信息</h1><p>在知乎上看到的，很有感触，先搬运到自己的博客，希望日后能提醒自己，让自己明白内心想要追求的东西。</p>
 <h2 id="为什么中国社会容错率显得那么低？其他国家容错率也跟中国一样吗？"><a href="#为什么中国社会容错率显得那么低？其他国家容错率也跟中国一样吗？" class="headerlink" title="为什么中国社会容错率显得那么低？其他国家容错率也跟中国一样吗？"></a>为什么中国社会容错率显得那么低？其他国家容错率也跟中国一样吗？</h2><p>我想，可能是因为因为很多人都觉得自己是永生的我本科时候有一个室友，是从偏远地区来的，成绩很好，他平常是非常唯物的类型，我想很多人都见过这种人。</p>
 <p>然而有一天晚上，他却躺在床上，非常悲伤的对我说，他突然意识到了他有一天会死，会离开这个世界，一想到这件事他就感到无法控制的恐惧大部分人不敢真正去面对死亡，即使理性上知道自己总有一天会死，但他们在潜意识里也没有把这件事认真对待，于是久而久之，便在不知不觉中认为自己是永生的在这种逻辑下，暂时的忍耐也是可以接受的了，毕竟自己是永生的。这真的是太值得了，我们只需要小心翼翼、低声下气、忍辱负重地度过那关键的十年、关键的二十年、关键的三十年、关键的四十年、关键的五十年、关键的六十年…便可以享受后面一劳永逸的永生了但反过来说，你犯的任何一点小错，人生轨迹中的任何一点差池，便会使你在接下来的永生中一直受到它的侵害。再叠加上无神论思想，这个世界不关心你，这个世界不回答你，没有任何人可以宽恕你，没有任何人可以救赎你，你会永远的活着，并且永远的煎熬。</p>
@@ -151,27 +60,21 @@
 <p>10次大行情，哪怕踏空五次，做错两次但止损，只要抓住剩余3次两倍，三倍甚至十倍的收益。但是如果翻了大错，会一下子全部亏光。<br>不管是踏空还是做错止损都没关系，只要不犯大错，复利就能进行下去，早晚会获得高收益。保住本金，不翻大错，就还会有翻身机会，还能进行复利。</p>
 <h1 id="生活-x2F-其他"><a href="#生活-x2F-其他" class="headerlink" title="生活&#x2F;其他"></a>生活&#x2F;其他</h1><p>终于完成了日本旅行的路线规划，不过樱花季的住宿和交通都好贵，不得不把旅行计划提到一个月前了，这几天得加速把机票酒店还有签证搞定了。</p>
 
-</div>
-  <o3o key="mizore" api="https://o3o.mizore.site:2333"></o3o>
-  
-<script src="/o3o/o3o.js"></script>
+    </div>
+</article>
+<!--显示文章页相关内容-->
+            <!--body是一个变量，代表页面的主要内容。在渲染模板时，这个变量会被替换为实际的内容。-->
+            
 
-  
-<link rel="stylesheet" href="/css/o3o.css">
+            <div style="border-bottom:1px solid #eaedf3;"></div>
 
-</main>
-    <footer>
-  <div class="footer-info"> Powerd by <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a> | Theme <a
-      target="_blank" rel="noopener" href="https://github.com/mizoreyo/hexo-theme-insnow">Insnow</a> </div>
-  <div class="footer-info">
-    <a class="footer-i" href=""><i class="iconfont icon-wechat"></i></a>
-    <a class="footer-i" target="_blank" rel="noopener" href="https://github.com/sammyLingsj"><i class="iconfont icon-github-fill"></i></a>
-    <a class="footer-i" href="/atom.xml"><i class="iconfont icon-rss"></i></a>
-    <a class="footer-i" href="mailto:sammyLinsj@outlook.com"><i class="iconfont icon-mail"></i></a>
-  </div>
+            <footer class="footer">
+    <p>s4mmy &copy; 2025&nbsp;| &nbsp;Recorded for better expression🧡&nbsp;|
+        <a href="https://github.com/s4mmyyy/hexo-theme-life" target="_blank" class="theme">&nbsp;Theme</a>
+    
+    </p>
 </footer>
-  </div>
-</body>
-
-
+        </div>
+        
+    </body>
 </html>

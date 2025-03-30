@@ -6,7 +6,7 @@
   <link href="https://mizore.site/atom.xml" rel="self"/>
   
   <link href="https://mizore.site/"/>
-  <updated>2025-03-23T16:58:03.349Z</updated>
+  <updated>2025-03-30T16:21:58.603Z</updated>
   <id>https://mizore.site/</id>
   
   <author>
@@ -18,17 +18,18 @@
   
   <entry>
     <title>周报2025-3-23-非暴力沟通</title>
-    <link href="https://mizore.site/article/%E5%91%A8%E6%8A%A52025-3-23/"/>
-    <id>https://mizore.site/article/%E5%91%A8%E6%8A%A52025-3-23/</id>
-    <published>2025-03-23T16:56:17.656Z</published>
-    <updated>2025-03-23T16:58:03.349Z</updated>
+    <link href="https://mizore.site/article/%E5%91%A8%E6%8A%A52025-3-23-%E4%B8%BB%E9%A2%98%E5%BC%80%E5%8F%91/"/>
+    <id>https://mizore.site/article/%E5%91%A8%E6%8A%A52025-3-23-%E4%B8%BB%E9%A2%98%E5%BC%80%E5%8F%91/</id>
+    <published>2025-03-29T16:00:00.000Z</published>
+    <updated>2025-03-30T16:21:58.603Z</updated>
     
-    <content type="html"><![CDATA[<h1 id="阅读"><a href="#阅读" class="headerlink" title="阅读"></a>阅读</h1><p>《道氏理论》的大部分读完了，后续部分有点缺乏读下去的动力。这周倒是阅读了《非暴力沟通》，学到了很多东西，希望学习到的知识能够提升自己未来的沟通技巧。</p><p>看了《非暴力沟通》的“体会与表达感受”那章后，想每天用一个词去精准描述自己当天的某种感受，并将其作为一种训练，同时也能建立起自己表达感受的词汇表。但是实际情况却是除了第一天，后面几天到了晚上睡前回想自己的感受时，发现并没有什么值得记录的感受，那些在意识边缘闪烁的情绪萤火虫，总在伸手捕捉时变成代码注释里的灰度像素</p><h1 id="信息"><a href="#信息" class="headerlink" title="信息"></a>信息</h1><p>从上周开始，陆陆续续在deepseek上问了好多心理问题，感觉deepseek真的是个挺好的心理按摩师，算是第二次让我感受到AI的好处^_^</p><h1 id="技术"><a href="#技术" class="headerlink" title="技术"></a>技术</h1><p>把github主页修缮了一下，给README文件做美容，跟着网上的教程获得github成就时，觉得github主页像自己的数字盆景——修剪过的技术栈枝条，给贡献日历施点commit肥，再往”hi there🖐”下面摆上精心雕琢的emoji假山和文字。</p><p>有空的话希望能给自己的博客写个后端或者前端，把自己的博客修改成完全体。</p><h1 id="生活-x2F-其他"><a href="#生活-x2F-其他" class="headerlink" title="生活&#x2F;其他"></a>生活&#x2F;其他</h1><p>虽然上周完成了初稿，但是这周大部分时间都花在改初稿上了，好在在这周末也是把论文终版改出来了。</p><p>今天在无意间翻到了krz的博客，没想到我最喜欢的P主（或者说音乐人？）竟然也是程序员，还是蛮震惊的。挺羡慕又有技术又有才华的人，看到k君的作词和散文，我又燃起了自己的创作之魂hhh</p><p>这周继续沉迷三角洲，并没有继续推法环。尝试了和同学一起开黑，虽然相互之间没怎么配合，但是开黑玩确实比自己玩有趣多了，也许是因为游玩时大家能即时交流游玩情绪，互相调侃，换做平时，同学游戏时的吼叫声绝对是我最讨厌的噪音之一，但此时这种声音却不那么刺耳，反而满足了各自的情绪价值。这种“共同经历”的体验（归属感？）也是挺不错的。</p>]]></content>
+    <content type="html"><![CDATA[<h1 id="阅读"><a href="#阅读" class="headerlink" title="阅读"></a>阅读</h1><p>因为主题开发的事情暂时搁置，下周继续拾起来吧</p><h1 id="信息"><a href="#信息" class="headerlink" title="信息"></a>信息</h1><p>无</p><h1 id="技术"><a href="#技术" class="headerlink" title="技术"></a>技术</h1><p>原本博客用的是别人写的主题，可定制程度比较低，由于当时比较忙，也就先凑合用着。最近空闲下来，决定自己写个主题用，照着网上的教程写了好几天，中间遇到各种各样的问题，比如如何在菜单直接增加一个文章分类，如何自定义主页，以及CSS和EJS编写的各种小问题。不过最后还是解决了这些问题，整个主题初具雏形。现在还剩一些小功能未完善</p><ul><li>代码块</li><li>md文章渲染自定义</li><li>评论功能</li></ul><p>等这些功能都完善了，再把过程写成详细的文章吧。</p><h1 id="生活-x2F-其他"><a href="#生活-x2F-其他" class="headerlink" title="生活&#x2F;其他"></a>生活&#x2F;其他</h1><p>虽然上周完成了初稿，但是这周大部分时间都花在改初稿上了，好在在这周末也是把论文终版改出来了。</p><p>今天在无意间翻到了krz的博客，没想到我最喜欢的P主（或者说音乐人？）竟然也是程序员，还是蛮震惊的。挺羡慕又有技术又有才华的人，看到k君的作词和散文，我又燃起了自己的创作之魂hhh</p><p>这周继续沉迷三角洲，并没有继续推法环。尝试了和同学一起开黑，虽然相互之间没怎么配合，但是开黑玩确实比自己玩有趣多了，也许是因为游玩时大家能即时交流游玩情绪，互相调侃，换做平时，同学游戏时的吼叫声觉得是我最讨厌的噪音之一，但此时这种声音却不那么刺耳，反而满足了各自的情绪价值。这种“共同经历”的体验（归属感？）也是挺不错的。</p><p>最近想做的事情逐渐多了起来，开始有点忙了，也许可以探索一下如何更高效地利用时间以及更好地管理精力。</p><p>给电脑的进风口清了一下灰，玩游戏时温度直接下降了10度hhh，真是意外，没想到那点灰尘棉絮对散热影响这么大。</p><p>最近越来越觉得网上的社交媒体贴标签现象严重，大家对于持有意见不同之人，只需要给对方贴上某一标签，这样就可以根据这个标签去输出自己的情绪。也许对于一部分人来说，上网就是为了放松，所以对意见不同之人直接贴标签了事，但是对于另一部分人来说，他是不是已经习惯贴标签的这种思维模式呢？</p>]]></content>
     
     
       
       
-    <summary type="html">&lt;h1 id=&quot;阅读&quot;&gt;&lt;a href=&quot;#阅读&quot; class=&quot;headerlink&quot; title=&quot;阅读&quot;&gt;&lt;/a&gt;阅读&lt;/h1&gt;&lt;p&gt;《道氏理论》的大部分读完了，后续部分有点缺乏读下去的动力。这周倒是阅读了《非暴力沟通》，学到了很多东西，希望学习到的知识能够提升自己未来的沟</summary>
+    <summary type="html">&lt;h1 id=&quot;阅读&quot;&gt;&lt;a href=&quot;#阅读&quot; class=&quot;headerlink&quot; title=&quot;阅读&quot;&gt;&lt;/a&gt;阅读&lt;/h1&gt;&lt;p&gt;因为主题开发的事情暂时搁置，下周继续拾起来吧&lt;/p&gt;
+&lt;h1 id=&quot;信息&quot;&gt;&lt;a href=&quot;#信息&quot; class=&quot;headerlink</summary>
       
     
     
@@ -39,11 +40,36 @@
   </entry>
   
   <entry>
+    <title>测试文章</title>
+    <link href="https://mizore.site/article/%E6%B5%8B%E8%AF%95%E6%96%87%E7%AB%A0/"/>
+    <id>https://mizore.site/article/%E6%B5%8B%E8%AF%95%E6%96%87%E7%AB%A0/</id>
+    <published>2025-03-27T09:57:20.000Z</published>
+    <updated>2025-03-28T07:20:13.756Z</updated>
+    
+    <content type="html"><![CDATA[<p>测试测试测试测试测试测试测试测试测试测试</p>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;p&gt;测试测试测试测试测试测试测试测试测试测试&lt;/p&gt;
+</summary>
+      
+    
+    
+    
+    <category term="其他" scheme="https://mizore.site/categories/%E5%85%B6%E4%BB%96/"/>
+    
+    
+    <category term="test" scheme="https://mizore.site/tags/test/"/>
+    
+  </entry>
+  
+  <entry>
     <title>周报2025-3-16-有些无聊的生活</title>
-    <link href="https://mizore.site/article/%E5%91%A8%E6%8A%A52025-3-16-%E6%9C%89%E4%BA%9B%E6%97%A0%E8%81%8A%E7%9A%84%E7%94%9F%E6%B4%BB%20-%20%E5%89%AF%E6%9C%AC/"/>
-    <id>https://mizore.site/article/%E5%91%A8%E6%8A%A52025-3-16-%E6%9C%89%E4%BA%9B%E6%97%A0%E8%81%8A%E7%9A%84%E7%94%9F%E6%B4%BB%20-%20%E5%89%AF%E6%9C%AC/</id>
+    <link href="https://mizore.site/article/%E5%91%A8%E6%8A%A52025-3-16-%E6%9C%89%E4%BA%9B%E6%97%A0%E8%81%8A%E7%9A%84%E7%94%9F%E6%B4%BB/"/>
+    <id>https://mizore.site/article/%E5%91%A8%E6%8A%A52025-3-16-%E6%9C%89%E4%BA%9B%E6%97%A0%E8%81%8A%E7%9A%84%E7%94%9F%E6%B4%BB/</id>
     <published>2025-03-23T16:05:43.712Z</published>
-    <updated>2025-03-16T16:32:57.332Z</updated>
+    <updated>2025-03-27T10:04:37.795Z</updated>
     
     <content type="html"><![CDATA[<h1 id="阅读"><a href="#阅读" class="headerlink" title="阅读"></a>阅读</h1><p>本来想继续阅读《道氏理论》的，但是每天写完论文后就不太想再干这些跟脑力活动有关的事情，只想打打游戏放松一下。另一方面是我看的《道氏理论》的版本里面有些内容会重复叙述，读起来有些枯燥乏味。</p><h1 id="信息"><a href="#信息" class="headerlink" title="信息"></a>信息</h1><p>在写论文的过程中，发现知网竟然可以直接复制引用格式，还是挺方便的。</p><p>查了一些关于医美相关的信息，自测了自己的凸嘴状态，下巴是否后缩等，对自己的外貌有了一个初步认知。</p><p>看了小德的<a href="https://www.bilibili.com/video/BV1mSQAYoELW">公司前景不错，想和它共同成长？我看你是在想屁吃！</a>结合评论区的一些观点，感觉应该是在说一些垃圾股，算是学习了一个新观点，如果买股票的话不能看公司前景不错就觉得这个公司相关的股票会涨。</p><h1 id="技术"><a href="#技术" class="headerlink" title="技术"></a>技术</h1><p>对毕设的功能修改过程让我重新捡起了一些go相关的知识hhhh</p><h1 id="生活-x2F-其他"><a href="#生活-x2F-其他" class="headerlink" title="生活&#x2F;其他"></a>生活&#x2F;其他</h1><p>这周大部分时间都花在赶论文初稿上了，其他时间就是玩玩游戏打发时间，把艾尔登法环重新捡起来玩。</p><p>这一周生活感觉有点重复啊，希望下周能给自己安排点活动充实一下自己，不要整天都在干同样的事。</p>]]></content>
     
@@ -64,8 +90,8 @@
     <title>周报2025-3-23-非暴力沟通</title>
     <link href="https://mizore.site/article/%E5%91%A8%E6%8A%A52025-3-23-%E9%9D%9E%E6%9A%B4%E5%8A%9B%E6%B2%9F%E9%80%9A/"/>
     <id>https://mizore.site/article/%E5%91%A8%E6%8A%A52025-3-23-%E9%9D%9E%E6%9A%B4%E5%8A%9B%E6%B2%9F%E9%80%9A/</id>
-    <published>2025-03-16T16:03:03.837Z</published>
-    <updated>2025-03-23T16:56:05.443Z</updated>
+    <published>2025-03-22T16:00:00.000Z</published>
+    <updated>2025-03-30T16:21:57.009Z</updated>
     
     <content type="html"><![CDATA[<h1 id="阅读"><a href="#阅读" class="headerlink" title="阅读"></a>阅读</h1><p>《道氏理论》的大部分读完了，后续部分有点缺乏读下去的动力。这周倒是阅读了《非暴力沟通》，学到了很多东西，希望学习到的知识能够提升自己未来的沟通技巧。</p><p>看了《非暴力沟通》的“体会与表达感受”那章后，想给自己每天用一个词去精准描述自己当天的某种感受，并将其作为一种训练，同时也能建立起自己表达感受的词汇表。但是实际情况却是除了第一天，后面几天到了晚上睡前回想自己的感受，并没有什么值得记录的感受，那些在意识边缘闪烁的情绪萤火虫，总在伸手捕捉时变成代码注释里的灰度像素</p><h1 id="信息"><a href="#信息" class="headerlink" title="信息"></a>信息</h1><p>从上周开始，陆陆续续在deepseek上问了好多心理问题，感觉deepseek真的是个挺好的心理按摩师，算是第二次让我感受到AI的好处^_^</p><h1 id="技术"><a href="#技术" class="headerlink" title="技术"></a>技术</h1><p>把github主页修缮了一下，给README文件做美容，跟着网上的教程获得github成就时，觉得github主页像自己的数字盆景——修剪过的技术栈枝条，给贡献日历施点commit肥，再往”hi there🖐”下面摆上精心雕琢的emoji假山和文字。</p><p>有空的话希望能给自己的博客写个后端或者前端，把自己的博客修改成完全体。</p><h1 id="生活-x2F-其他"><a href="#生活-x2F-其他" class="headerlink" title="生活&#x2F;其他"></a>生活&#x2F;其他</h1><p>虽然上周完成了初稿，但是这周大部分时间都花在改初稿上了，好在在这周末也是把论文终版改出来了。</p><p>今天在无意间翻到了krz的博客，没想到我最喜欢的P主（或者说音乐人？）竟然也是程序员，还是蛮震惊的。挺羡慕又有技术又有才华的人，看到k君的作词和散文，我又燃起了自己的创作之魂hhh</p><p>这周继续沉迷三角洲，并没有继续推法环。尝试了和同学一起开黑，虽然相互之间没怎么配合，但是开黑玩确实比自己玩有趣多了，也许是因为游玩时大家能即时交流游玩情绪，互相调侃，换做平时，同学游戏时的吼叫声觉得是我最讨厌的噪音之一，但此时这种声音却不那么刺耳，反而满足了各自的情绪价值。这种“共同经历”的体验（归属感？）也是挺不错的。</p>]]></content>
     
@@ -408,7 +434,7 @@
     <link href="https://mizore.site/article/%E5%91%A8%E6%8A%A52024-11-25-%E6%B2%89%E8%BF%B7%E7%9F%AD%E8%A7%86%E9%A2%91%E5%8A%A0%E9%80%9F%E6%88%91%E7%9A%84%E8%A1%B0%E8%80%81/"/>
     <id>https://mizore.site/article/%E5%91%A8%E6%8A%A52024-11-25-%E6%B2%89%E8%BF%B7%E7%9F%AD%E8%A7%86%E9%A2%91%E5%8A%A0%E9%80%9F%E6%88%91%E7%9A%84%E8%A1%B0%E8%80%81/</id>
     <published>2024-11-24T18:07:47.183Z</published>
-    <updated>2025-02-28T17:04:24.367Z</updated>
+    <updated>2025-03-27T10:04:16.359Z</updated>
     
     <content type="html"><![CDATA[<h1 id="阅读"><a href="#阅读" class="headerlink" title="阅读"></a>阅读</h1><p>本周继续推进《刻意练习》进度</p><p>阅读了“在工作中运用刻意练习”和“在生活中运用刻意练习”两个章节</p><p>​这两个章节给我的感觉像是对之前文章中提出的关于刻意练习的各种观点进行一个运用示例，用许多例子来展示这些观点在生活中的运用，通过生活以及工作中例子来对之前提出的种种观点做一些补充，同时巩固读者对于这些例子的理解以及加深记忆。</p><p>《动物农场》与《1984》加入书单，希望在闲的时候能靠小说打发时间</p><h1 id="信息"><a href="#信息" class="headerlink" title="信息"></a>信息</h1><p>本周让我收获最大的视频是这个：<a href="https://www.bilibili.com/video/BV1y3DKY4E6h">沉迷短视频加速我的衰老</a></p><p>在视频中我学习到了许多新观点</p><p>视频UP主提出两个衰老的标志：<strong>神经可塑性下降</strong>与<strong>感觉时间过得很快</strong></p><ul><li><p><strong>神经可塑性下降</strong></p><p>视频UP主提出，短视频很多都是重复的内容，比如重复的“爆款”标题，重复的洗脑音乐，千篇一律的段子等等。而摄入重复的内容会削弱神经的可塑性，而这正是衰老的标志之一（神经可塑性，即大脑对新事物适应和学习能力）。衰老来自思维模式的僵化，面对新的复杂信息时感到吃力甚至会感到焦虑或挫败。</p><p>​         </p></li><li><p><strong>时间过得很快</strong></p><p>就比如小时候的暑假感觉无尽漫长，但是对于花甲老人来说十年如一日。</p><p>这是因为随着神经可塑性的下降，年长的人不再摄入新的知识和体验，年岁的坟墓越变越大，新的记忆与体验的分子却越变越小，时间就会变得非常快。</p></li></ul><p>主观时间的快慢来自于我们在过去一段时间里面所做事物的丰富程度，而短视频总是在赋予我们同样的体验，总量信息几乎是没有增加的。摄入的营养知识越来越少，主观时间流逝就会更快，主管时间越快，主管生命就会越短，衰老就会加速。</p><p>在视频结尾，视频UP主提出几个对抗方法</p><ol><li>去看长篇幅&#x2F;非同质化的内容</li><li>减少使用网络用语（语言细腻思维才会细腻）</li><li>少用代词（比如这个那个，这种那种等），语言的边界就是世界的边界</li><li>面对信息去溯源，质疑，反思，辩论（有意识地训练深度思考，不要依赖二手信息）</li></ol><h1 id="技术"><a href="#技术" class="headerlink" title="技术"></a>技术</h1><p>无</p><h1 id="生活-x2F-其他"><a href="#生活-x2F-其他" class="headerlink" title="生活&#x2F;其他"></a>生活&#x2F;其他</h1><p>本周加密货币市场也是迎来牛市，每次币价上涨都让我很兴奋浮躁，像初高中放假前最后一节课的感觉。难以静下心来做其他事。但是市场无常，每当我兴奋过后，面对币价下跌&#x2F;回调就会有点失落。客观来看这一段时间我整个人的心情就是被币价支配，半场开香槟到头来一场空。希望自己以后能改掉这个习惯，不管币价如何都能专心做该做的事情。</p><p>这周看了青春旅行团的第五期，我发现每期都会有人在旅途中用一些小游戏来调动氛围，虽然这些小游戏可能很普通，但是大家一起玩就会显得很有意思。</p><p>这周我希望自己能找到其他杀时间的方式，而不是只会刷知乎，看B站短视频和刷贴吧，不要把整块的时间花在这种碎片化的活动上。</p>]]></content>
     
@@ -444,32 +470,6 @@
 
 
 &lt;h1 id=&quot;kerberos攻击学习&quot;&gt;&lt;a href=&quot;#kerberos攻击学习&quot; class=&quot;headerlink&quot; title=&quot;kerberos攻击学习&quot;&gt;&lt;/a&gt;</summary>
-      
-    
-    
-    
-    <category term="技术" scheme="https://mizore.site/categories/%E6%8A%80%E6%9C%AF/"/>
-    
-    
-  </entry>
-  
-  <entry>
-    <title>CTFD动态靶场搭建</title>
-    <link href="https://mizore.site/article/CTFD%E5%B9%B3%E5%8F%B0%E6%90%AD%E5%BB%BA/CTFD%E9%9D%B6%E5%9C%BA%E6%90%AD%E5%BB%BA/"/>
-    <id>https://mizore.site/article/CTFD%E5%B9%B3%E5%8F%B0%E6%90%AD%E5%BB%BA/CTFD%E9%9D%B6%E5%9C%BA%E6%90%AD%E5%BB%BA/</id>
-    <published>2023-08-27T05:53:52.929Z</published>
-    <updated>2024-11-24T16:51:49.998Z</updated>
-    
-    <content type="html"><![CDATA[<meta name="referrer" content="no-referrer" /><h1 id="CTFD动态靶场搭建"><a href="#CTFD动态靶场搭建" class="headerlink" title="CTFD动态靶场搭建"></a>CTFD动态靶场搭建</h1><p>为了迎接未来的新生赛和未来接活做准备，学习一下如何搭建CTFD靶场顺便练练手。不过这中间踩的坑也是巨多，前前后后搭了好几天才搭好。</p><h2 id="前置"><a href="#前置" class="headerlink" title="前置"></a>前置</h2><p>CTFD使用的是的docker搭建，所以在服务器上需要先装好docker和docker-compose。其中ctfd有多种搭建方式，我采用的是服务器本地起frp服务将题目容器转发到服务器的端口上。</p><h2 id="安装FRP"><a href="#安装FRP" class="headerlink" title="安装FRP"></a>安装FRP</h2><p>下载并安装rp</p><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">wget https:&#x2F;&#x2F;github.com&#x2F;fatedier&#x2F;frp&#x2F;releases&#x2F;download&#x2F;v0.29.0&#x2F;frp_0.29.0_linux_amd64.tar.gztar -zxvf frp_0.29.0_linux_amd64.tar.gzcd frp_0.29.0_linux_amd64cd frp_0.29.0_linux_amd64sudo cp systemd&#x2F;* &#x2F;etc&#x2F;systemd&#x2F;system&#x2F; #移动配置文件sudo mkdir &#x2F;etc&#x2F;frp #创建客户端配置文件sudo cp frpc.ini  frps.ini &#x2F;etc&#x2F;frp&#x2F; #移动客户端配置文件sudo cp frpc  frps &#x2F;usr&#x2F;bin&#x2F; #将客户端和服务端的二进制文件移动至bin文件夹sudo chmod a+x &#x2F;usr&#x2F;bin&#x2F;frpc &#x2F;usr&#x2F;bin&#x2F;frps #给所有用户赋予frpc和frps的可执行权限sudo systemctl enable frps #将frps服务设置为每次开机启动</code></pre><p>编辑frps配置文件</p><pre class="line-numbers language-none"><code class="language-none">vim &#x2F;etc&#x2F;frp&#x2F;frps.ini[common]bind_port &#x3D; 7897bind_addr &#x3D; 0.0.0.0token &#x3D;thisistoken</code></pre><p>启动frps服务</p><pre class="line-numbers language-none"><code class="language-none">systemctl start frps</code></pre><p> 修改&#x2F;etc&#x2F;frp&#x2F;frpc.ini的配置文件</p><p>此处的frpc与上面的frps相对应，连接的是上面启动的frps</p><pre class="line-numbers language-none"><code class="language-none">vim &#x2F;etc&#x2F;frp&#x2F;frpc.ini[common]server_addr &#x3D; 172.17.0.1#此处的IP为docker0的ip，docker0的ip通过ifconfig查看server_port &#x3D; 7897token&#x3D;thisistoken</code></pre><p>再修改frp_0.29.0_linux_amd64&#x2F;frpc.ini  (这个文件会用来配置frpc容器的)</p><pre class="line-numbers language-none"><code class="language-none">[common]server_addr &#x3D; 172.17.0.1server_port &#x3D; 7897token&#x3D;thisistokenadmin_addr &#x3D; 172.20.0.3admin_port &#x3D; 7400log_file &#x3D; .&#x2F;frps.log</code></pre><p>创建网络并运行frpc容器</p><pre class="line-numbers language-none"><code class="language-none">docker network create ctfd_frp-containers #创建一个docker网络，名称为ctfd_frp-containersdocker run  -d -v ~&#x2F;frp_0.29.0_linux_amd64&#x2F;frpc.ini:&#x2F;etc&#x2F;frp&#x2F;frpc.ini --network&#x3D;&quot;ctfd_frp-containers&quot; --restart&#x3D;always &quot;glzjin&#x2F;frp&quot;  #运行容器并将本地的frpc.ini挂载到容器内。网络名称为ctfd_frp-containers</code></pre><p>接着创建frpcadmin网络用语ctfd和frpc容器通信</p><pre class="line-numbers language-none"><code class="language-none">docker network creat frcadmindocker network connect frpcamdin id&lt;刚才启动的frpc容器ID&gt;</code></pre><p>查看frpcadmin网络的连接情况并记录frpc容器的网络IP</p><pre class="line-numbers language-none"><code class="language-none">docker network inspect frpcadmin</code></pre><p>图中的IP就是frpc容器在frpcadmin网络中的IP地址，就是我们在&#x2F;frp&#x2F;frpc.ini中指定的（admin_addr）</p><p><img src="https://gitee.com/shark-rice/images/raw/master/202308271348486.png" alt="image-20230820205128158"></p><p>可以提前把这个地址记录下来，后面配置ctfd-whale的时候会用到。</p><h2 id="安装CTFd和CTFd-whale"><a href="#安装CTFd和CTFd-whale" class="headerlink" title="安装CTFd和CTFd-whale"></a>安装CTFd和CTFd-whale</h2><pre class="line-numbers language-none"><code class="language-none">#下载ctfdgit clone https:&#x2F;&#x2F;github.com&#x2F;CTFd&#x2F;CTFd.git#进入CTFd目录cd CTFd#回退到某个版本，直接执行下面命令git reset 6c5c63d667a17aec159c8e26ea53dccfbc4d0fa3 --hardcd CTFd&#x2F;CTFd&#x2F;plugins&#x2F; #进入plugins目录#下载插件并确保文件名小写git clone https:&#x2F;&#x2F;github.com&#x2F;glzjin&#x2F;CTFd-Whale.git ctfd-whale#进入ctfd-whalecd ctfd-whale#回退版本git reset 5b32f457e9f56ee9b2b29495f4b3b118be3c57bd --hard #回到第一层CTFd目录cd ..&#x2F;..&#x2F;..&#x2F;#配置docker-composevim docker-compose.yml</code></pre><p>docker-compose.yml，直接复制粘贴就行</p><pre class="line-numbers language-none"><code class="language-none">version: &#39;2.2&#39;services:  ctfd:    build: .    user: root    restart: always    ports:      - &quot;8000:8000&quot; #第一个是访问ctfd的端口，第二个是docker端口映射出去的端口    environment:      - UPLOAD_FOLDER&#x3D;&#x2F;var&#x2F;uploads      - DATABASE_URL&#x3D;mysql+pymysql:&#x2F;&#x2F;root:ctfd@db&#x2F;ctfd      - REDIS_URL&#x3D;redis:&#x2F;&#x2F;cache:6379      - WORKERS&#x3D;1      - LOG_FOLDER&#x3D;&#x2F;var&#x2F;log&#x2F;CTFd      - ACCESS_LOG&#x3D;-      - ERROR_LOG&#x3D;-    volumes:      - .data&#x2F;CTFd&#x2F;logs:&#x2F;var&#x2F;log&#x2F;CTFd      - .data&#x2F;CTFd&#x2F;uploads:&#x2F;var&#x2F;uploads      - .:&#x2F;opt&#x2F;CTFd:ro      - &#x2F;var&#x2F;run&#x2F;docker.sock:&#x2F;var&#x2F;run&#x2F;docker.sock #添加这句即可，别的基本按照官方的不用动    depends_on:      - db    networks:        default:        internal:  db:    image: mariadb:10.4.12 #这里改成10.4.12，10.4.13会出错    restart: always    environment:      - MYSQL_ROOT_PASSWORD&#x3D;ctfd      - MYSQL_USER&#x3D;ctfd      - MYSQL_PASSWORD&#x3D;ctfd      - MYSQL_DATABASE&#x3D;ctfd    volumes:      - .data&#x2F;mysql:&#x2F;var&#x2F;lib&#x2F;mysql    networks:        internal:    # This command is required to set important mariadb defaults    command: [mysqld, --character-set-server&#x3D;utf8mb4, --collation-server&#x3D;utf8mb4_unicode_ci, --wait_timeout&#x3D;28800, --log-warnings&#x3D;0]  cache:    image: redis:4    restart: always    volumes:    - .data&#x2F;redis:&#x2F;data    networks:        internal:networks:    default:    internal:        internal: true</code></pre><p>进入CTFd目录，修改Dockerfile的内容</p><pre class="line-numbers language-none"><code class="language-none">FROM python:3.6-alpineRUN sed -i &#39;s&#x2F;dl-cdn.alpinelinux.org&#x2F;mirrors.aliyun.com&#x2F;g&#39; &#x2F;etc&#x2F;apk&#x2F;repositories &amp;&amp;\    apk update &amp;&amp; \    apk add python3 python3-dev linux-headers libffi-dev gcc make musl-dev py-pip mysql-client git openssl-devRUN adduser -D -u 1001 -s &#x2F;bin&#x2F;bash ctfdWORKDIR &#x2F;opt&#x2F;CTFdRUN mkdir -p &#x2F;opt&#x2F;CTFd &#x2F;var&#x2F;log&#x2F;CTFd &#x2F;var&#x2F;uploadsRUN pip config set global.index-url https:&#x2F;&#x2F;pypi.doubanio.com&#x2F;simpleRUN pip config set install.trusted-host pypi.doubanio.comCOPY requirements.txt .RUN pip install -r requirements.txt -i  https:&#x2F;&#x2F;pypi.doubanio.com&#x2F;simpleCOPY . &#x2F;opt&#x2F;CTFdRUN for d in CTFd&#x2F;plugins&#x2F;*; do \      if [ -f &quot;$d&#x2F;requirements.txt&quot; ]; then \        pip install -r $d&#x2F;requirements.txt -i  https:&#x2F;&#x2F;pypi.doubanio.com&#x2F;simple; \      fi; \    done;RUN chmod +x &#x2F;opt&#x2F;CTFd&#x2F;docker-entrypoint.shRUN chown -R 1001:1001 &#x2F;opt&#x2F;CTFdRUN chown -R 1001:1001 &#x2F;var&#x2F;log&#x2F;CTFd &#x2F;var&#x2F;uploadsUSER 1001EXPOSE 8000ENTRYPOINT [&quot;&#x2F;opt&#x2F;CTFd&#x2F;docker-entrypoint.sh&quot;]</code></pre><p>requirements.txt内容</p><pre class="line-numbers language-none"><code class="language-none">Flask&#x3D;&#x3D;1.1.2Werkzeug&#x3D;&#x3D;0.16.0Flask-SQLAlchemy&#x3D;&#x3D;2.4.1Flask-Caching&#x3D;&#x3D;1.4.0Flask-Migrate&#x3D;&#x3D;2.5.2Flask-Script&#x3D;&#x3D;2.0.6SQLAlchemy&#x3D;&#x3D;1.3.11SQLAlchemy-Utils&#x3D;&#x3D;0.36.0passlib&#x3D;&#x3D;1.7.2bcrypt&#x3D;&#x3D;3.1.7six&#x3D;&#x3D;1.13.0itsdangerous&#x3D;&#x3D;1.1.0jinja2&#x3D;&#x3D;2.11.3requests&gt;&#x3D;2.20.0PyMySQL&#x3D;&#x3D;0.9.3gunicorn&#x3D;&#x3D;19.9.0normality&#x3D;&#x3D;2.0.0dataset&#x3D;&#x3D;1.1.2mistune&#x3D;&#x3D;0.8.4netaddr&#x3D;&#x3D;0.7.19redis&#x3D;&#x3D;3.3.11datafreeze&#x3D;&#x3D;0.1.0gevent&#x3D;&#x3D;21.12.0python-dotenv&#x3D;&#x3D;0.10.3flask-restplus&#x3D;&#x3D;0.13.0pathlib2&#x3D;&#x3D;2.3.5flask-marshmallow&#x3D;&#x3D;0.10.1marshmallow-sqlalchemy&#x3D;&#x3D;0.17.0boto3&#x3D;&#x3D;1.10.39markupsafe&#x3D;&#x3D;1.1.1marshmallow&#x3D;&#x3D;2.20.2</code></pre><p>准备好后开始构建容器，进入CTFd目录</p><pre class="line-numbers language-none"><code class="language-none">docker-compose biuld</code></pre><p>启动镜像</p><pre class="line-numbers language-none"><code class="language-none">docker-compose up -d</code></pre><p>启动完之后将ctfd容器加入到frpcadmin的网络之中</p><pre class="line-numbers language-none"><code class="language-none">docker ps #查看ctfd容器的IDdocker network connect frpcadmin #容器ID </code></pre><p>可以看到ctfd容器已经加入到了frpcadmin容器之中了</p><p><img src="https://gitee.com/shark-rice/images/raw/master/202308271348495.png" alt="image-20230821113536575"></p><p>查看容器运行状态</p><p><img src="https://gitee.com/shark-rice/images/raw/master/202308271348969.png" alt="image-20230821113654613"></p><p>访问 ip:8000进入平台，按需填写内容</p><p><img src="https://gitee.com/shark-rice/images/raw/master/202308271348578.png" alt="image-20230821113902068"></p><p>上方导航栏Admin-&gt;Plugins 配置CTFd Whale相关内容</p><p><img src="https://gitee.com/shark-rice/images/raw/master/202308271348850.png" alt="image-20230821141633201"></p><p><img src="https://gitee.com/shark-rice/images/raw/master/202308271348069.png" alt="image-20230821141835333"></p><p><img src="https://gitee.com/shark-rice/images/raw/master/202308271348639.png" alt="image-20230821142048736"></p><p><img src="https://gitee.com/shark-rice/images/raw/master/202308271348211.png" alt="image-20230821142123914"></p><h2 id="添加题目"><a href="#添加题目" class="headerlink" title="添加题目"></a>添加题目</h2><p>上方challenges处添加题目，选择dynamic_docker创建动态题目</p><p><img src="https://gitee.com/shark-rice/images/raw/master/202308271348868.png" alt="image-20230821142321874"></p><p><img src="https://gitee.com/shark-rice/images/raw/master/202308271355544.png" alt="image-20230821142545317"></p><p><img src="https://gitee.com/shark-rice/images/raw/master/202308271348434.png" alt="image-20230821142719030"></p><p><img src="https://gitee.com/shark-rice/images/raw/master/202308271348154.png" alt="image-20230821142727231"></p><p>最后不要忘记选择动态分数</p><p>成功部署题目</p><p><img src="https://gitee.com/shark-rice/images/raw/master/202308271348073.png" alt="image-20230821142835370"></p><p><img src="https://gitee.com/shark-rice/images/raw/master/202308271348601.png" alt="image-20230821142845326"></p><p>flag也是动态flag</p><p><img src="https://gitee.com/shark-rice/images/raw/master/202308271348902.png" alt="image-20230821142949627"></p>]]></content>
-    
-    
-      
-      
-    <summary type="html">&lt;meta name=&quot;referrer&quot; content=&quot;no-referrer&quot; /&gt;
-
-
-
-&lt;h1 id=&quot;CTFD动态靶场搭建&quot;&gt;&lt;a href=&quot;#CTFD动态靶场搭建&quot; class=&quot;headerlink&quot; title=&quot;CTFD动态靶场搭建&quot;&gt;&lt;/a&gt;CTFD动态</summary>
       
     
     
