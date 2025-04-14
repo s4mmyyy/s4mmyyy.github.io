@@ -6,7 +6,7 @@
   <link href="https://s4mmyyy.github.io/atom.xml" rel="self"/>
   
   <link href="https://s4mmyyy.github.io/"/>
-  <updated>2025-04-07T06:18:53.122Z</updated>
+  <updated>2025-04-14T04:38:36.993Z</updated>
   <id>https://s4mmyyy.github.io/</id>
   
   <author>
@@ -21,9 +21,9 @@
     <link href="https://s4mmyyy.github.io/article/%E5%91%A8%E6%8A%A52025-4-6-%E5%BF%99%E7%A2%8C%E7%9A%84%E5%AD%A6%E4%B9%A0/"/>
     <id>https://s4mmyyy.github.io/article/%E5%91%A8%E6%8A%A52025-4-6-%E5%BF%99%E7%A2%8C%E7%9A%84%E5%AD%A6%E4%B9%A0/</id>
     <published>2025-03-29T16:00:00.000Z</published>
-    <updated>2025-04-07T06:18:53.122Z</updated>
+    <updated>2025-04-14T04:38:36.993Z</updated>
     
-    <content type="html"><![CDATA[<h1 id="阅读"><a href="#阅读" class="headerlink" title="阅读"></a>阅读</h1><p>因为学习的事暂时搁置。</p><h1 id="信息"><a href="#信息" class="headerlink" title="信息"></a>信息</h1><p>无</p><h1 id="技术"><a href="#技术" class="headerlink" title="技术"></a>技术</h1><p>看了点SRC的课，有点思路打开的感觉，对一些旧知识有了更加深刻。例如关于Oauth的挖掘，SSRF挖掘，XSS等。不过自己上手挖后发现难点还是信息收集，冰晶这个阶段太费时间了。。。</p><p>这周大部分时间都花在看网课上了，感觉自己如果早两年就能接触到类似的课就好了。通过看网课也让我认识到了自己还有很多需要学习的地方，希望自己工作后也有时间继续保持学习。</p><h1 id="生活-x2F-其他"><a href="#生活-x2F-其他" class="headerlink" title="生活&#x2F;其他"></a>生活&#x2F;其他</h1><p>前几天牙齿有点不适，经过自己简单的判断，大概率是继发龋，而且还蛀到神经了。</p><p>一想到又要去补根管就好烦，要跑好几趟，还要花好多钱，唉，什么时候才能不被牙齿问题所困扰。牙齿问题一直很容易让我陷入焦虑状态，治疗牙齿这是一个费钱费时间的过程，还遭罪。这个过程会让我浪费很多时间，我不喜欢这种时间上的浪费。。</p>]]></content>
+    <content type="html"><![CDATA[<h1 id="阅读"><a href="#阅读" class="headerlink" title="阅读"></a>阅读</h1><p>因为学习的事暂时搁置。</p><h1 id="信息"><a href="#信息" class="headerlink" title="信息"></a>信息</h1><p>无</p><h1 id="技术"><a href="#技术" class="headerlink" title="技术"></a>技术</h1><p>看了点SRC的课，有点思路打开的感觉，对一些旧知识有了更加深刻。例如关于Oauth的挖掘，SSRF挖掘，XSS等。不过自己上手挖后发现难点还是信息收集，毕竟这个阶段太费时间了。。。</p><p>这周大部分时间都花在看网课上了，感觉自己如果早两年就能接触到类似的课就好了。通过看网课也让我认识到了自己还有很多需要学习的地方，希望自己工作后也有时间继续保持学习。</p><h1 id="生活-x2F-其他"><a href="#生活-x2F-其他" class="headerlink" title="生活&#x2F;其他"></a>生活&#x2F;其他</h1><p>前几天牙齿有点不适，经过自己简单的判断，大概率是继发龋，而且还蛀到神经了。</p><p>一想到又要去补根管就好烦，要跑好几趟，还要花好多钱，唉，什么时候才能不被牙齿问题所困扰。牙齿问题一直很容易让我陷入焦虑状态，治疗牙齿这是一个费钱费时间的过程，还遭罪。这个过程会让我浪费很多时间，我不喜欢这种时间上的浪费。。</p>]]></content>
     
     
       
@@ -53,6 +53,29 @@
       
     <summary type="html">&lt;h1 id=&quot;阅读&quot;&gt;&lt;a href=&quot;#阅读&quot; class=&quot;headerlink&quot; title=&quot;阅读&quot;&gt;&lt;/a&gt;阅读&lt;/h1&gt;&lt;p&gt;因为主题开发的事情暂时搁置，下周继续拾起来吧&lt;/p&gt;
 &lt;h1 id=&quot;信息&quot;&gt;&lt;a href=&quot;#信息&quot; class=&quot;headerlink</summary>
+      
+    
+    
+    
+    <category term="周报" scheme="https://s4mmyyy.github.io/categories/%E5%91%A8%E6%8A%A5/"/>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>周报2025-4-13</title>
+    <link href="https://s4mmyyy.github.io/article/%E5%91%A8%E6%8A%A52025-4-13/"/>
+    <id>https://s4mmyyy.github.io/article/%E5%91%A8%E6%8A%A52025-4-13/</id>
+    <published>2025-03-29T16:00:00.000Z</published>
+    <updated>2025-04-14T05:37:35.806Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="阅读"><a href="#阅读" class="headerlink" title="阅读"></a>阅读</h1><p>因为学习的事暂时搁置。</p><h1 id="信息"><a href="#信息" class="headerlink" title="信息"></a>信息</h1><p>无</p><h1 id="技术"><a href="#技术" class="headerlink" title="技术"></a>技术</h1><p>这周还是继续搞SRC，听了好几个不同人的课，能明显感受到授课人的差别。同样是讲课，有些人讲课没有重点，一股脑念过去，导致我听课的整个过程都需要全神贯注，不然很容易因为漏听一两句话就错过了重点。</p><h1 id="生活-x2F-其他"><a href="#生活-x2F-其他" class="headerlink" title="生活&#x2F;其他"></a>生活&#x2F;其他</h1><p>无</p>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;h1 id=&quot;阅读&quot;&gt;&lt;a href=&quot;#阅读&quot; class=&quot;headerlink&quot; title=&quot;阅读&quot;&gt;&lt;/a&gt;阅读&lt;/h1&gt;&lt;p&gt;因为学习的事暂时搁置。&lt;/p&gt;
+&lt;h1 id=&quot;信息&quot;&gt;&lt;a href=&quot;#信息&quot; class=&quot;headerlink&quot; title=&quot;信息</summary>
       
     
     
@@ -443,30 +466,6 @@
       
     <summary type="html">&lt;h1 id=&quot;阅读&quot;&gt;&lt;a href=&quot;#阅读&quot; class=&quot;headerlink&quot; title=&quot;阅读&quot;&gt;&lt;/a&gt;阅读&lt;/h1&gt;&lt;p&gt;本周继续推进《刻意练习》，另一方面闲暇时也会看看《动物农场》。&lt;/p&gt;
 &lt;p&gt;本周的阅读欲望不是很强，基本看书前都要先刷一会视频，希望下次能</summary>
-      
-    
-    
-    
-    <category term="周报" scheme="https://s4mmyyy.github.io/categories/%E5%91%A8%E6%8A%A5/"/>
-    
-    
-  </entry>
-  
-  <entry>
-    <title>周报2024-11-25-沉迷短视频加速我的衰老</title>
-    <link href="https://s4mmyyy.github.io/article/%E5%91%A8%E6%8A%A52024-11-25-%E6%B2%89%E8%BF%B7%E7%9F%AD%E8%A7%86%E9%A2%91%E5%8A%A0%E9%80%9F%E6%88%91%E7%9A%84%E8%A1%B0%E8%80%81/"/>
-    <id>https://s4mmyyy.github.io/article/%E5%91%A8%E6%8A%A52024-11-25-%E6%B2%89%E8%BF%B7%E7%9F%AD%E8%A7%86%E9%A2%91%E5%8A%A0%E9%80%9F%E6%88%91%E7%9A%84%E8%A1%B0%E8%80%81/</id>
-    <published>2024-11-24T18:07:47.183Z</published>
-    <updated>2025-03-27T10:04:16.359Z</updated>
-    
-    <content type="html"><![CDATA[<h1 id="阅读"><a href="#阅读" class="headerlink" title="阅读"></a>阅读</h1><p>本周继续推进《刻意练习》进度</p><p>阅读了“在工作中运用刻意练习”和“在生活中运用刻意练习”两个章节</p><p>​这两个章节给我的感觉像是对之前文章中提出的关于刻意练习的各种观点进行一个运用示例，用许多例子来展示这些观点在生活中的运用，通过生活以及工作中例子来对之前提出的种种观点做一些补充，同时巩固读者对于这些例子的理解以及加深记忆。</p><p>《动物农场》与《1984》加入书单，希望在闲的时候能靠小说打发时间</p><h1 id="信息"><a href="#信息" class="headerlink" title="信息"></a>信息</h1><p>本周让我收获最大的视频是这个：<a href="https://www.bilibili.com/video/BV1y3DKY4E6h">沉迷短视频加速我的衰老</a></p><p>在视频中我学习到了许多新观点</p><p>视频UP主提出两个衰老的标志：<strong>神经可塑性下降</strong>与<strong>感觉时间过得很快</strong></p><ul><li><p><strong>神经可塑性下降</strong></p><p>视频UP主提出，短视频很多都是重复的内容，比如重复的“爆款”标题，重复的洗脑音乐，千篇一律的段子等等。而摄入重复的内容会削弱神经的可塑性，而这正是衰老的标志之一（神经可塑性，即大脑对新事物适应和学习能力）。衰老来自思维模式的僵化，面对新的复杂信息时感到吃力甚至会感到焦虑或挫败。</p><p>​         </p></li><li><p><strong>时间过得很快</strong></p><p>就比如小时候的暑假感觉无尽漫长，但是对于花甲老人来说十年如一日。</p><p>这是因为随着神经可塑性的下降，年长的人不再摄入新的知识和体验，年岁的坟墓越变越大，新的记忆与体验的分子却越变越小，时间就会变得非常快。</p></li></ul><p>主观时间的快慢来自于我们在过去一段时间里面所做事物的丰富程度，而短视频总是在赋予我们同样的体验，总量信息几乎是没有增加的。摄入的营养知识越来越少，主观时间流逝就会更快，主管时间越快，主管生命就会越短，衰老就会加速。</p><p>在视频结尾，视频UP主提出几个对抗方法</p><ol><li>去看长篇幅&#x2F;非同质化的内容</li><li>减少使用网络用语（语言细腻思维才会细腻）</li><li>少用代词（比如这个那个，这种那种等），语言的边界就是世界的边界</li><li>面对信息去溯源，质疑，反思，辩论（有意识地训练深度思考，不要依赖二手信息）</li></ol><h1 id="技术"><a href="#技术" class="headerlink" title="技术"></a>技术</h1><p>无</p><h1 id="生活-x2F-其他"><a href="#生活-x2F-其他" class="headerlink" title="生活&#x2F;其他"></a>生活&#x2F;其他</h1><p>本周加密货币市场也是迎来牛市，每次币价上涨都让我很兴奋浮躁，像初高中放假前最后一节课的感觉。难以静下心来做其他事。但是市场无常，每当我兴奋过后，面对币价下跌&#x2F;回调就会有点失落。客观来看这一段时间我整个人的心情就是被币价支配，半场开香槟到头来一场空。希望自己以后能改掉这个习惯，不管币价如何都能专心做该做的事情。</p><p>这周看了青春旅行团的第五期，我发现每期都会有人在旅途中用一些小游戏来调动氛围，虽然这些小游戏可能很普通，但是大家一起玩就会显得很有意思。</p><p>这周我希望自己能找到其他杀时间的方式，而不是只会刷知乎，看B站短视频和刷贴吧，不要把整块的时间花在这种碎片化的活动上。</p>]]></content>
-    
-    
-      
-      
-    <summary type="html">&lt;h1 id=&quot;阅读&quot;&gt;&lt;a href=&quot;#阅读&quot; class=&quot;headerlink&quot; title=&quot;阅读&quot;&gt;&lt;/a&gt;阅读&lt;/h1&gt;&lt;p&gt;本周继续推进《刻意练习》进度&lt;/p&gt;
-&lt;p&gt;阅读了“在工作中运用刻意练习”和“在生活中运用刻意练习”两个章节&lt;/p&gt;
-&lt;p&gt;​	这两个章节给</summary>
       
     
     
