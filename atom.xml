@@ -6,7 +6,7 @@
   <link href="https://s4mmyyy.github.io/atom.xml" rel="self"/>
   
   <link href="https://s4mmyyy.github.io/"/>
-  <updated>2025-06-02T14:00:21.265Z</updated>
+  <updated>2025-06-08T18:46:01.738Z</updated>
   <id>https://s4mmyyy.github.io/</id>
   
   <author>
@@ -15,6 +15,28 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>周报2025-6-8-平静又焦虑</title>
+    <link href="https://s4mmyyy.github.io/article/%E5%91%A8%E6%8A%A52025-6-8-%E5%B9%B3%E9%9D%99%E5%8F%88%E7%84%A6%E8%99%91/"/>
+    <id>https://s4mmyyy.github.io/article/%E5%91%A8%E6%8A%A52025-6-8-%E5%B9%B3%E9%9D%99%E5%8F%88%E7%84%A6%E8%99%91/</id>
+    <published>2025-06-07T16:00:00.000Z</published>
+    <updated>2025-06-08T18:46:01.738Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="阅读"><a href="#阅读" class="headerlink" title="阅读"></a>阅读</h1><p>依旧是阅读《专业投机原理》，在这周把技术面分析的部分都看完了。通过这部分，我交易系统的技术分析部分，也算是有了一个雏形。我也做了一个表格用于记录自己的每次交易，胜率等，以此来检验自己的交易系统是否正确。</p><p>番茄钟确实好用，不过我发现难的是开始阅读这个动作，经常拖到晚上半夜才开始阅读，希望下周能改进一下开始阅读慢的问题。</p><p>这周开始越来越频繁依靠大模型来帮自己总结读书笔记，一方面大模型确实方便，可以总结自己没有注意到的点，另一方面，感觉是自己在偷懒输出的过程。总体来说有利有弊把，我觉得可以先自己做一遍笔记，然后再让大模型做一遍笔记，对照看看自己有什么缺失。这里推荐一下费曼技巧，虽然费曼技巧严格来说是学习技巧，但是我认为用来做读书笔记也非常合适，配合大模型的辅助，可以很轻松理解一些晦涩难懂的知识点。</p><h1 id="信息"><a href="#信息" class="headerlink" title="信息"></a>信息</h1><p>无</p><h1 id="技术"><a href="#技术" class="headerlink" title="技术"></a>技术</h1><p>无</p><h1 id="生活-x2F-其他"><a href="#生活-x2F-其他" class="headerlink" title="生活&#x2F;其他"></a>生活&#x2F;其他</h1><p>上周忘了记录，自己最近在看的一部番《四叠半神话大系》，已经是十几年前的老番了。但是现在看依旧很有意思。我发现自己挺喜欢一些类似这种讨论人生哲理的番剧，也许是因为自己现在也比较迷茫吧，希望能在这种动漫中找到一点指引或者人生道理？</p><p>这周在网上刷穿搭推荐的时候，发现优衣库出了一件衬衫还挺好看的，突发奇想想去线下买（一方面也是考虑到试衣服方便）。于是第二天就跑去买了，虽然价格对我来说有点贵，但是上身效果是真的好，在试衣间照镜子越看越喜欢（哈哈哈）。买回去后稍微研究了一下，才知道我买的是设计师联名款，所以我在想，也许这件衣服上身效果好就是因为它是设计师精心设计剪裁出来的吧？换以前我买衣服不会去考虑设计师什么的，就看看品牌、版型、图案以及考虑一下整体穿搭效果，觉得好看就买了。未来在买衣服的时候我会多去尝试一些设计师自己的品牌或者他们参与设计的衣服，也许会有意想不到的惊喜？</p>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;h1 id=&quot;阅读&quot;&gt;&lt;a href=&quot;#阅读&quot; class=&quot;headerlink&quot; title=&quot;阅读&quot;&gt;&lt;/a&gt;阅读&lt;/h1&gt;&lt;p&gt;依旧是阅读《专业投机原理》，在这周把技术面分析的部分都看完了。通过这部分，我交易系统的技术分析部分，也算是有了一个雏形。我也做了一个表格用于</summary>
+      
+    
+    
+    
+    <category term="周报" scheme="https://s4mmyyy.github.io/categories/%E5%91%A8%E6%8A%A5/"/>
+    
+    
+  </entry>
   
   <entry>
     <title>周报2025-6-1</title>
@@ -435,29 +457,6 @@
     <updated>2025-01-28T17:02:41.557Z</updated>
     
     <content type="html"><![CDATA[<h1 id="阅读"><a href="#阅读" class="headerlink" title="阅读"></a>阅读</h1><p>无</p><h1 id="信息"><a href="#信息" class="headerlink" title="信息"></a>信息</h1><p>无</p><h1 id="技术"><a href="#技术" class="headerlink" title="技术"></a>技术</h1><p>无</p><h1 id="生活-x2F-其他"><a href="#生活-x2F-其他" class="headerlink" title="生活&#x2F;其他"></a>生活&#x2F;其他</h1><p>日本计划终于接近尾声了，这周写了个脚本抢了涩谷sky的票，剩下吧最后一天行程和富士山车票安排好就行了。</p><p>这周看了古惑仔前两部，还是挺有意思的，有时间把剩下的几部也补了。</p><p>这周体验了一下三角洲，感觉还是挺好玩的，可能是因为薯薯太多了捞起来很爽，所以游戏体验比COD和战地要好很多哈哈。</p>]]></content>
-    
-    
-      
-      
-    <summary type="html">&lt;h1 id=&quot;阅读&quot;&gt;&lt;a href=&quot;#阅读&quot; class=&quot;headerlink&quot; title=&quot;阅读&quot;&gt;&lt;/a&gt;阅读&lt;/h1&gt;&lt;p&gt;无&lt;/p&gt;
-&lt;h1 id=&quot;信息&quot;&gt;&lt;a href=&quot;#信息&quot; class=&quot;headerlink&quot; title=&quot;信息&quot;&gt;&lt;/a&gt;信息&lt;/</summary>
-      
-    
-    
-    
-    <category term="周报" scheme="https://s4mmyyy.github.io/categories/%E5%91%A8%E6%8A%A5/"/>
-    
-    
-  </entry>
-  
-  <entry>
-    <title>周报2025-1-19</title>
-    <link href="https://s4mmyyy.github.io/article/%E5%91%A8%E6%8A%A52025-1-19/"/>
-    <id>https://s4mmyyy.github.io/article/%E5%91%A8%E6%8A%A52025-1-19/</id>
-    <published>2025-01-19T17:41:42.713Z</published>
-    <updated>2025-01-19T17:51:49.838Z</updated>
-    
-    <content type="html"><![CDATA[<h1 id="阅读"><a href="#阅读" class="headerlink" title="阅读"></a>阅读</h1><p>无</p><h1 id="信息"><a href="#信息" class="headerlink" title="信息"></a>信息</h1><p>无</p><h1 id="技术"><a href="#技术" class="headerlink" title="技术"></a>技术</h1><p>看了SRC挖掘的信息收集教程，还是有学到一些东西。不过比较还没做。。还是比较懒最近。</p><p>写到这里突然有个想法，把自己学过的攻击手法与ATT&amp;CK的框架结合起来，构建一个属于自己的渗透测试框架。</p><h1 id="生活-x2F-其他"><a href="#生活-x2F-其他" class="headerlink" title="生活&#x2F;其他"></a>生活&#x2F;其他</h1><p>把日本的机票酒店都订好了，剩下的就是把涩谷sky的票抢好应该就没什么问题了。</p><p>把赌博默示录的第一季补完了，这部番刚开始还是挺有意思的，不过到了后面让我感觉有点套路化。。。</p><p>这周末突然特朗普竟然发币了，不过因为自己对于meme币了解不多，学习也不深入，所以不敢梭哈，错过了一次暴富机会QAQ，以后要加强币圈这方面的知识积累。</p><p>到了今晚写周记的时候感觉好像什么都没做这周就过去了，自己越来越堕落了。。。还是得加把劲，多做点有用的事情吧。</p>]]></content>
     
     
       
