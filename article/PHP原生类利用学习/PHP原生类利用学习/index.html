@@ -5,10 +5,12 @@
     <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0 user-scalable=1" name="viewport">
     <title>s4mmy&#39;s blog</title> <!--使用config中的全局变量title作为标题-->
     
+    
 <link rel="stylesheet" href="/css/style.css">
 
 <meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/atom.xml" title="s4mmy's blog" type="application/atom+xml">
 </head>
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/default.min.css">
     
     <body>
         <header class="header">
@@ -42,7 +44,9 @@
             <div style="border-bottom:1px solid #eaedf3;"></div>
             
             <article class="post-content">
-    <div class="post-title">
+
+<script>hljs.highlightAll();</script>    
+<div class="post-title">
         <h2>PHP原生类相关利用学习</h2>
     </div>
     <div>
@@ -414,6 +418,8 @@ foreach($context as $f)&#123;
 
     </div>
 </article>
+
+<script src="/js/codeblock.js"></script>
 <!--显示文章页相关内容-->
             <!--body是一个变量，代表页面的主要内容。在渲染模板时，这个变量会被替换为实际的内容。-->
             

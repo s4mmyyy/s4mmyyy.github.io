@@ -117,3 +117,35 @@ body {
   font-size: 18px;
   color: #eaedf3;
 }
+.highlight {
+  position: relative;
+  margin: 1em 0;
+  border-radius: 6px;
+  overflow: hidden;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+.highlight pre {
+  margin: 0;
+  padding: 1em;
+  overflow-x: auto;
+  font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', monospace;
+  font-size: 0.9em;
+  line-height: 1.5;
+}
+.highlight .gutter {
+  background: #f8f8f8;
+  color: #999;
+  padding: 1em 0.5em;
+  text-align: right;
+  user-select: none;
+}
+.highlight::before {
+  content: attr(data-lang);
+  position: absolute;
+  top: 0;
+  right: 0;
+  padding: 0.2em 0.5em;
+  font-size: 0.8em;
+  background: rgba(0,0,0,0.1);
+  color: #666;
+}
