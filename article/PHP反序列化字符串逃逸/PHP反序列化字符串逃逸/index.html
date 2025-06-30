@@ -11,6 +11,9 @@
 <meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/atom.xml" title="s4mmy's blog" type="application/atom+xml">
 </head>
 <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/default.min.css">
+ <!-- 添加这行：Highlight.js JavaScript库 -->
+    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+</head>
     
     <body>
         <header class="header">
@@ -65,103 +68,50 @@
 <p><img src="https://gitee.com/shark-rice/images/raw/master/202307290109929.png" alt="image-20230728212301109"></p>
 <p>在反序列化不存在元素时需要注意前面的成员数需要与后面的成员数相符合</p>
 <p>字符增加&#x2F;减少函数示例</p>
-<pre class="line-numbers language-php" data-language="php"><code class="language-php">&lt;?php
- function b($data)&#123;
- 	return str_replace(&quot;aa&quot;,&quot;bbbb&quot;,$data);&#x2F;&#x2F;字符串增加
- &#125;
- 
- function a($data)&#123;
- 	return str_replace(&quot;bbbb&quot;,&quot;aa&quot;,$data);&#x2F;&#x2F;字符串减少
- &#125;</code></pre>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"> <span class="function"><span class="keyword">function</span> <span class="title">b</span>(<span class="params"><span class="variable">$data</span></span>)</span>&#123;</span><br><span class="line"> 	<span class="keyword">return</span> <span class="title function_ invoke__">str_replace</span>(<span class="string">&quot;aa&quot;</span>,<span class="string">&quot;bbbb&quot;</span>,<span class="variable">$data</span>);<span class="comment">//字符串增加</span></span><br><span class="line"> &#125;</span><br><span class="line"> </span><br><span class="line"> <span class="function"><span class="keyword">function</span> <span class="title">a</span>(<span class="params"><span class="variable">$data</span></span>)</span>&#123;</span><br><span class="line"> 	<span class="keyword">return</span> <span class="title function_ invoke__">str_replace</span>(<span class="string">&quot;bbbb&quot;</span>,<span class="string">&quot;aa&quot;</span>,<span class="variable">$data</span>);<span class="comment">//字符串减少</span></span><br><span class="line"> &#125;</span><br></pre></td></tr></table></figure>
 
 
 
 <h3 id="字符串增加"><a href="#字符串增加" class="headerlink" title="字符串增加"></a>字符串增加</h3><p>测试代码</p>
-<pre class="line-numbers language-php" data-language="php"><code class="language-php">&lt;?php
- function b($data)&#123;
- 	return str_replace(&quot;aa&quot;,&quot;bbbb&quot;,$data);&#x2F;&#x2F;字符串增加
- &#125;
-
-class test&#123;
-public $student&#x3D;&quot;aa&quot;;
-public $tecacher&#x3D;&quot;other&quot;;
-#public $test;
-&#125;
-
-$a &#x3D; new test();
-$a&#x3D;serialize($a);
-#$b&#x3D;$a;
-echo $b&#x3D;b($a).&quot;\n&quot;;
-var_dump(unserialize($b));</code></pre>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"> <span class="function"><span class="keyword">function</span> <span class="title">b</span>(<span class="params"><span class="variable">$data</span></span>)</span>&#123;</span><br><span class="line"> 	<span class="keyword">return</span> <span class="title function_ invoke__">str_replace</span>(<span class="string">&quot;aa&quot;</span>,<span class="string">&quot;bbbb&quot;</span>,<span class="variable">$data</span>);<span class="comment">//字符串增加</span></span><br><span class="line"> &#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">test</span></span>&#123;</span><br><span class="line"><span class="keyword">public</span> <span class="variable">$student</span>=<span class="string">&quot;aa&quot;</span>;</span><br><span class="line"><span class="keyword">public</span> <span class="variable">$tecacher</span>=<span class="string">&quot;other&quot;</span>;</span><br><span class="line"><span class="comment">#public $test;</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="variable">$a</span> = <span class="keyword">new</span> <span class="title function_ invoke__">test</span>();</span><br><span class="line"><span class="variable">$a</span>=<span class="title function_ invoke__">serialize</span>(<span class="variable">$a</span>);</span><br><span class="line"><span class="comment">#$b=$a;</span></span><br><span class="line"><span class="keyword">echo</span> <span class="variable">$b</span>=<span class="title function_ invoke__">b</span>(<span class="variable">$a</span>).<span class="string">&quot;\n&quot;</span>;</span><br><span class="line"><span class="title function_ invoke__">var_dump</span>(<span class="title function_ invoke__">unserialize</span>(<span class="variable">$b</span>));</span><br></pre></td></tr></table></figure>
 
 <p>反序列化结果</p>
-<pre class="line-numbers language-none"><code class="language-none">O:4:&quot;test&quot;:3:&#123;s:7:&quot;student&quot;;s:2:&quot;bbbb&quot;;s:8:&quot;tecacher&quot;;s:5:&quot;other&quot;;s:4:&quot;test&quot;;N;&#125;</code></pre>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">O:4:&quot;test&quot;:3:&#123;s:7:&quot;student&quot;;s:2:&quot;bbbb&quot;;s:8:&quot;tecacher&quot;;s:5:&quot;other&quot;;s:4:&quot;test&quot;;N;&#125;</span><br></pre></td></tr></table></figure>
 
 <p>可以看到输入的aa已经被替换成了bbbb。字符串实际长度增加了，但是字符串的读取长度并没有增加。所以逃逸了的两个字符bb。</p>
 <p>这里我们可以构造<code>;</code>来提前闭合反序列化数据，实现逃逸。</p>
 <p><strong>所以字符串增加利用的是插入与增加字符相同长度的反序列化数据，然后再利用闭合符号来让插入数据被当做正常内容进行反序列化。</strong></p>
 <p>比如可以把teacher改成如下数据</p>
-<pre class="line-numbers language-none"><code class="language-none">$tecacher&#x3D;&#39;aaaa&quot;;&#125;x&#39;;</code></pre>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$tecacher=&#x27;aaaa&quot;;&#125;x&#x27;;</span><br></pre></td></tr></table></figure>
 
 <p>成功反序列化</p>
-<pre class="line-numbers language-php" data-language="php"><code class="language-php">O:4:&quot;test&quot;:2:&#123;s:7:&quot;student&quot;;s:5:&quot;other&quot;;s:8:&quot;tecacher&quot;;s:8:&quot;bbbbbbbb&quot;;&#125;x&quot;;&#125;
-object(test)#1 (2) &#123;
-  [&quot;student&quot;]&#x3D;&gt;
-  string(5) &quot;other&quot;
-  [&quot;tecacher&quot;]&#x3D;&gt;
-  string(8) &quot;bbbbbbbb&quot;
-&#125;
-</code></pre>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">O:<span class="number">4</span>:<span class="string">&quot;test&quot;</span>:<span class="number">2</span>:&#123;s:<span class="number">7</span>:<span class="string">&quot;student&quot;</span>;s:<span class="number">5</span>:<span class="string">&quot;other&quot;</span>;s:<span class="number">8</span>:<span class="string">&quot;tecacher&quot;</span>;s:<span class="number">8</span>:<span class="string">&quot;bbbbbbbb&quot;</span>;&#125;x<span class="string">&quot;;&#125;</span></span><br><span class="line"><span class="string">object(test)#1 (2) &#123;</span></span><br><span class="line"><span class="string">  [&quot;</span>student<span class="string">&quot;]=&gt;</span></span><br><span class="line"><span class="string">  string(5) &quot;</span>other<span class="string">&quot;</span></span><br><span class="line"><span class="string">  [&quot;</span>tecacher<span class="string">&quot;]=&gt;</span></span><br><span class="line"><span class="string">  string(8) &quot;</span>bbbbbbbb<span class="string">&quot;</span></span><br><span class="line"><span class="string">&#125;</span></span><br><span class="line"><span class="string"></span></span><br></pre></td></tr></table></figure>
 
 
 
 <p>现在把上面代码test属性注释去掉，然后通过字符串逃逸给test反序列化赋值（一共逃逸26个字符）</p>
-<pre class="line-numbers language-none"><code class="language-none">$tecacher&#x3D;&#39;aaaaaaaaaaaaaaaaaaaaaaaaaa&quot;;s:4:&quot;test&quot;;s:5:&quot;hello&quot;;&#125;&#39;</code></pre>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$tecacher=&#x27;aaaaaaaaaaaaaaaaaaaaaaaaaa&quot;;s:4:&quot;test&quot;;s:5:&quot;hello&quot;;&#125;&#x27;</span><br></pre></td></tr></table></figure>
 
 <p>成功反序列化</p>
-<pre class="line-numbers language-php" data-language="php"><code class="language-php">O:4:&quot;test&quot;:3:&#123;s:7:&quot;student&quot;;s:5:&quot;other&quot;;s:8:&quot;tecacher&quot;;s:52:&quot;bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb&quot;;s:4:&quot;test&quot;;s:5:&quot;hello&quot;;&#125;&quot;;s:4:&quot;test&quot;;N;&#125;
-object(test)#1 (3) &#123;
-  [&quot;student&quot;]&#x3D;&gt;
-  string(5) &quot;other&quot;
-  [&quot;tecacher&quot;]&#x3D;&gt;
-  string(52) &quot;bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb&quot;
-  [&quot;test&quot;]&#x3D;&gt;
-  string(5) &quot;hello&quot;
-&#125;</code></pre>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">O:<span class="number">4</span>:<span class="string">&quot;test&quot;</span>:<span class="number">3</span>:&#123;s:<span class="number">7</span>:<span class="string">&quot;student&quot;</span>;s:<span class="number">5</span>:<span class="string">&quot;other&quot;</span>;s:<span class="number">8</span>:<span class="string">&quot;tecacher&quot;</span>;s:<span class="number">52</span>:<span class="string">&quot;bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb&quot;</span>;s:<span class="number">4</span>:<span class="string">&quot;test&quot;</span>;s:<span class="number">5</span>:<span class="string">&quot;hello&quot;</span>;&#125;<span class="string">&quot;;s:4:&quot;</span>test<span class="string">&quot;;N;&#125;</span></span><br><span class="line"><span class="string">object(test)#1 (3) &#123;</span></span><br><span class="line"><span class="string">  [&quot;</span>student<span class="string">&quot;]=&gt;</span></span><br><span class="line"><span class="string">  string(5) &quot;</span>other<span class="string">&quot;</span></span><br><span class="line"><span class="string">  [&quot;</span>tecacher<span class="string">&quot;]=&gt;</span></span><br><span class="line"><span class="string">  string(52) &quot;</span>bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb<span class="string">&quot;</span></span><br><span class="line"><span class="string">  [&quot;</span>test<span class="string">&quot;]=&gt;</span></span><br><span class="line"><span class="string">  string(5) &quot;</span>hello<span class="string">&quot;</span></span><br><span class="line"><span class="string">&#125;</span></span><br></pre></td></tr></table></figure>
 
 
 
 <h3 id="字符串减少"><a href="#字符串减少" class="headerlink" title="字符串减少"></a>字符串减少</h3><p>测试代码</p>
-<pre class="line-numbers language-php" data-language="php"><code class="language-php">&lt;?php
- function a($data)&#123;
- 	return str_replace(&quot;aaaa&quot;,&quot;bb&quot;,$data);&#x2F;&#x2F;字符串增加
- &#125;
-
-class test&#123;
-public $student&#x3D;&quot;aaaaaaaa&quot;;
-public $tecacher&#x3D;&quot;other&quot;;
-#public $test;
-&#125;
-
-$a &#x3D; new test();
-$a&#x3D;serialize($a);
-#$b&#x3D;$a;
-echo $b&#x3D;a($a).&quot;\n&quot;;
-var_dump(unserialize($b));</code></pre>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"> <span class="function"><span class="keyword">function</span> <span class="title">a</span>(<span class="params"><span class="variable">$data</span></span>)</span>&#123;</span><br><span class="line"> 	<span class="keyword">return</span> <span class="title function_ invoke__">str_replace</span>(<span class="string">&quot;aaaa&quot;</span>,<span class="string">&quot;bb&quot;</span>,<span class="variable">$data</span>);<span class="comment">//字符串增加</span></span><br><span class="line"> &#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">test</span></span>&#123;</span><br><span class="line"><span class="keyword">public</span> <span class="variable">$student</span>=<span class="string">&quot;aaaaaaaa&quot;</span>;</span><br><span class="line"><span class="keyword">public</span> <span class="variable">$tecacher</span>=<span class="string">&quot;other&quot;</span>;</span><br><span class="line"><span class="comment">#public $test;</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="variable">$a</span> = <span class="keyword">new</span> <span class="title function_ invoke__">test</span>();</span><br><span class="line"><span class="variable">$a</span>=<span class="title function_ invoke__">serialize</span>(<span class="variable">$a</span>);</span><br><span class="line"><span class="comment">#$b=$a;</span></span><br><span class="line"><span class="keyword">echo</span> <span class="variable">$b</span>=<span class="title function_ invoke__">a</span>(<span class="variable">$a</span>).<span class="string">&quot;\n&quot;</span>;</span><br><span class="line"><span class="title function_ invoke__">var_dump</span>(<span class="title function_ invoke__">unserialize</span>(<span class="variable">$b</span>));</span><br></pre></td></tr></table></figure>
 
 <p>反序列化结果</p>
-<pre class="line-numbers language-none"><code class="language-none">O:4:&quot;test&quot;:2:&#123;s:7:&quot;student&quot;;s:8:&quot;bbbb&quot;;s:8:&quot;tecacher&quot;;s:5:&quot;other&quot;;&#125;</code></pre>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">O:4:&quot;test&quot;:2:&#123;s:7:&quot;student&quot;;s:8:&quot;bbbb&quot;;s:8:&quot;tecacher&quot;;s:5:&quot;other&quot;;&#125;</span><br></pre></td></tr></table></figure>
 
 <p>可以看到student字段的长度标识与其实际字段长度不符合，缺少了4个字符。所以在反序列化过程中会继续向后读取四个字符，也就是读取到<code>:</code>。当然这样的结果是导致反序列化失败。</p>
 <p>对于字符串减少的利用在于<strong>让它把我们不需要的字符都当做字段内容读取掉，那么我们在后面构造的内容就会被当做正常内容进行反序列化，从而实现反序列化任意类</strong>。</p>
 <p>示例如下</p>
 <p>首先计算student字段内容后面的长度</p>
-<pre class="line-numbers language-none"><code class="language-none">&quot;;s:8:&quot;tecacher&quot;;s:XX:&quot;&#x2F;&#x2F;共23个字符</code></pre>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&quot;;s:8:&quot;tecacher&quot;;s:XX:&quot;//共23个字符</span><br></pre></td></tr></table></figure>
 
 <p>所以需要构造12组<code>aaaa</code>，并在上面的字段内容开头补上一个字符。同时利用teacher参数构造我们想反序列化的类</p>
 <p>参数设置如下</p>
-<pre class="line-numbers language-php" data-language="php"><code class="language-php">public $student&#x3D;&quot;aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa&quot;;
-public $tecacher&#x3D;&#39;a&quot;;s:8:&quot;tecacher&quot;;s:6:&quot;hacker&quot;;&#125;&#39;;</code></pre>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="variable">$student</span>=<span class="string">&quot;aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa&quot;</span>;</span><br><span class="line"><span class="keyword">public</span> <span class="variable">$tecacher</span>=<span class="string">&#x27;a&quot;;s:8:&quot;tecacher&quot;;s:6:&quot;hacker&quot;;&#125;&#x27;</span>;</span><br></pre></td></tr></table></figure>
 
 <p>成功反序列化</p>
 <p><img src="https://gitee.com/shark-rice/images/raw/master/202307290109586.png" alt="image-20230728214400510"></p>
@@ -174,8 +124,10 @@ public $tecacher&#x3D;&#39;a&quot;;s:8:&quot;tecacher&quot;;s:6:&quot;hacker&quo
 
     </div>
 </article>
-
+<!--把higlightAll放到最后，确保DOM都加载完成-->
+<script>hljs.highlightAll();</script>
 <script src="/js/codeblock.js"></script>
+
 <!--显示文章页相关内容-->
             <!--body是一个变量，代表页面的主要内容。在渲染模板时，这个变量会被替换为实际的内容。-->
             

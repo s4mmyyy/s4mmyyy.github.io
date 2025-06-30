@@ -11,6 +11,9 @@
 <meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/atom.xml" title="s4mmy's blog" type="application/atom+xml">
 </head>
 <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/default.min.css">
+ <!-- 添加这行：Highlight.js JavaScript库 -->
+    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+</head>
     
     <body>
         <header class="header">
@@ -60,214 +63,58 @@
 <h1 id="CTFD动态靶场搭建"><a href="#CTFD动态靶场搭建" class="headerlink" title="CTFD动态靶场搭建"></a>CTFD动态靶场搭建</h1><p>为了迎接未来的新生赛和未来接活做准备，学习一下如何搭建CTFD靶场顺便练练手。不过这中间踩的坑也是巨多，前前后后搭了好几天才搭好。</p>
 <h2 id="前置"><a href="#前置" class="headerlink" title="前置"></a>前置</h2><p>CTFD使用的是的docker搭建，所以在服务器上需要先装好docker和docker-compose。其中ctfd有多种搭建方式，我采用的是服务器本地起frp服务将题目容器转发到服务器的端口上。</p>
 <h2 id="安装FRP"><a href="#安装FRP" class="headerlink" title="安装FRP"></a>安装FRP</h2><p>下载并安装rp</p>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">wget https:&#x2F;&#x2F;github.com&#x2F;fatedier&#x2F;frp&#x2F;releases&#x2F;download&#x2F;v0.29.0&#x2F;frp_0.29.0_linux_amd64.tar.gz
-tar -zxvf frp_0.29.0_linux_amd64.tar.gz
-cd frp_0.29.0_linux_amd64
-cd frp_0.29.0_linux_amd64
-sudo cp systemd&#x2F;* &#x2F;etc&#x2F;systemd&#x2F;system&#x2F; #移动配置文件
-sudo mkdir &#x2F;etc&#x2F;frp #创建客户端配置文件
-sudo cp frpc.ini  frps.ini &#x2F;etc&#x2F;frp&#x2F; #移动客户端配置文件
-sudo cp frpc  frps &#x2F;usr&#x2F;bin&#x2F; #将客户端和服务端的二进制文件移动至bin文件夹
-sudo chmod a+x &#x2F;usr&#x2F;bin&#x2F;frpc &#x2F;usr&#x2F;bin&#x2F;frps #给所有用户赋予frpc和frps的可执行权限
-sudo systemctl enable frps #将frps服务设置为每次开机启动</code></pre>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">wget https://github.com/fatedier/frp/releases/download/v0.29.0/frp_0.29.0_linux_amd64.tar.gz</span><br><span class="line">tar -zxvf frp_0.29.0_linux_amd64.tar.gz</span><br><span class="line">cd frp_0.29.0_linux_amd64</span><br><span class="line">cd frp_0.29.0_linux_amd64</span><br><span class="line">sudo cp systemd/* /etc/systemd/system/ #移动配置文件</span><br><span class="line">sudo mkdir /etc/frp #创建客户端配置文件</span><br><span class="line">sudo cp frpc.ini  frps.ini /etc/frp/ #移动客户端配置文件</span><br><span class="line">sudo cp frpc  frps /usr/bin/ #将客户端和服务端的二进制文件移动至bin文件夹</span><br><span class="line">sudo chmod a+x /usr/bin/frpc /usr/bin/frps #给所有用户赋予frpc和frps的可执行权限</span><br><span class="line">sudo systemctl enable frps #将frps服务设置为每次开机启动</span><br></pre></td></tr></table></figure>
 
 
 
 <p>编辑frps配置文件</p>
-<pre class="line-numbers language-none"><code class="language-none">vim &#x2F;etc&#x2F;frp&#x2F;frps.ini
-[common]
-bind_port &#x3D; 7897
-bind_addr &#x3D; 0.0.0.0
-token &#x3D;thisistoken</code></pre>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">vim /etc/frp/frps.ini</span><br><span class="line">[common]</span><br><span class="line">bind_port = 7897</span><br><span class="line">bind_addr = 0.0.0.0</span><br><span class="line">token =thisistoken</span><br></pre></td></tr></table></figure>
 
 <p>启动frps服务</p>
-<pre class="line-numbers language-none"><code class="language-none">systemctl start frps</code></pre>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">systemctl start frps</span><br></pre></td></tr></table></figure>
 
 <p> 修改&#x2F;etc&#x2F;frp&#x2F;frpc.ini的配置文件</p>
 <p>此处的frpc与上面的frps相对应，连接的是上面启动的frps</p>
-<pre class="line-numbers language-none"><code class="language-none">vim &#x2F;etc&#x2F;frp&#x2F;frpc.ini
-[common]
-server_addr &#x3D; 172.17.0.1#此处的IP为docker0的ip，docker0的ip通过ifconfig查看
-server_port &#x3D; 7897
-token&#x3D;thisistoken</code></pre>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">vim /etc/frp/frpc.ini</span><br><span class="line">[common]</span><br><span class="line">server_addr = 172.17.0.1#此处的IP为docker0的ip，docker0的ip通过ifconfig查看</span><br><span class="line">server_port = 7897</span><br><span class="line">token=thisistoken</span><br></pre></td></tr></table></figure>
 
 <p>再修改frp_0.29.0_linux_amd64&#x2F;frpc.ini  (这个文件会用来配置frpc容器的)</p>
-<pre class="line-numbers language-none"><code class="language-none">[common]
-server_addr &#x3D; 172.17.0.1
-server_port &#x3D; 7897
-token&#x3D;thisistoken
-admin_addr &#x3D; 172.20.0.3
-admin_port &#x3D; 7400
-log_file &#x3D; .&#x2F;frps.log</code></pre>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">[common]</span><br><span class="line">server_addr = 172.17.0.1</span><br><span class="line">server_port = 7897</span><br><span class="line">token=thisistoken</span><br><span class="line">admin_addr = 172.20.0.3</span><br><span class="line">admin_port = 7400</span><br><span class="line">log_file = ./frps.log</span><br></pre></td></tr></table></figure>
 
 <p>创建网络并运行frpc容器</p>
-<pre class="line-numbers language-none"><code class="language-none">docker network create ctfd_frp-containers #创建一个docker网络，名称为ctfd_frp-containers
-
-docker run  -d -v ~&#x2F;frp_0.29.0_linux_amd64&#x2F;frpc.ini:&#x2F;etc&#x2F;frp&#x2F;frpc.ini --network&#x3D;&quot;ctfd_frp-containers&quot; --restart&#x3D;always &quot;glzjin&#x2F;frp&quot;  #运行容器并将本地的frpc.ini挂载到容器内。网络名称为ctfd_frp-containers</code></pre>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">docker network create ctfd_frp-containers #创建一个docker网络，名称为ctfd_frp-containers</span><br><span class="line"></span><br><span class="line">docker run  -d -v ~/frp_0.29.0_linux_amd64/frpc.ini:/etc/frp/frpc.ini --network=&quot;ctfd_frp-containers&quot; --restart=always &quot;glzjin/frp&quot;  #运行容器并将本地的frpc.ini挂载到容器内。网络名称为ctfd_frp-containers</span><br></pre></td></tr></table></figure>
 
 
 
 <p>接着创建frpcadmin网络用语ctfd和frpc容器通信</p>
-<pre class="line-numbers language-none"><code class="language-none">docker network creat frcadmin
-docker network connect frpcamdin id&lt;刚才启动的frpc容器ID&gt;</code></pre>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">docker network creat frcadmin</span><br><span class="line">docker network connect frpcamdin id&lt;刚才启动的frpc容器ID&gt;</span><br></pre></td></tr></table></figure>
 
 
 
 <p>查看frpcadmin网络的连接情况并记录frpc容器的网络IP</p>
-<pre class="line-numbers language-none"><code class="language-none">docker network inspect frpcadmin</code></pre>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker network inspect frpcadmin</span><br></pre></td></tr></table></figure>
 
 <p>图中的IP就是frpc容器在frpcadmin网络中的IP地址，就是我们在&#x2F;frp&#x2F;frpc.ini中指定的（admin_addr）</p>
 <p><img src="https://gitee.com/shark-rice/images/raw/master/202308271348486.png" alt="image-20230820205128158"></p>
 <p>可以提前把这个地址记录下来，后面配置ctfd-whale的时候会用到。</p>
-<h2 id="安装CTFd和CTFd-whale"><a href="#安装CTFd和CTFd-whale" class="headerlink" title="安装CTFd和CTFd-whale"></a>安装CTFd和CTFd-whale</h2><pre class="line-numbers language-none"><code class="language-none">#下载ctfd
-git clone https:&#x2F;&#x2F;github.com&#x2F;CTFd&#x2F;CTFd.git
-#进入CTFd目录
-cd CTFd
-#回退到某个版本，直接执行下面命令
-git reset 6c5c63d667a17aec159c8e26ea53dccfbc4d0fa3 --hard
-cd CTFd&#x2F;CTFd&#x2F;plugins&#x2F; #进入plugins目录
-
-#下载插件并确保文件名小写
-git clone https:&#x2F;&#x2F;github.com&#x2F;glzjin&#x2F;CTFd-Whale.git ctfd-whale
-#进入ctfd-whale
-cd ctfd-whale
-#回退版本
-git reset 5b32f457e9f56ee9b2b29495f4b3b118be3c57bd --hard 
-#回到第一层CTFd目录
-cd ..&#x2F;..&#x2F;..&#x2F;
-#配置docker-compose
-vim docker-compose.yml</code></pre>
+<h2 id="安装CTFd和CTFd-whale"><a href="#安装CTFd和CTFd-whale" class="headerlink" title="安装CTFd和CTFd-whale"></a>安装CTFd和CTFd-whale</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">#下载ctfd</span><br><span class="line">git clone https://github.com/CTFd/CTFd.git</span><br><span class="line">#进入CTFd目录</span><br><span class="line">cd CTFd</span><br><span class="line">#回退到某个版本，直接执行下面命令</span><br><span class="line">git reset 6c5c63d667a17aec159c8e26ea53dccfbc4d0fa3 --hard</span><br><span class="line">cd CTFd/CTFd/plugins/ #进入plugins目录</span><br><span class="line"></span><br><span class="line">#下载插件并确保文件名小写</span><br><span class="line">git clone https://github.com/glzjin/CTFd-Whale.git ctfd-whale</span><br><span class="line">#进入ctfd-whale</span><br><span class="line">cd ctfd-whale</span><br><span class="line">#回退版本</span><br><span class="line">git reset 5b32f457e9f56ee9b2b29495f4b3b118be3c57bd --hard </span><br><span class="line">#回到第一层CTFd目录</span><br><span class="line">cd ../../../</span><br><span class="line">#配置docker-compose</span><br><span class="line">vim docker-compose.yml</span><br></pre></td></tr></table></figure>
 
 <p>docker-compose.yml，直接复制粘贴就行</p>
-<pre class="line-numbers language-none"><code class="language-none">version: &#39;2.2&#39;
-
-services:
-  ctfd:
-    build: .
-    user: root
-    restart: always
-    ports:
-      - &quot;8000:8000&quot; #第一个是访问ctfd的端口，第二个是docker端口映射出去的端口
-    environment:
-      - UPLOAD_FOLDER&#x3D;&#x2F;var&#x2F;uploads
-      - DATABASE_URL&#x3D;mysql+pymysql:&#x2F;&#x2F;root:ctfd@db&#x2F;ctfd
-      - REDIS_URL&#x3D;redis:&#x2F;&#x2F;cache:6379
-      - WORKERS&#x3D;1
-      - LOG_FOLDER&#x3D;&#x2F;var&#x2F;log&#x2F;CTFd
-      - ACCESS_LOG&#x3D;-
-      - ERROR_LOG&#x3D;-
-    volumes:
-      - .data&#x2F;CTFd&#x2F;logs:&#x2F;var&#x2F;log&#x2F;CTFd
-      - .data&#x2F;CTFd&#x2F;uploads:&#x2F;var&#x2F;uploads
-      - .:&#x2F;opt&#x2F;CTFd:ro
-      - &#x2F;var&#x2F;run&#x2F;docker.sock:&#x2F;var&#x2F;run&#x2F;docker.sock #添加这句即可，别的基本按照官方的不用动
-    depends_on:
-      - db
-    networks:
-        default:
-        internal:
-
-  db:
-    image: mariadb:10.4.12 #这里改成10.4.12，10.4.13会出错
-    restart: always
-    environment:
-      - MYSQL_ROOT_PASSWORD&#x3D;ctfd
-      - MYSQL_USER&#x3D;ctfd
-      - MYSQL_PASSWORD&#x3D;ctfd
-      - MYSQL_DATABASE&#x3D;ctfd
-    volumes:
-      - .data&#x2F;mysql:&#x2F;var&#x2F;lib&#x2F;mysql
-    networks:
-        internal:
-    # This command is required to set important mariadb defaults
-    command: [mysqld, --character-set-server&#x3D;utf8mb4, --collation-server&#x3D;utf8mb4_unicode_ci, --wait_timeout&#x3D;28800, --log-warnings&#x3D;0]
-
-  cache:
-    image: redis:4
-    restart: always
-    volumes:
-    - .data&#x2F;redis:&#x2F;data
-    networks:
-        internal:
-
-networks:
-    default:
-    internal:
-        internal: true</code></pre>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br></pre></td><td class="code"><pre><span class="line">version: &#x27;2.2&#x27;</span><br><span class="line"></span><br><span class="line">services:</span><br><span class="line">  ctfd:</span><br><span class="line">    build: .</span><br><span class="line">    user: root</span><br><span class="line">    restart: always</span><br><span class="line">    ports:</span><br><span class="line">      - &quot;8000:8000&quot; #第一个是访问ctfd的端口，第二个是docker端口映射出去的端口</span><br><span class="line">    environment:</span><br><span class="line">      - UPLOAD_FOLDER=/var/uploads</span><br><span class="line">      - DATABASE_URL=mysql+pymysql://root:ctfd@db/ctfd</span><br><span class="line">      - REDIS_URL=redis://cache:6379</span><br><span class="line">      - WORKERS=1</span><br><span class="line">      - LOG_FOLDER=/var/log/CTFd</span><br><span class="line">      - ACCESS_LOG=-</span><br><span class="line">      - ERROR_LOG=-</span><br><span class="line">    volumes:</span><br><span class="line">      - .data/CTFd/logs:/var/log/CTFd</span><br><span class="line">      - .data/CTFd/uploads:/var/uploads</span><br><span class="line">      - .:/opt/CTFd:ro</span><br><span class="line">      - /var/run/docker.sock:/var/run/docker.sock #添加这句即可，别的基本按照官方的不用动</span><br><span class="line">    depends_on:</span><br><span class="line">      - db</span><br><span class="line">    networks:</span><br><span class="line">        default:</span><br><span class="line">        internal:</span><br><span class="line"></span><br><span class="line">  db:</span><br><span class="line">    image: mariadb:10.4.12 #这里改成10.4.12，10.4.13会出错</span><br><span class="line">    restart: always</span><br><span class="line">    environment:</span><br><span class="line">      - MYSQL_ROOT_PASSWORD=ctfd</span><br><span class="line">      - MYSQL_USER=ctfd</span><br><span class="line">      - MYSQL_PASSWORD=ctfd</span><br><span class="line">      - MYSQL_DATABASE=ctfd</span><br><span class="line">    volumes:</span><br><span class="line">      - .data/mysql:/var/lib/mysql</span><br><span class="line">    networks:</span><br><span class="line">        internal:</span><br><span class="line">    # This command is required to set important mariadb defaults</span><br><span class="line">    command: [mysqld, --character-set-server=utf8mb4, --collation-server=utf8mb4_unicode_ci, --wait_timeout=28800, --log-warnings=0]</span><br><span class="line"></span><br><span class="line">  cache:</span><br><span class="line">    image: redis:4</span><br><span class="line">    restart: always</span><br><span class="line">    volumes:</span><br><span class="line">    - .data/redis:/data</span><br><span class="line">    networks:</span><br><span class="line">        internal:</span><br><span class="line"></span><br><span class="line">networks:</span><br><span class="line">    default:</span><br><span class="line">    internal:</span><br><span class="line">        internal: true</span><br></pre></td></tr></table></figure>
 
 <p>进入CTFd目录，修改Dockerfile的内容</p>
-<pre class="line-numbers language-none"><code class="language-none">FROM python:3.6-alpine
-RUN sed -i &#39;s&#x2F;dl-cdn.alpinelinux.org&#x2F;mirrors.aliyun.com&#x2F;g&#39; &#x2F;etc&#x2F;apk&#x2F;repositories &amp;&amp;\
-    apk update &amp;&amp; \
-    apk add python3 python3-dev linux-headers libffi-dev gcc make musl-dev py-pip mysql-client git openssl-dev
-RUN adduser -D -u 1001 -s &#x2F;bin&#x2F;bash ctfd
-
-WORKDIR &#x2F;opt&#x2F;CTFd
-RUN mkdir -p &#x2F;opt&#x2F;CTFd &#x2F;var&#x2F;log&#x2F;CTFd &#x2F;var&#x2F;uploads
-RUN pip config set global.index-url https:&#x2F;&#x2F;pypi.doubanio.com&#x2F;simple
-RUN pip config set install.trusted-host pypi.doubanio.com
-COPY requirements.txt .
-
-RUN pip install -r requirements.txt -i  https:&#x2F;&#x2F;pypi.doubanio.com&#x2F;simple
-
-COPY . &#x2F;opt&#x2F;CTFd
-
-RUN for d in CTFd&#x2F;plugins&#x2F;*; do \
-      if [ -f &quot;$d&#x2F;requirements.txt&quot; ]; then \
-        pip install -r $d&#x2F;requirements.txt -i  https:&#x2F;&#x2F;pypi.doubanio.com&#x2F;simple; \
-      fi; \
-    done;
-
-RUN chmod +x &#x2F;opt&#x2F;CTFd&#x2F;docker-entrypoint.sh
-RUN chown -R 1001:1001 &#x2F;opt&#x2F;CTFd
-RUN chown -R 1001:1001 &#x2F;var&#x2F;log&#x2F;CTFd &#x2F;var&#x2F;uploads
-
-USER 1001
-EXPOSE 8000
-ENTRYPOINT [&quot;&#x2F;opt&#x2F;CTFd&#x2F;docker-entrypoint.sh&quot;]	</code></pre>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">FROM python:3.6-alpine</span><br><span class="line">RUN sed -i &#x27;s/dl-cdn.alpinelinux.org/mirrors.aliyun.com/g&#x27; /etc/apk/repositories &amp;&amp;\</span><br><span class="line">    apk update &amp;&amp; \</span><br><span class="line">    apk add python3 python3-dev linux-headers libffi-dev gcc make musl-dev py-pip mysql-client git openssl-dev</span><br><span class="line">RUN adduser -D -u 1001 -s /bin/bash ctfd</span><br><span class="line"></span><br><span class="line">WORKDIR /opt/CTFd</span><br><span class="line">RUN mkdir -p /opt/CTFd /var/log/CTFd /var/uploads</span><br><span class="line">RUN pip config set global.index-url https://pypi.doubanio.com/simple</span><br><span class="line">RUN pip config set install.trusted-host pypi.doubanio.com</span><br><span class="line">COPY requirements.txt .</span><br><span class="line"></span><br><span class="line">RUN pip install -r requirements.txt -i  https://pypi.doubanio.com/simple</span><br><span class="line"></span><br><span class="line">COPY . /opt/CTFd</span><br><span class="line"></span><br><span class="line">RUN for d in CTFd/plugins/*; do \</span><br><span class="line">      if [ -f &quot;$d/requirements.txt&quot; ]; then \</span><br><span class="line">        pip install -r $d/requirements.txt -i  https://pypi.doubanio.com/simple; \</span><br><span class="line">      fi; \</span><br><span class="line">    done;</span><br><span class="line"></span><br><span class="line">RUN chmod +x /opt/CTFd/docker-entrypoint.sh</span><br><span class="line">RUN chown -R 1001:1001 /opt/CTFd</span><br><span class="line">RUN chown -R 1001:1001 /var/log/CTFd /var/uploads</span><br><span class="line"></span><br><span class="line">USER 1001</span><br><span class="line">EXPOSE 8000</span><br><span class="line">ENTRYPOINT [&quot;/opt/CTFd/docker-entrypoint.sh&quot;]	</span><br></pre></td></tr></table></figure>
 
 <p>requirements.txt内容</p>
-<pre class="line-numbers language-none"><code class="language-none">Flask&#x3D;&#x3D;1.1.2
-Werkzeug&#x3D;&#x3D;0.16.0
-Flask-SQLAlchemy&#x3D;&#x3D;2.4.1
-Flask-Caching&#x3D;&#x3D;1.4.0
-Flask-Migrate&#x3D;&#x3D;2.5.2
-Flask-Script&#x3D;&#x3D;2.0.6
-SQLAlchemy&#x3D;&#x3D;1.3.11
-SQLAlchemy-Utils&#x3D;&#x3D;0.36.0
-passlib&#x3D;&#x3D;1.7.2
-bcrypt&#x3D;&#x3D;3.1.7
-six&#x3D;&#x3D;1.13.0
-itsdangerous&#x3D;&#x3D;1.1.0
-jinja2&#x3D;&#x3D;2.11.3
-requests&gt;&#x3D;2.20.0
-PyMySQL&#x3D;&#x3D;0.9.3
-gunicorn&#x3D;&#x3D;19.9.0
-normality&#x3D;&#x3D;2.0.0
-dataset&#x3D;&#x3D;1.1.2
-mistune&#x3D;&#x3D;0.8.4
-netaddr&#x3D;&#x3D;0.7.19
-redis&#x3D;&#x3D;3.3.11
-datafreeze&#x3D;&#x3D;0.1.0
-gevent&#x3D;&#x3D;21.12.0
-python-dotenv&#x3D;&#x3D;0.10.3
-flask-restplus&#x3D;&#x3D;0.13.0
-pathlib2&#x3D;&#x3D;2.3.5
-flask-marshmallow&#x3D;&#x3D;0.10.1
-marshmallow-sqlalchemy&#x3D;&#x3D;0.17.0
-boto3&#x3D;&#x3D;1.10.39
-markupsafe&#x3D;&#x3D;1.1.1
-marshmallow&#x3D;&#x3D;2.20.2</code></pre>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line">Flask==1.1.2</span><br><span class="line">Werkzeug==0.16.0</span><br><span class="line">Flask-SQLAlchemy==2.4.1</span><br><span class="line">Flask-Caching==1.4.0</span><br><span class="line">Flask-Migrate==2.5.2</span><br><span class="line">Flask-Script==2.0.6</span><br><span class="line">SQLAlchemy==1.3.11</span><br><span class="line">SQLAlchemy-Utils==0.36.0</span><br><span class="line">passlib==1.7.2</span><br><span class="line">bcrypt==3.1.7</span><br><span class="line">six==1.13.0</span><br><span class="line">itsdangerous==1.1.0</span><br><span class="line">jinja2==2.11.3</span><br><span class="line">requests&gt;=2.20.0</span><br><span class="line">PyMySQL==0.9.3</span><br><span class="line">gunicorn==19.9.0</span><br><span class="line">normality==2.0.0</span><br><span class="line">dataset==1.1.2</span><br><span class="line">mistune==0.8.4</span><br><span class="line">netaddr==0.7.19</span><br><span class="line">redis==3.3.11</span><br><span class="line">datafreeze==0.1.0</span><br><span class="line">gevent==21.12.0</span><br><span class="line">python-dotenv==0.10.3</span><br><span class="line">flask-restplus==0.13.0</span><br><span class="line">pathlib2==2.3.5</span><br><span class="line">flask-marshmallow==0.10.1</span><br><span class="line">marshmallow-sqlalchemy==0.17.0</span><br><span class="line">boto3==1.10.39</span><br><span class="line">markupsafe==1.1.1</span><br><span class="line">marshmallow==2.20.2</span><br></pre></td></tr></table></figure>
 
 <p>准备好后开始构建容器，进入CTFd目录</p>
-<pre class="line-numbers language-none"><code class="language-none">docker-compose biuld</code></pre>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker-compose biuld</span><br></pre></td></tr></table></figure>
 
 <p>启动镜像</p>
-<pre class="line-numbers language-none"><code class="language-none">docker-compose up -d</code></pre>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker-compose up -d</span><br></pre></td></tr></table></figure>
 
 <p>启动完之后将ctfd容器加入到frpcadmin的网络之中</p>
-<pre class="line-numbers language-none"><code class="language-none">docker ps #查看ctfd容器的ID
-docker network connect frpcadmin #容器ID </code></pre>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">docker ps #查看ctfd容器的ID</span><br><span class="line">docker network connect frpcadmin #容器ID </span><br></pre></td></tr></table></figure>
 
 <p>可以看到ctfd容器已经加入到了frpcadmin容器之中了</p>
 <p><img src="https://gitee.com/shark-rice/images/raw/master/202308271348495.png" alt="image-20230821113536575"></p>
@@ -294,8 +141,10 @@ docker network connect frpcadmin #容器ID </code></pre>
 
     </div>
 </article>
-
+<!--把higlightAll放到最后，确保DOM都加载完成-->
+<script>hljs.highlightAll();</script>
 <script src="/js/codeblock.js"></script>
+
 <!--显示文章页相关内容-->
             <!--body是一个变量，代表页面的主要内容。在渲染模板时，这个变量会被替换为实际的内容。-->
             
