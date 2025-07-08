@@ -121,20 +121,21 @@ body {
 .post-content pre {
   position: relative;
   margin: 1em 0;
+  padding: 1em; /* 移到这里 */
   border-radius: 6px;
   overflow: auto;
   box-shadow: 0 2px 8px rgba(255,255,255,0.35);
   background: #282c34;
-}
-.highlight pre,
-.post-content pre {
-  margin: 0;
-  padding: 1em;
-  overflow-x: auto;
   font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', monospace;
   font-size: 0.9em;
   line-height: 1.5;
-  color: #f8f8f8; /*字体颜色*/
+  color: #f8f8f8;
+}
+.highlight pre {
+  margin: 0;
+  padding: 0;
+  background: transparent;
+  box-shadow: none;
 }
 .post-content pre code {
   background: transparent;
