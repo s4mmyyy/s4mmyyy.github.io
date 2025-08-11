@@ -6,7 +6,7 @@
   <link href="https://s4mmyyy.github.io/atom.xml" rel="self"/>
   
   <link href="https://s4mmyyy.github.io/"/>
-  <updated>2025-08-05T14:39:51.298Z</updated>
+  <updated>2025-08-11T16:05:14.534Z</updated>
   <id>https://s4mmyyy.github.io/</id>
   
   <author>
@@ -15,6 +15,29 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>周报2025-8-10-好累</title>
+    <link href="https://s4mmyyy.github.io/article/%E5%91%A8%E6%8A%A52025-8-10-%E5%A5%BD%E7%B4%AF/"/>
+    <id>https://s4mmyyy.github.io/article/%E5%91%A8%E6%8A%A52025-8-10-%E5%A5%BD%E7%B4%AF/</id>
+    <published>2025-08-09T16:00:00.000Z</published>
+    <updated>2025-08-11T16:05:14.534Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="阅读"><a href="#阅读" class="headerlink" title="阅读"></a>阅读</h1><p>无</p><h1 id="信息-x2F-感想"><a href="#信息-x2F-感想" class="headerlink" title="信息&#x2F;感想"></a>信息&#x2F;感想</h1><p>最近一周的新闻真是各种爆，武大男女对立，江油，亮证姐，杨兰兰，还有社保的事情。基本上都是负面的事情，虽然暂时没有波及到自己的具体利益，但是按照这样下去矛盾只会越积越深，总有一天会爆发的。唉，还是得保持警惕吧。</p><h1 id="技术-x2F-工作总结"><a href="#技术-x2F-工作总结" class="headerlink" title="技术&#x2F;工作总结"></a>技术&#x2F;工作总结</h1><p>周末继续看了点大模型相关知识，感觉越来越看不懂了😂，anyway，反正是当着科普读物看的，有些地方看不懂就看不懂吧，等以后要用的时候再捡起来学。</p><h1 id="生活-x2F-其他"><a href="#生活-x2F-其他" class="headerlink" title="生活&#x2F;其他"></a>生活&#x2F;其他</h1><p>工作之后周末真的只想躺尸，以至于又忘了写周报。。。还是到了周一才想起来</p><p>这周参加了战地6的B测，还是挺好玩的，不出意外这次还是会预购。</p><p>最近在想要不要买个TWS耳机，方便听歌（摸鱼），看来看去感觉价格都有点高，还是再观望观望吧。</p>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;h1 id=&quot;阅读&quot;&gt;&lt;a href=&quot;#阅读&quot; class=&quot;headerlink&quot; title=&quot;阅读&quot;&gt;&lt;/a&gt;阅读&lt;/h1&gt;&lt;p&gt;无&lt;/p&gt;
+&lt;h1 id=&quot;信息-x2F-感想&quot;&gt;&lt;a href=&quot;#信息-x2F-感想&quot; class=&quot;headerlink&quot; title</summary>
+      
+    
+    
+    
+    <category term="周报" scheme="https://s4mmyyy.github.io/categories/%E5%91%A8%E6%8A%A5/"/>
+    
+    
+  </entry>
   
   <entry>
     <title>周报2025-8-3-忙碌</title>
@@ -449,28 +472,6 @@
     
     
     <category term="test" scheme="https://s4mmyyy.github.io/tags/test/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>周报2025-3-23-非暴力沟通</title>
-    <link href="https://s4mmyyy.github.io/article/%E5%91%A8%E6%8A%A52025-3-23-%E9%9D%9E%E6%9A%B4%E5%8A%9B%E6%B2%9F%E9%80%9A/"/>
-    <id>https://s4mmyyy.github.io/article/%E5%91%A8%E6%8A%A52025-3-23-%E9%9D%9E%E6%9A%B4%E5%8A%9B%E6%B2%9F%E9%80%9A/</id>
-    <published>2025-03-22T16:00:00.000Z</published>
-    <updated>2025-03-30T16:21:57.009Z</updated>
-    
-    <content type="html"><![CDATA[<h1 id="阅读"><a href="#阅读" class="headerlink" title="阅读"></a>阅读</h1><p>《道氏理论》的大部分读完了，后续部分有点缺乏读下去的动力。这周倒是阅读了《非暴力沟通》，学到了很多东西，希望学习到的知识能够提升自己未来的沟通技巧。</p><p>看了《非暴力沟通》的“体会与表达感受”那章后，想给自己每天用一个词去精准描述自己当天的某种感受，并将其作为一种训练，同时也能建立起自己表达感受的词汇表。但是实际情况却是除了第一天，后面几天到了晚上睡前回想自己的感受，并没有什么值得记录的感受，那些在意识边缘闪烁的情绪萤火虫，总在伸手捕捉时变成代码注释里的灰度像素</p><h1 id="信息"><a href="#信息" class="headerlink" title="信息"></a>信息</h1><p>从上周开始，陆陆续续在deepseek上问了好多心理问题，感觉deepseek真的是个挺好的心理按摩师，算是第二次让我感受到AI的好处^_^</p><h1 id="技术"><a href="#技术" class="headerlink" title="技术"></a>技术</h1><p>把github主页修缮了一下，给README文件做美容，跟着网上的教程获得github成就时，觉得github主页像自己的数字盆景——修剪过的技术栈枝条，给贡献日历施点commit肥，再往”hi there🖐”下面摆上精心雕琢的emoji假山和文字。</p><p>有空的话希望能给自己的博客写个后端或者前端，把自己的博客修改成完全体。</p><h1 id="生活-x2F-其他"><a href="#生活-x2F-其他" class="headerlink" title="生活&#x2F;其他"></a>生活&#x2F;其他</h1><p>虽然上周完成了初稿，但是这周大部分时间都花在改初稿上了，好在在这周末也是把论文终版改出来了。</p><p>今天在无意间翻到了krz的博客，没想到我最喜欢的P主（或者说音乐人？）竟然也是程序员，还是蛮震惊的。挺羡慕又有技术又有才华的人，看到k君的作词和散文，我又燃起了自己的创作之魂hhh</p><p>这周继续沉迷三角洲，并没有继续推法环。尝试了和同学一起开黑，虽然相互之间没怎么配合，但是开黑玩确实比自己玩有趣多了，也许是因为游玩时大家能即时交流游玩情绪，互相调侃，换做平时，同学游戏时的吼叫声觉得是我最讨厌的噪音之一，但此时这种声音却不那么刺耳，反而满足了各自的情绪价值。这种“共同经历”的体验（归属感？）也是挺不错的。</p>]]></content>
-    
-    
-      
-      
-    <summary type="html">&lt;h1 id=&quot;阅读&quot;&gt;&lt;a href=&quot;#阅读&quot; class=&quot;headerlink&quot; title=&quot;阅读&quot;&gt;&lt;/a&gt;阅读&lt;/h1&gt;&lt;p&gt;《道氏理论》的大部分读完了，后续部分有点缺乏读下去的动力。这周倒是阅读了《非暴力沟通》，学到了很多东西，希望学习到的知识能够提升自己未来的沟</summary>
-      
-    
-    
-    
-    <category term="周报" scheme="https://s4mmyyy.github.io/categories/%E5%91%A8%E6%8A%A5/"/>
-    
     
   </entry>
   
